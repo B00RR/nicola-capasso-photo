@@ -131,4 +131,7 @@
     transition: background-size .5s ease;
   }
   .underline-grow:hover { background-size: 100% 1px; }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 }
