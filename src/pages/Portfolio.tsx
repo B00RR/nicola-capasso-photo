@@ -122,8 +122,8 @@ const Portfolio = () => {
               <YearSection
                 key={y.year}
                 yearData={y}
-                ref={(el) => (sectionRefs.current[y.year] = el)}
                 lang={lang}
+                registerRef={(el) => (sectionRefs.current[y.year] = el)}
               />
             ))}
           </div>
@@ -136,14 +136,14 @@ const Portfolio = () => {
 interface YearSectionProps {
   yearData: typeof portfolio[number];
   lang: "it" | "en";
+  registerRef: (el: HTMLElement | null) => void;
 }
 
-const YearSection = ({ yearData, lang, ...rest }: YearSectionProps & { ref?: any }) => {
-  const ref = useReveal<HTMLElement>(0.05);
+const YearSection = ({ yearData, lang, registerRef }: YearSectionProps) => {
+  const revealRef = useReveal<HTMLElement>(0.05);
   const setRefs = (el: HTMLElement | null) => {
-    (ref as any).current = el;
-    const r = (rest as any).ref;
-    if (typeof r === "function") r(el);
+    (revealRef as any).current = el;
+    registerRef(el);
   };
   return (
     <section ref={setRefs} className="reveal scroll-mt-32" data-year={yearData.year}>
