@@ -13,24 +13,39 @@ const Portfolio = () => {
     document.title = lang === "it" ? "Portfolio — Nicola" : "Portfolio — Nicola";
   }, [lang]);
 
-  // observe sections to update active year
+  // Update active year based on which section is closest to viewport center
   useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-    portfolio.forEach((y) => {
-      const el = sectionRefs.current[y.year];
-      if (!el) return;
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) setActiveYear(y.year);
-          });
-        },
-        { rootMargin: "-40% 0px -50% 0px", threshold: 0 }
-      );
-      io.observe(el);
-      observers.push(io);
-    });
-    return () => observers.forEach((o) => o.disconnect());
+    let raf = 0;
+    const update = () => {
+      const center = window.innerHeight * 0.4;
+      let best = portfolio[0].year;
+      let bestDist = Infinity;
+      portfolio.forEach((y) => {
+        const el = sectionRefs.current[y.year];
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        // distance from section top to our reference line
+        const dist = Math.abs(rect.top - center);
+        // prefer sections whose top is at or above the line
+        if (rect.top <= center + 10 && dist < bestDist) {
+          bestDist = dist;
+          best = y.year;
+        }
+      });
+      setActiveYear(best);
+    };
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   const scrollTo = (year: number) => {
