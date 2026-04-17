@@ -55,7 +55,8 @@ const Home = () => {
             alt="Cinematic wedding moment at golden hour"
             className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-transparent to-background/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/75" />
+          <div className="absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
         </motion.div>
 
         <div className="relative z-10 h-full flex flex-col justify-end pb-16 md:pb-24 px-6 md:px-10 max-w-[1500px] mx-auto">
