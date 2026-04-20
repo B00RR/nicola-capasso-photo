@@ -125,8 +125,8 @@ const Home = () => {
       </section>
 
       {/* ABOUT */}
-      <section className="px-6 md:px-10 py-24 md:py-40 max-w-[1500px] mx-auto">
-        <div className="grid md:grid-cols-12 gap-10 md:gap-20 items-center">
+      <section className="px-6 md:px-10 py-16 md:py-40 max-w-[1500px] mx-auto">
+        <div className="grid md:grid-cols-12 gap-8 md:gap-20 items-center">
           <div ref={aboutImgRef} className="md:col-span-5 reveal clip-reveal">
             <img
               src={aboutImg}
