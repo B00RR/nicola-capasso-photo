@@ -126,8 +126,8 @@ const Home = () => {
 
       {/* ABOUT */}
       <section className="px-6 md:px-10 py-16 md:py-40 max-w-[1500px] mx-auto">
-        <div className="grid md:grid-cols-12 gap-8 md:gap-20 items-center">
-          <div ref={aboutImgRef} className="md:col-span-5 reveal clip-reveal">
+        <div className="grid md:grid-cols-12 gap-6 md:gap-20 items-center">
+          <div ref={aboutImgRef} className="order-2 md:order-1 md:col-span-5 reveal clip-reveal">
             <img
               src={aboutImg}
               alt="Portrait of Nicola"
@@ -135,7 +135,7 @@ const Home = () => {
               className="w-full aspect-[4/5] object-cover"
             />
           </div>
-          <div ref={aboutRef} className="md:col-span-7 reveal">
+          <div ref={aboutRef} className="order-1 md:order-2 md:col-span-7 reveal">
             <p className="font-sans-tight text-[11px] uppercase text-muted-foreground mb-6">
               — {t.about.kicker}
             </p>
