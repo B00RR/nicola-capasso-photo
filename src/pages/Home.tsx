@@ -53,6 +53,8 @@ const Home = () => {
           <img
             src={heroImg}
             alt="Cinematic wedding moment at golden hour"
+            loading="eager"
+            fetchPriority="high"
             className="h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/75" />
@@ -117,7 +119,7 @@ const Home = () => {
       <section className="border-y border-border/60 py-6 overflow-hidden">
         <div className="flex marquee-track whitespace-nowrap">
           {[...marquee, ...marquee].map((m, i) => (
-            <span key={i} className="font-display italic text-3xl md:text-5xl px-8 text-muted-foreground">
+            <span key={`${m}-${i}`} className="font-display italic text-3xl md:text-5xl px-8 text-muted-foreground">
               {m} <span className="text-accent mx-2">✦</span>
             </span>
           ))}

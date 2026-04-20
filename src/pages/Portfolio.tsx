@@ -142,7 +142,7 @@ interface YearSectionProps {
 const YearSection = ({ yearData, lang, registerRef }: YearSectionProps) => {
   const revealRef = useReveal<HTMLElement>(0.05);
   const setRefs = (el: HTMLElement | null) => {
-    (revealRef as any).current = el;
+    revealRef.current = el;
     registerRef(el);
   };
   return (

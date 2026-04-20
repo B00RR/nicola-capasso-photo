@@ -21,7 +21,7 @@ const ScrollToTop = () => {
   return null;
 };
 
-const Layout = ({ children, transparentHeader = false }: { children: React.ReactNode; transparentHeader?: boolean }) => (
+const Layout = ({ children }: { children: React.ReactNode }) => (
   <>
     <Header />
     {children}
