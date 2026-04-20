@@ -53,11 +53,11 @@ const Portfolio = () => {
   };
 
   return (
-    <main className="pt-28 md:pt-36">
+    <main className="pt-32 md:pt-36">
       {/* Intro */}
-      <section className="px-6 md:px-10 max-w-[1500px] mx-auto pb-16 md:pb-24">
+      <section className="px-6 md:px-10 max-w-[1500px] mx-auto pt-12 md:pt-0 pb-16 md:pb-24">
         <p className="font-sans-tight text-[11px] uppercase text-muted-foreground mb-6">— {t.portfolio.kicker}</p>
-        <h1 className="font-display text-5xl md:text-7xl lg:text-8xl leading-[1] whitespace-pre-line max-w-4xl">
+        <h1 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.05] md:leading-[1] whitespace-pre-line max-w-4xl">
           {t.portfolio.title}
         </h1>
         <p className="mt-8 max-w-xl text-muted-foreground leading-relaxed">{t.portfolio.intro}</p>
