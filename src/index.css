@@ -109,6 +109,21 @@
   }
   .clip-reveal.is-visible { clip-path: inset(0 0 0 0); }
 
+  @media (max-width: 767px) {
+    .reveal,
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .clip-reveal,
+    .clip-reveal.is-visible {
+      clip-path: inset(0 0 0 0);
+      transition: none;
+    }
+  }
+
   /* Marquee */
   @keyframes marquee {
     0% { transform: translateX(0); }
