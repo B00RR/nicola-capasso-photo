@@ -14,10 +14,10 @@ const Home = () => {
   const heroY = useTransform(scrollY, [0, 800], [0, 160]);
   const heroScale = useTransform(scrollY, [0, 800], [1, 1.08]);
 
-  const aboutRef = useReveal<HTMLDivElement>();
-  const aboutImgRef = useReveal<HTMLDivElement>(0.2);
-  const servicesRef = useReveal<HTMLDivElement>();
-  const featRef = useReveal<HTMLDivElement>();
+  const aboutRef = useReveal<HTMLDivElement>(0.05);
+  const aboutImgRef = useReveal<HTMLDivElement>(0.05);
+  const servicesRef = useReveal<HTMLDivElement>(0.05);
+  const featRef = useReveal<HTMLDivElement>(0.05);
 
   useEffect(() => {
     document.title = lang === "it"
