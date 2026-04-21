@@ -88,7 +88,7 @@ const Contact = () => {
             />
           </div>
 
-          <p className=”mt-12 font-display italic text-2xl md:text-3xl text-muted-foreground leading-snug”>
+          <p className="mt-12 font-display italic text-2xl md:text-3xl text-muted-foreground leading-snug">
             {t.contact.quote}
           </p>
           <p className="mt-3 font-sans-tight text-[10px] uppercase text-muted-foreground">— Nicola</p>
