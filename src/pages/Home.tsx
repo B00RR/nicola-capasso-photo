@@ -54,7 +54,7 @@ const Home = () => {
             src={heroImg}
             alt="Cinematic wedding moment at golden hour"
             loading="eager"
-            fetchPriority="high"
+            fetchpriority="high"
             className="h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/75" />

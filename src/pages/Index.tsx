@@ -1,13 +1,5 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Home from "./Home";
 
-const Index = () => (
-  <>
-    <Header />
-    <Home />
-    <Footer />
-  </>
-);
+const Index = () => <Home />;
 
 export default Index;

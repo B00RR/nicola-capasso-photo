@@ -1,0 +1,31 @@
+{
+  "contacts": {
+    "whatsapp": "+393331234567",
+    "whatsappLink": "https://wa.me/393331234567",
+    "instagram": "https://instagram.com/nicola.weddings",
+    "instagramHandle": "@nicola.weddings",
+    "email": "hello@nicola-photography.com"
+  },
+  "nav": {
+    "home_it": "Home",
+    "home_en": "Home",
+    "portfolio_it": "Portfolio",
+    "portfolio_en": "Portfolio",
+    "contact_it": "Contatti",
+    "contact_en": "Contact"
+  },
+  "footer": {
+    "tagline_it": "Fotografia di matrimonio — disponibile in tutto il mondo",
+    "tagline_en": "Wedding photography — available worldwide",
+    "rights_it": "Tutti i diritti riservati",
+    "rights_en": "All rights reserved",
+    "crafted_it": "Realizzato con cura",
+    "crafted_en": "Crafted with care"
+  },
+  "notFound": {
+    "title_it": "Pagina non trovata",
+    "title_en": "Page not found",
+    "back_it": "Torna alla home",
+    "back_en": "Return to home"
+  }
+}

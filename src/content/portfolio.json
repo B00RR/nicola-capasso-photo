@@ -1,0 +1,48 @@
+{
+  "years": [
+    {
+      "year": 2025,
+      "caption_it": "Un anno di luce nuova \u2014 dalle Dolomiti alla costa amalfitana.",
+      "caption_en": "A year of new light \u2014 from the Dolomites to the Amalfi coast.",
+      "shoots": [
+        { "id": "25-1", "title": "Sofia & Marco", "location": "Lago di Como, IT", "image": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=80", "span": "tall" },
+        { "id": "25-2", "title": "Emma & Liam", "location": "Positano, IT", "image": "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=1400&q=80" },
+        { "id": "25-3", "title": "Chiara & Paul", "location": "Val d'Orcia, IT", "image": "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1400&q=80", "span": "wide" },
+        { "id": "25-4", "title": "Anna & Theo", "location": "Santorini, GR", "image": "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1400&q=80" }
+      ]
+    },
+    {
+      "year": 2024,
+      "caption_it": "Coppie internazionali, paesaggi italiani: un dialogo costante.",
+      "caption_en": "International couples, Italian landscapes: a constant dialogue.",
+      "shoots": [
+        { "id": "24-1", "title": "Hannah & Noah", "location": "Siena, IT", "image": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1400&q=80" },
+        { "id": "24-2", "title": "L\u00e9a & Antoine", "location": "Provence, FR", "image": "https://images.unsplash.com/photo-1525772764200-be829a350797?auto=format&fit=crop&w=1400&q=80", "span": "tall" },
+        { "id": "24-3", "title": "Maya & Jonas", "location": "Cinque Terre, IT", "image": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1400&q=80" },
+        { "id": "24-4", "title": "Olivia & Sam", "location": "Capri, IT", "image": "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1400&q=80", "span": "wide" }
+      ]
+    },
+    {
+      "year": 2023,
+      "caption_it": "L'anno dei piccoli matrimoni intimi e dei viaggi pi\u00f9 lunghi.",
+      "caption_en": "The year of intimate weddings and longer journeys.",
+      "shoots": [
+        { "id": "23-1", "title": "Greta & Ben", "location": "Lisbon, PT", "image": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1400&q=80", "span": "wide" },
+        { "id": "23-2", "title": "Ines & Diego", "location": "Sevilla, ES", "image": "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=1400&q=80" },
+        { "id": "23-3", "title": "Aurora & Tom", "location": "Roma, IT", "image": "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1400&q=80", "span": "tall" },
+        { "id": "23-4", "title": "Mila & Jack", "location": "Mykonos, GR", "image": "https://images.unsplash.com/photo-1525772764200-be829a350797?auto=format&fit=crop&w=1400&q=80" }
+      ]
+    },
+    {
+      "year": 2022,
+      "caption_it": "I primi viaggi fuori dall'Europa, le prime collaborazioni con il team.",
+      "caption_en": "First trips outside Europe, first collaborations with the team.",
+      "shoots": [
+        { "id": "22-1", "title": "Beatrice & Luca", "location": "Puglia, IT", "image": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=80" },
+        { "id": "22-2", "title": "Sara & Ahmad", "location": "Marrakech, MA", "image": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1400&q=80", "span": "wide" },
+        { "id": "22-3", "title": "Nora & Felix", "location": "Wien, AT", "image": "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=1400&q=80", "span": "tall" },
+        { "id": "22-4", "title": "Eva & Karl", "location": "Hallstatt, AT", "image": "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1400&q=80" }
+      ]
+    }
+  ]
+}

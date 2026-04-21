@@ -1,0 +1,74 @@
+{
+  "hero": {
+    "eyebrow_it": "Fotografo di matrimoni \u2014 Italia & oltre",
+    "eyebrow_en": "Wedding photographer \u2014 Italy & beyond",
+    "title_it": ["Storie", "che restano,", "luce che dura."],
+    "title_en": ["Stories", "that linger,", "light that lasts."],
+    "subtitle_it": "Nicola racconta matrimoni con sguardo discreto e cinematografico. Niente pose forzate \u2014 solo gli istanti veri di una giornata che non torner\u00e0.",
+    "subtitle_en": "Nicola captures weddings with a quiet, cinematic eye. No forced poses \u2014 only the real moments of a day that will never come back.",
+    "cta_it": "Scopri il portfolio",
+    "cta_en": "Explore the portfolio",
+    "scroll_it": "Scorri",
+    "scroll_en": "Scroll"
+  },
+  "about": {
+    "kicker_it": "Chi sono",
+    "kicker_en": "About",
+    "title_it": "Un fotografo, una squadra,\nun racconto su misura.",
+    "title_en": "One photographer, a team,\na story made for you.",
+    "body_it": [
+      "Sono Nicola, fotografo freelance specializzato in matrimoni. Lavoro principalmente con coppie internazionali che cercano un racconto autentico, lontano dai clich\u00e9.",
+      "Quando l'occasione lo richiede, mi affianca un team selezionato di professionisti \u2014 secondo fotografo, video, assistente \u2014 per garantire che ogni momento sia custodito."
+    ],
+    "body_en": [
+      "I'm Nicola, a freelance photographer specialised in weddings. I mostly work with international couples who are looking for an honest story, far from clich\u00e9s.",
+      "When the day calls for it, a hand-picked team works alongside me \u2014 second shooter, video, assistant \u2014 to make sure every moment is held."
+    ],
+    "stats": [
+      { "n": "120+", "l_it": "Matrimoni raccontati", "l_en": "Weddings told" },
+      { "n": "18", "l_it": "Paesi visitati", "l_en": "Countries visited" },
+      { "n": "7", "l_it": "Anni di esperienza", "l_en": "Years of practice" }
+    ]
+  },
+  "services": {
+    "kicker_it": "Servizi",
+    "kicker_en": "Services",
+    "items": [
+      {
+        "t_it": "Matrimoni",
+        "t_en": "Weddings",
+        "d_it": "Reportage completo della giornata, dalla preparazione al ricevimento.",
+        "d_en": "Full-day reportage, from getting ready to the last dance."
+      },
+      {
+        "t_it": "Destination",
+        "t_en": "Destination",
+        "d_it": "Disponibile a viaggiare ovunque per matrimoni internazionali.",
+        "d_en": "Available to travel anywhere for international weddings."
+      },
+      {
+        "t_it": "Engagement",
+        "t_en": "Engagement",
+        "d_it": "Sessioni intime per raccontare la coppia prima del giorno pi\u00f9 importante.",
+        "d_en": "Intimate sessions to tell your story before the big day."
+      },
+      {
+        "t_it": "Team su richiesta",
+        "t_en": "Team on request",
+        "d_it": "Secondo fotografo, video e assistenti quando serve copertura completa.",
+        "d_en": "Second shooter, video and assistants whenever full coverage is needed."
+      }
+    ]
+  },
+  "portfolio": {
+    "kicker_it": "Portfolio",
+    "kicker_en": "Portfolio",
+    "title_it": "Gli ultimi anni,\nuno scroll alla volta.",
+    "title_en": "The last few years,\none scroll at a time.",
+    "intro_it": "Ogni anno porta con s\u00e9 volti, luoghi e emozioni nuove. Scorri lungo la timeline o salta direttamente all'anno che preferisci.",
+    "intro_en": "Every year brings new faces, places and feelings. Scroll along the timeline or jump straight to a year.",
+    "viewAll_it": "Vedi il portfolio completo",
+    "viewAll_en": "View the full portfolio"
+  },
+  "marquee": ["Como", "Positano", "Provence", "Santorini", "Capri", "Marrakech", "Cinque Terre", "Lisbon", "Mykonos"]
+}

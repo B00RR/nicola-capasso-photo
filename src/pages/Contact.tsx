@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLang } from "@/i18n/LanguageContext";
 import { CONTACTS } from "@/data/portfolio";
 import { useReveal } from "@/hooks/useReveal";
-import { toast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 
 const Contact = () => {
   const { t, lang } = useLang();
@@ -14,12 +14,24 @@ const Contact = () => {
     document.title = lang === "it" ? "Contatti — Nicola" : "Contact — Nicola";
   }, [lang]);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSent(true);
-    toast({ title: t.contact.form.sent });
-    (e.target as HTMLFormElement).reset();
-    setTimeout(() => setSent(false), 4000);
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(data as any).toString(),
+      });
+      setSent(true);
+      toast.success(t.contact.form.sent);
+      form.reset();
+      setTimeout(() => setSent(false), 4000);
+    } catch {
+      toast.error("Errore durante l'invio. Riprova.");
+    }
   };
 
   return (
@@ -35,7 +47,20 @@ const Contact = () => {
       <section className="px-6 md:px-10 max-w-[1500px] mx-auto mt-20 md:mt-28 grid md:grid-cols-12 gap-12 md:gap-20">
         {/* Form */}
         <div ref={formRef} className="reveal md:col-span-7">
-          <form onSubmit={onSubmit} className="space-y-8">
+          <form
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            onSubmit={onSubmit}
+            className="space-y-8"
+          >
+            <input type="hidden" name="form-name" value="contact" />
+            <p className="hidden">
+              <label>
+                Non compilare questo campo: <input name="bot-field" />
+              </label>
+            </p>
             <div className="grid md:grid-cols-2 gap-8">
               <Field name="name" label={t.contact.form.name} required />
               <Field name="email" label={t.contact.form.email} type="email" required />
