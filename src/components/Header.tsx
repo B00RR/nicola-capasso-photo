@@ -30,13 +30,13 @@ const Header = () => {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         scrolled || open
           ? "bg-background/85 backdrop-blur-md border-b border-border/60"
-          : "bg-gradient-to-b from-background/70 via-background/30 to-transparent"
+          : "bg-gradient-to-b from-background/85 via-background/45 to-transparent"
       )}
     >
       <div
         className={cn(
           "mx-auto max-w-[1500px] px-6 md:px-10 h-16 md:h-20 flex items-center justify-between",
-          !(scrolled || open) && "[text-shadow:0_1px_2px_rgba(255,250,240,0.55)]"
+          !(scrolled || open) && "[text-shadow:0_1px_3px_rgba(255,250,240,0.75)]"
         )}
       >
         <Link
@@ -54,7 +54,7 @@ const Header = () => {
               to={l.to}
               className={cn(
                 "font-sans-tight text-[11px] uppercase underline-grow",
-                pathname === l.to ? "text-foreground" : "text-foreground/70 hover:text-foreground"
+                pathname === l.to ? "text-foreground" : "text-foreground/90 hover:text-foreground"
               )}
             >
               {l.label}
@@ -62,7 +62,7 @@ const Header = () => {
           ))}
           <button
             onClick={toggle}
-            className="font-sans-tight text-[11px] uppercase tracking-[0.2em] text-foreground/70 hover:text-foreground transition-colors"
+            className="font-sans-tight text-[11px] uppercase tracking-[0.2em] text-foreground/90 hover:text-foreground transition-colors"
             aria-label="Switch language"
           >
             <span className={lang === "it" ? "text-foreground" : ""}>IT</span>
