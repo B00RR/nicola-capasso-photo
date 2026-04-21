@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLang } from "@/i18n/LanguageContext";
 import { CONTACTS } from "@/data/portfolio";
 import { useReveal } from "@/hooks/useReveal";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { toast } from "@/hooks/use-toast";
 
 const Contact = () => {
@@ -10,9 +11,7 @@ const Contact = () => {
   const formRef = useReveal<HTMLDivElement>();
   const directRef = useReveal<HTMLDivElement>();
 
-  useEffect(() => {
-    document.title = lang === "it" ? "Contatti — Nicola" : "Contact — Nicola";
-  }, [lang]);
+  usePageMeta(lang === "it" ? "Contatti — Nicola" : "Contact — Nicola");
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

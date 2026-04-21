@@ -1,17 +1,16 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useLang } from "@/i18n/LanguageContext";
 import { portfolio } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 import { useReveal } from "@/hooks/useReveal";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const Portfolio = () => {
   const { t, lang } = useLang();
   const [activeYear, setActiveYear] = useState(portfolio[0].year);
   const sectionRefs = useRef<Record<number, HTMLElement | null>>({});
 
-  useEffect(() => {
-    document.title = lang === "it" ? "Portfolio — Nicola" : "Portfolio — Nicola";
-  }, [lang]);
+  usePageMeta(lang === "it" ? "Portfolio — Nicola" : "Portfolio — Nicola");
 
   // Update active year based on which section is closest to viewport center
   useEffect(() => {

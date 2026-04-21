@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import heroImg from "@/assets/hero.jpg";
 import aboutImg from "@/assets/about.jpg";
 import { useLang } from "@/i18n/LanguageContext";
 import { useReveal } from "@/hooks/useReveal";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { portfolio } from "@/data/portfolio";
 
 const Home = () => {
@@ -20,22 +21,12 @@ const Home = () => {
   const servicesRef = useReveal<HTMLDivElement>(0.05);
   const featRef = useReveal<HTMLDivElement>(0.05);
 
-  useEffect(() => {
-    document.title = lang === "it"
-      ? "Nicola — Fotografo di matrimoni"
-      : "Nicola — Wedding Photographer";
-    const meta = document.querySelector('meta[name="description"]');
-    const desc = lang === "it"
+  usePageMeta(
+    lang === "it" ? "Nicola — Fotografo di matrimoni" : "Nicola — Wedding Photographer",
+    lang === "it"
       ? "Nicola, fotografo freelance specializzato in matrimoni in Italia e nel mondo. Reportage cinematografico, autentico, su misura."
-      : "Nicola, freelance wedding photographer based in Italy, available worldwide. Cinematic, honest, tailor-made reportage.";
-    if (meta) meta.setAttribute("content", desc);
-    else {
-      const m = document.createElement("meta");
-      m.name = "description";
-      m.content = desc;
-      document.head.appendChild(m);
-    }
-  }, [lang]);
+      : "Nicola, freelance wedding photographer based in Italy, available worldwide. Cinematic, honest, tailor-made reportage.",
+  );
 
   // Marquee items (recent locations)
   const marquee = ["Como", "Positano", "Provence", "Santorini", "Capri", "Marrakech", "Cinque Terre", "Lisbon", "Mykonos"];
