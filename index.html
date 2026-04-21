@@ -1,25 +1,58 @@
 <!doctype html>
-<html lang="en">
+<html lang="it">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self'; frame-ancestors 'none';" />
-    <title>Nicola — Wedding Photographer</title>
-    <meta name="description" content="Nicola is a freelance wedding photographer based in Italy, available worldwide. Cinematic, honest, tailor-made wedding reportage.">
+
+    <title>Nicola — Fotografo di matrimoni</title>
+    <meta name="description" content="Nicola, fotografo freelance specializzato in matrimoni in Italia e nel mondo. Reportage cinematografico, autentico, su misura." />
     <meta name="author" content="Nicola" />
 
-    
-    
-    <meta property="og:type" content="website" />
+    <!-- Canonical (updated dynamically per page via usePageMeta) -->
+    <link rel="canonical" href="https://YOURDOMAIN.COM/it" />
 
+    <!-- hreflang -->
+    <link rel="alternate" hreflang="it" href="https://YOURDOMAIN.COM/it" />
+    <link rel="alternate" hreflang="en" href="https://YOURDOMAIN.COM/en" />
+    <link rel="alternate" hreflang="x-default" href="https://YOURDOMAIN.COM/it" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Nicola — Fotografo di matrimoni" />
+    <meta property="og:description" content="Nicola, fotografo freelance specializzato in matrimoni in Italia e nel mondo. Reportage cinematografico, autentico, su misura." />
+    <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/534eceb1-5ffa-4294-9691-42d83ce6e584/id-preview-359ff696--b946f11e-c325-48b3-9455-560e6def4bf7.lovable.app-1776701536177.png" />
+    <meta property="og:url" content="https://YOURDOMAIN.COM/it" />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="og:title" content="Nicola — Wedding Photographer">
-  <meta name="twitter:title" content="Nicola — Wedding Photographer">
-  <meta property="og:description" content="Nicola is a freelance wedding photographer based in Italy, available worldwide. Cinematic, honest, tailor-made wedding reportage.">
-  <meta name="twitter:description" content="Nicola is a freelance wedding photographer based in Italy, available worldwide. Cinematic, honest, tailor-made wedding reportage.">
-  <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/534eceb1-5ffa-4294-9691-42d83ce6e584/id-preview-359ff696--b946f11e-c325-48b3-9455-560e6def4bf7.lovable.app-1776701536177.png">
-  <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/534eceb1-5ffa-4294-9691-42d83ce6e584/id-preview-359ff696--b946f11e-c325-48b3-9455-560e6def4bf7.lovable.app-1776701536177.png">
-</head>
+    <meta name="twitter:title" content="Nicola — Fotografo di matrimoni" />
+    <meta name="twitter:description" content="Nicola, fotografo freelance specializzato in matrimoni in Italia e nel mondo. Reportage cinematografico, autentico, su misura." />
+    <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/534eceb1-5ffa-4294-9691-42d83ce6e584/id-preview-359ff696--b946f11e-c325-48b3-9455-560e6def4bf7.lovable.app-1776701536177.png" />
+
+    <!-- JSON-LD structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Nicola",
+      "jobTitle": "Wedding Photographer",
+      "description": "Fotografo freelance specializzato in matrimoni in Italia e nel mondo. Reportage cinematografico, autentico, su misura.",
+      "url": "https://YOURDOMAIN.COM",
+      "knowsAbout": ["Wedding Photography", "Destination Photography", "Fine Art Photography", "Engagement Photography"],
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "Worldwide"
+      },
+      "offers": {
+        "@type": "Offer",
+        "description": "Servizi fotografici per matrimoni, engagement e destination wedding"
+      }
+    }
+    </script>
+  </head>
 
   <body>
     <div id="root"></div>

@@ -11,7 +11,7 @@ const Contact = () => {
   const formRef = useReveal<HTMLDivElement>();
   const directRef = useReveal<HTMLDivElement>();
 
-  usePageMeta(lang === "it" ? "Contatti — Nicola" : "Contact — Nicola");
+  usePageMeta(lang === "it" ? "Contatti — Nicola" : "Contact — Nicola", undefined, `/${lang}/contact`);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

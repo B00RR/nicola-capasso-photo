@@ -26,6 +26,7 @@ const Home = () => {
     lang === "it"
       ? "Nicola, fotografo freelance specializzato in matrimoni in Italia e nel mondo. Reportage cinematografico, autentico, su misura."
       : "Nicola, freelance wedding photographer based in Italy, available worldwide. Cinematic, honest, tailor-made reportage.",
+    `/${lang}`,
   );
 
   // Marquee items (recent locations)

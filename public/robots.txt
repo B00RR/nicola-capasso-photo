@@ -1,3 +1,5 @@
+Sitemap: https://YOURDOMAIN.COM/sitemap.xml
+
 User-agent: Googlebot
 Allow: /
 

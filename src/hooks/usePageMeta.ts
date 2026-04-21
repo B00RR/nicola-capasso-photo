@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export const usePageMeta = (title: string, description?: string) => {
+export const usePageMeta = (title: string, description?: string, canonicalPath?: string) => {
   useEffect(() => {
     document.title = title;
 
@@ -13,5 +13,15 @@ export const usePageMeta = (title: string, description?: string) => {
       }
       el.setAttribute("content", description);
     }
-  }, [title, description]);
+
+    if (canonicalPath !== undefined) {
+      let canon = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+      if (!canon) {
+        canon = document.createElement("link");
+        canon.rel = "canonical";
+        document.head.appendChild(canon);
+      }
+      canon.href = `${window.location.origin}${canonicalPath}`;
+    }
+  }, [title, description, canonicalPath]);
 };

@@ -10,7 +10,7 @@ const Portfolio = () => {
   const [activeYear, setActiveYear] = useState(portfolio[0].year);
   const sectionRefs = useRef<Record<number, HTMLElement | null>>({});
 
-  usePageMeta(lang === "it" ? "Portfolio — Nicola" : "Portfolio — Nicola");
+  usePageMeta(lang === "it" ? "Portfolio — Nicola" : "Portfolio — Nicola", undefined, `/${lang}/portfolio`);
 
   // Update active year based on which section is closest to viewport center
   useEffect(() => {
