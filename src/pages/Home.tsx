@@ -9,6 +9,7 @@ import { portfolio } from "@/data/portfolio";
 
 const Home = () => {
   const { t, lang } = useLang();
+  const portfolioUrl = `/${lang}/portfolio`;
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 800], [0, 160]);
@@ -96,7 +97,7 @@ const Home = () => {
               {t.hero.subtitle}
             </p>
             <Link
-              to="/portfolio"
+              to={portfolioUrl}
               className="font-sans-tight text-[11px] uppercase text-background border-b border-background/60 pb-2 self-start md:self-end hover:border-background transition-colors"
             >
               {t.hero.cta} →
@@ -188,7 +189,7 @@ const Home = () => {
             </h2>
           </div>
           <Link
-            to="/portfolio"
+            to={portfolioUrl}
             className="font-sans-tight text-[11px] uppercase border-b border-foreground/40 pb-2 hover:border-foreground transition-colors hidden md:inline-block"
           >
             {t.portfolio.viewAll} →
@@ -199,7 +200,7 @@ const Home = () => {
           {featured.map((s, i) => (
             <Link
               key={s.id}
-              to="/portfolio"
+              to={portfolioUrl}
               className={`overflow-hidden block ${i % 2 === 0 ? "md:mt-12" : ""}`}
             >
               <div className="overflow-hidden aspect-[3/4]">
@@ -219,7 +220,7 @@ const Home = () => {
         </div>
 
         <Link
-          to="/portfolio"
+          to={portfolioUrl}
           className="font-sans-tight text-[11px] uppercase border-b border-foreground/40 pb-2 hover:border-foreground transition-colors mt-10 inline-block md:hidden"
         >
           {t.portfolio.viewAll} →

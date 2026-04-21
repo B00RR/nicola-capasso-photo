@@ -3,7 +3,7 @@ import { CONTACTS } from "@/data/portfolio";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   return (
     <footer className="border-t border-border/60 mt-32">
       <div className="mx-auto max-w-[1500px] px-6 md:px-10 py-14 grid gap-10 md:grid-cols-3">
@@ -13,9 +13,9 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col gap-2 font-sans-tight text-[11px] uppercase">
-          <Link to="/" className="underline-grow w-fit text-muted-foreground hover:text-foreground">{t.nav.home}</Link>
-          <Link to="/portfolio" className="underline-grow w-fit text-muted-foreground hover:text-foreground">{t.nav.portfolio}</Link>
-          <Link to="/contact" className="underline-grow w-fit text-muted-foreground hover:text-foreground">{t.nav.contact}</Link>
+          <Link to={`/${lang}`} className="underline-grow w-fit text-muted-foreground hover:text-foreground">{t.nav.home}</Link>
+          <Link to={`/${lang}/portfolio`} className="underline-grow w-fit text-muted-foreground hover:text-foreground">{t.nav.portfolio}</Link>
+          <Link to={`/${lang}/contact`} className="underline-grow w-fit text-muted-foreground hover:text-foreground">{t.nav.contact}</Link>
         </div>
 
         <div className="flex flex-col gap-2 font-sans-tight text-[11px] uppercase">

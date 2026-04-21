@@ -1,11 +1,12 @@
 import { useLang } from "@/i18n/LanguageContext";
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 const Header = () => {
-  const { lang, toggle, t } = useLang();
+  const { lang, t } = useLang();
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -18,10 +19,15 @@ const Header = () => {
 
   useEffect(() => setOpen(false), [pathname]);
 
+  const toggleLang = () => {
+    const newLang = lang === "it" ? "en" : "it";
+    navigate(pathname.replace(/^\/(it|en)/, `/${newLang}`), { replace: true });
+  };
+
   const links = [
-    { to: "/", label: t.nav.home },
-    { to: "/portfolio", label: t.nav.portfolio },
-    { to: "/contact", label: t.nav.contact },
+    { to: `/${lang}`, label: t.nav.home },
+    { to: `/${lang}/portfolio`, label: t.nav.portfolio },
+    { to: `/${lang}/contact`, label: t.nav.contact },
   ];
 
   return (
@@ -35,7 +41,7 @@ const Header = () => {
     >
       <div className="mx-auto max-w-[1500px] px-6 md:px-10 h-16 md:h-20 flex items-center justify-between">
         <Link
-          to="/"
+          to={`/${lang}`}
           className="font-display text-xl md:text-2xl tracking-tight"
           aria-label="Nicola — Wedding photography"
         >
@@ -56,7 +62,7 @@ const Header = () => {
             </Link>
           ))}
           <button
-            onClick={toggle}
+            onClick={toggleLang}
             className="font-sans-tight text-[11px] uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors"
             aria-label="Switch language"
           >
@@ -95,7 +101,7 @@ const Header = () => {
             </Link>
           ))}
           <button
-            onClick={toggle}
+            onClick={toggleLang}
             className="font-sans-tight text-[11px] uppercase tracking-[0.2em] text-muted-foreground self-start mt-2"
           >
             <span className={lang === "it" ? "text-foreground" : ""}>IT</span>
