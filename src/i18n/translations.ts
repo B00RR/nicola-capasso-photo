@@ -43,6 +43,7 @@ export const translations = {
       kicker: "Contatti",
       title: "Raccontami\nil vostro giorno.",
       body: "Scrivimi due righe sul vostro matrimonio: data, luogo, atmosfera. Ti rispondo entro 48 ore con disponibilità e dettagli.",
+      quote: "«La luce migliore arriva quando smetti di posare.»",
       form: {
         name: "Nome",
         email: "Email",
@@ -60,6 +61,11 @@ export const translations = {
     footer: {
       tagline: "Fotografia di matrimonio — disponibile in tutto il mondo",
       rights: "Tutti i diritti riservati",
+      craftedWith: "Realizzato con cura",
+    },
+    notFound: {
+      title: "Pagina non trovata",
+      back: "Torna alla home",
     },
   },
   en: {
@@ -104,6 +110,7 @@ export const translations = {
       kicker: "Contact",
       title: "Tell me\nabout your day.",
       body: "Drop me a few lines about your wedding: date, place, mood. I'll reply within 48 hours with availability and details.",
+      quote: "\u201cThe best light shows up when you stop posing.\u201d",
       form: {
         name: "Name",
         email: "Email",
@@ -121,6 +128,11 @@ export const translations = {
     footer: {
       tagline: "Wedding photography — available worldwide",
       rights: "All rights reserved",
+      craftedWith: "Crafted with care",
+    },
+    notFound: {
+      title: "Page not found",
+      back: "Return to home",
     },
   },
 } as const;

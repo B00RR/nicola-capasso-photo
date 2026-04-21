@@ -27,7 +27,7 @@ const Footer = () => {
       <div className="border-t border-border/60">
         <div className="mx-auto max-w-[1500px] px-6 md:px-10 py-5 flex flex-col md:flex-row items-center justify-between gap-2 text-[11px] font-sans-tight uppercase text-muted-foreground">
           <p>© {new Date().getFullYear()} Nicola — {t.footer.rights}</p>
-          <p>Crafted with care</p>
+          <p>{t.footer.craftedWith}</p>
         </div>
       </div>
     </footer>

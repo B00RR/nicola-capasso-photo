@@ -1,6 +1,5 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-import { useEffect } from "react";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,11 +8,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingContacts from "@/components/FloatingContacts";
 import Index from "./pages/Index.tsx";
-import Portfolio from "./pages/Portfolio.tsx";
-import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
-const queryClient = new QueryClient();
+const Portfolio = lazy(() => import("./pages/Portfolio.tsx"));
+const Contact = lazy(() => import("./pages/Contact.tsx"));
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -31,23 +29,23 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
 );
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <LanguageProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <ScrollToTop />
+  <LanguageProvider>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <ScrollToTop />
+        <Suspense>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/portfolio" element={<Layout><Portfolio /></Layout>} />
             <Route path="/contact" element={<Layout><Contact /></Layout>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </LanguageProvider>
-  </QueryClientProvider>
+        </Suspense>
+      </BrowserRouter>
+    </TooltipProvider>
+  </LanguageProvider>
 );
 
 export default App;

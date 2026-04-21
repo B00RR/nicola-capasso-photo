@@ -5,7 +5,7 @@ import { useReveal } from "@/hooks/useReveal";
 import { toast } from "@/hooks/use-toast";
 
 const Contact = () => {
-  const { t, lang } = useLang();
+  const { t } = useLang();
   const [sent, setSent] = useState(false);
   const formRef = useReveal<HTMLDivElement>();
   const directRef = useReveal<HTMLDivElement>();
@@ -45,10 +45,11 @@ const Contact = () => {
               <Field name="location" label={t.contact.form.location} />
             </div>
             <div>
-              <label className="block font-sans-tight text-[10px] uppercase text-muted-foreground mb-3">
+              <label htmlFor="message" className="block font-sans-tight text-[10px] uppercase text-muted-foreground mb-3">
                 {t.contact.form.message}
               </label>
               <textarea
+                id="message"
                 name="message"
                 rows={5}
                 required
@@ -87,10 +88,8 @@ const Contact = () => {
             />
           </div>
 
-          <p className="mt-12 font-display italic text-2xl md:text-3xl text-muted-foreground leading-snug">
-            {lang === "it"
-              ? "«La luce migliore arriva quando smetti di posare.»"
-              : "“The best light shows up when you stop posing.”"}
+          <p className=”mt-12 font-display italic text-2xl md:text-3xl text-muted-foreground leading-snug”>
+            {t.contact.quote}
           </p>
           <p className="mt-3 font-sans-tight text-[10px] uppercase text-muted-foreground">— Nicola</p>
         </aside>
@@ -103,10 +102,11 @@ const Field = ({ name, label, type = "text", required = false }: {
   name: string; label: string; type?: string; required?: boolean;
 }) => (
   <div>
-    <label className="block font-sans-tight text-[10px] uppercase text-muted-foreground mb-3">
+    <label htmlFor={name} className="block font-sans-tight text-[10px] uppercase text-muted-foreground mb-3">
       {label}{required && <span className="text-accent ml-1">*</span>}
     </label>
     <input
+      id={name}
       type={type}
       name={name}
       required={required}
