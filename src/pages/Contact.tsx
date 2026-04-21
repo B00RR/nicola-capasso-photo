@@ -5,7 +5,7 @@ import { useReveal } from "@/hooks/useReveal";
 import { toast } from "@/hooks/use-toast";
 
 const Contact = () => {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [sent, setSent] = useState(false);
   const formRef = useReveal<HTMLDivElement>();
   const directRef = useReveal<HTMLDivElement>();
