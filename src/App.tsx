@@ -6,7 +6,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import FloatingContacts from "@/components/FloatingContacts";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
@@ -24,7 +23,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
     <Header />
     {children}
     <Footer />
-    <FloatingContacts />
   </>
 );
 
