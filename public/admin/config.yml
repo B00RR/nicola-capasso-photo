@@ -207,6 +207,8 @@ collections:
               - { label: Invia (EN), name: send_en, widget: string }
               - { label: Conferma (IT), name: sent_it, widget: string }
               - { label: Conferma (EN), name: sent_en, widget: string }
+              - { label: Errore (IT), name: error_it, widget: string }
+              - { label: Errore (EN), name: error_en, widget: string }
           - { label: Direct label (IT), name: direct_it, widget: string }
           - { label: Direct label (EN), name: direct_en, widget: string }
           - { label: WhatsApp label (IT), name: whatsapp_it, widget: string }
@@ -215,3 +217,100 @@ collections:
           - { label: Instagram label (EN), name: instagram_en, widget: string }
           - { label: Email label (IT), name: email_it, widget: string }
           - { label: Email label (EN), name: email_en, widget: string }
+
+  - name: legal
+    label: Pagine Legali
+    files:
+      - name: legal-pages
+        file: src/content/legal.json
+        label: Privacy, Cookie, Termini
+        fields:
+          - label: Titolare
+            name: owner
+            widget: object
+            fields:
+              - { label: Nome, name: name, widget: string }
+              - { label: Ruolo (IT), name: role_it, widget: string }
+              - { label: Ruolo (EN), name: role_en, widget: string }
+              - { label: Email, name: email, widget: string }
+              - { label: Paese (IT), name: country_it, widget: string }
+              - { label: Paese (EN), name: country_en, widget: string }
+          - label: Etichette navigazione
+            name: nav
+            widget: object
+            fields:
+              - { label: Privacy (IT), name: privacy_it, widget: string }
+              - { label: Privacy (EN), name: privacy_en, widget: string }
+              - { label: Cookie (IT), name: cookies_it, widget: string }
+              - { label: Cookie (EN), name: cookies_en, widget: string }
+              - { label: Termini (IT), name: terms_it, widget: string }
+              - { label: Termini (EN), name: terms_en, widget: string }
+              - { label: Legale (IT), name: legal_it, widget: string }
+              - { label: Legale (EN), name: legal_en, widget: string }
+          - { label: Ultimo aggiornamento, name: lastUpdated, widget: string, hint: "Formato YYYY-MM-DD" }
+          - label: Privacy Policy
+            name: privacy
+            widget: object
+            fields:
+              - { label: Titolo (IT), name: title_it, widget: string }
+              - { label: Titolo (EN), name: title_en, widget: string }
+              - { label: Introduzione (IT), name: intro_it, widget: text }
+              - { label: Introduzione (EN), name: intro_en, widget: text }
+              - label: Sezioni (IT)
+                name: sections_it
+                widget: list
+                allow_add: true
+                fields:
+                  - { label: Titolo sezione, name: h, widget: string }
+                  - { label: Contenuto, name: p, widget: text }
+              - label: Sezioni (EN)
+                name: sections_en
+                widget: list
+                allow_add: true
+                fields:
+                  - { label: Section heading, name: h, widget: string }
+                  - { label: Body, name: p, widget: text }
+          - label: Cookie Policy
+            name: cookies
+            widget: object
+            fields:
+              - { label: Titolo (IT), name: title_it, widget: string }
+              - { label: Titolo (EN), name: title_en, widget: string }
+              - { label: Introduzione (IT), name: intro_it, widget: text }
+              - { label: Introduzione (EN), name: intro_en, widget: text }
+              - label: Sezioni (IT)
+                name: sections_it
+                widget: list
+                allow_add: true
+                fields:
+                  - { label: Titolo sezione, name: h, widget: string }
+                  - { label: Contenuto, name: p, widget: text }
+              - label: Sezioni (EN)
+                name: sections_en
+                widget: list
+                allow_add: true
+                fields:
+                  - { label: Section heading, name: h, widget: string }
+                  - { label: Body, name: p, widget: text }
+          - label: Termini e Condizioni
+            name: terms
+            widget: object
+            fields:
+              - { label: Titolo (IT), name: title_it, widget: string }
+              - { label: Titolo (EN), name: title_en, widget: string }
+              - { label: Introduzione (IT), name: intro_it, widget: text }
+              - { label: Introduzione (EN), name: intro_en, widget: text }
+              - label: Sezioni (IT)
+                name: sections_it
+                widget: list
+                allow_add: true
+                fields:
+                  - { label: Titolo sezione, name: h, widget: string }
+                  - { label: Contenuto, name: p, widget: text }
+              - label: Sezioni (EN)
+                name: sections_en
+                widget: list
+                allow_add: true
+                fields:
+                  - { label: Section heading, name: h, widget: string }
+                  - { label: Body, name: p, widget: text }
