@@ -30,7 +30,7 @@ const Contact = () => {
       form.reset();
       setTimeout(() => setSent(false), 4000);
     } catch {
-      toast.error("Errore durante l'invio. Riprova.");
+      toast.error(t.contact.form.error);
     }
   };
 

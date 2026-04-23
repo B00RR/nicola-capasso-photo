@@ -21,7 +21,9 @@
     "send_it": "Invia richiesta",
     "send_en": "Send enquiry",
     "sent_it": "Messaggio inviato. Ti risponder\u00f2 presto.",
-    "sent_en": "Message sent. I'll be in touch soon."
+    "sent_en": "Message sent. I'll be in touch soon.",
+    "error_it": "Errore durante l'invio. Riprova.",
+    "error_en": "Something went wrong. Please try again."
   },
   "direct_it": "O contattami direttamente",
   "direct_en": "Or reach me directly",

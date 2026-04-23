@@ -29,8 +29,13 @@ const Footer = () => {
         </div>
       </div>
       <div className="border-t border-border/60">
-        <div className="mx-auto max-w-[1500px] px-6 md:px-10 py-5 flex flex-col md:flex-row items-center justify-between gap-2 text-[11px] font-sans-tight uppercase text-muted-foreground">
+        <div className="mx-auto max-w-[1500px] px-6 md:px-10 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] font-sans-tight uppercase text-muted-foreground">
           <p>© {new Date().getFullYear()} Nicola — {t.footer.rights}</p>
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+            <Link to="/privacy" className="underline-grow hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm">{t.legal.nav.privacy}</Link>
+            <Link to="/cookies" className="underline-grow hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm">{t.legal.nav.cookies}</Link>
+            <Link to="/terms" className="underline-grow hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm">{t.legal.nav.terms}</Link>
+          </div>
           <p>{t.footer.craftedWith}</p>
         </div>
       </div>

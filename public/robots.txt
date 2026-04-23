@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://nicola-captures-dreams.netlify.app/sitemap.xml
+Sitemap: https://ncphoto.netlify.app/sitemap.xml

@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useLang } from "@/i18n/LanguageContext";
 import { useReveal } from "@/hooks/useReveal";
 import { portfolio } from "@/data/portfolio";
+import { SITE_URL } from "@/config/site";
 
 const heroImg = "/images/photo-22.jpg";
 const aboutImg = "/images/photo-37.jpg";
@@ -43,8 +44,8 @@ const Home = () => {
     script.type = 'application/ld+json';
     script.id = 'jsonld-schema';
     script.textContent = JSON.stringify([
-      {"@context":"https://schema.org","@type":"WebSite","name":"Nicola — Wedding Photographer","url":"https://nicola-captures-dreams.netlify.app/","potentialAction":{"@type":"SearchAction","target":"https://nicola-captures-dreams.netlify.app/portfolio","query-input":"required name=search_term_string"}},
-      {"@context":"https://schema.org","@type":"Photographer","name":"Nicola","url":"https://nicola-captures-dreams.netlify.app/","sameAs":["https://instagram.com/nicolacapassofoto"],"address":{"@type":"PostalAddress","addressCountry":"IT"},"areaServed":"IT"}
+      {"@context":"https://schema.org","@type":"WebSite","name":"Nicola — Wedding Photographer","url":`${SITE_URL}/`,"potentialAction":{"@type":"SearchAction","target":`${SITE_URL}/portfolio`,"query-input":"required name=search_term_string"}},
+      {"@context":"https://schema.org","@type":"Photographer","name":"Nicola","url":`${SITE_URL}/`,"sameAs":["https://instagram.com/nicolacapassofoto"],"address":{"@type":"PostalAddress","addressCountry":"IT"},"areaServed":"IT"}
     ]);
     document.head.appendChild(script);
 

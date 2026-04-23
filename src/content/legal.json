@@ -1,0 +1,203 @@
+{
+  "owner": {
+    "name": "Nicola Capasso",
+    "role_it": "Fotografo freelance",
+    "role_en": "Freelance photographer",
+    "email": "hello@nicola-photography.com",
+    "country_it": "Italia",
+    "country_en": "Italy"
+  },
+  "nav": {
+    "privacy_it": "Privacy",
+    "privacy_en": "Privacy",
+    "cookies_it": "Cookie",
+    "cookies_en": "Cookies",
+    "terms_it": "Termini",
+    "terms_en": "Terms",
+    "legal_it": "Legale",
+    "legal_en": "Legal"
+  },
+  "lastUpdated": "2026-04-23",
+  "privacy": {
+    "title_it": "Informativa sulla Privacy",
+    "title_en": "Privacy Policy",
+    "intro_it": "La presente informativa descrive come vengono trattati i dati personali raccolti tramite questo sito, in conformità al Regolamento (UE) 2016/679 (GDPR) e al D.Lgs. 196/2003 e successive modifiche.",
+    "intro_en": "This policy describes how personal data collected through this site are processed, in compliance with Regulation (EU) 2016/679 (GDPR) and Italian Legislative Decree 196/2003 as amended.",
+    "sections_it": [
+      {
+        "h": "1. Titolare del trattamento",
+        "p": "Il titolare del trattamento dei dati è Nicola Capasso, fotografo freelance, contattabile all'indirizzo email hello@nicola-photography.com."
+      },
+      {
+        "h": "2. Dati raccolti",
+        "p": "Tramite il modulo di contatto raccogliamo: nome, indirizzo email, eventuale data e luogo dell'evento, e il contenuto del messaggio. Non raccogliamo dati di navigazione identificativi oltre a quelli tecnici strettamente necessari al funzionamento del sito."
+      },
+      {
+        "h": "3. Finalità del trattamento",
+        "p": "I dati vengono utilizzati esclusivamente per rispondere alla richiesta inviata e per gestire un'eventuale trattativa commerciale. Non saranno usati per finalità di marketing senza consenso esplicito."
+      },
+      {
+        "h": "4. Base giuridica",
+        "p": "Il trattamento è basato sull'esecuzione di misure precontrattuali su richiesta dell'interessato (art. 6, par. 1, lett. b GDPR) e sul legittimo interesse del titolare a rispondere ai contatti ricevuti (art. 6, par. 1, lett. f GDPR)."
+      },
+      {
+        "h": "5. Conservazione",
+        "p": "I dati vengono conservati per il tempo necessario a gestire la richiesta e per un massimo di 24 mesi, salvo diverso obbligo di legge o avvio di un rapporto contrattuale."
+      },
+      {
+        "h": "6. Destinatari",
+        "p": "I dati inviati tramite il modulo di contatto vengono gestiti tramite la piattaforma Netlify Forms (Netlify Inc., Stati Uniti), che funge da responsabile esterno del trattamento. Il trasferimento avviene nel rispetto delle clausole contrattuali standard della Commissione Europea."
+      },
+      {
+        "h": "7. Diritti dell'interessato",
+        "p": "In qualsiasi momento puoi esercitare i diritti previsti dagli artt. 15-22 GDPR: accesso, rettifica, cancellazione, limitazione, portabilità e opposizione. Per farlo scrivi a hello@nicola-photography.com. Hai inoltre il diritto di proporre reclamo al Garante per la Protezione dei Dati Personali (www.garanteprivacy.it)."
+      },
+      {
+        "h": "8. Modifiche",
+        "p": "Eventuali modifiche a questa informativa saranno pubblicate in questa pagina con la nuova data di aggiornamento."
+      }
+    ],
+    "sections_en": [
+      {
+        "h": "1. Data Controller",
+        "p": "The data controller is Nicola Capasso, freelance photographer, contactable at hello@nicola-photography.com."
+      },
+      {
+        "h": "2. Data we collect",
+        "p": "Through the contact form we collect: name, email address, optional event date and location, and the content of the message. We do not collect identifying browsing data beyond what is strictly necessary for the site to function."
+      },
+      {
+        "h": "3. Purpose of processing",
+        "p": "Data is used exclusively to reply to your enquiry and to manage a possible commercial conversation. It will not be used for marketing purposes without your explicit consent."
+      },
+      {
+        "h": "4. Legal basis",
+        "p": "Processing is based on the performance of pre-contractual measures at your request (GDPR art. 6(1)(b)) and on the controller's legitimate interest in replying to contacts (GDPR art. 6(1)(f))."
+      },
+      {
+        "h": "5. Retention",
+        "p": "Data is kept for as long as needed to handle the enquiry, and up to a maximum of 24 months, unless a contractual relationship begins or a legal obligation applies."
+      },
+      {
+        "h": "6. Recipients",
+        "p": "Messages submitted through the contact form are processed via Netlify Forms (Netlify Inc., United States), acting as an external processor. Transfers take place under the European Commission's Standard Contractual Clauses."
+      },
+      {
+        "h": "7. Your rights",
+        "p": "You may at any time exercise your rights under GDPR arts. 15-22: access, rectification, erasure, restriction, portability and objection. Contact hello@nicola-photography.com. You may also lodge a complaint with the Italian Data Protection Authority (www.garanteprivacy.it)."
+      },
+      {
+        "h": "8. Changes",
+        "p": "Any changes to this policy will be published on this page with the new update date."
+      }
+    ]
+  },
+  "cookies": {
+    "title_it": "Cookie Policy",
+    "title_en": "Cookie Policy",
+    "intro_it": "Questo sito utilizza esclusivamente cookie e tecnologie equivalenti di natura tecnica, necessari al corretto funzionamento e alla memorizzazione delle preferenze dell'utente. Non vengono utilizzati cookie di profilazione né strumenti di tracciamento di terze parti.",
+    "intro_en": "This site uses only technical cookies and equivalent technologies, strictly needed for its correct functioning and to store user preferences. No profiling cookies or third-party tracking tools are used.",
+    "sections_it": [
+      {
+        "h": "1. Cosa sono i cookie",
+        "p": "I cookie sono piccoli file di testo che i siti visitati inviano al browser dell'utente, dove vengono memorizzati per essere poi ritrasmessi al sito alla visita successiva. Tecnologie simili (come localStorage) possono essere usate per gli stessi scopi."
+      },
+      {
+        "h": "2. Cookie tecnici utilizzati",
+        "p": "Usiamo localStorage per ricordare la lingua selezionata (chiave \"nicola-lang\") e lo stato del messaggio di consenso cookie (chiave \"nicola-cookie-consent\"). Questi dati non identificano l'utente e non vengono condivisi con terze parti."
+      },
+      {
+        "h": "3. Cookie di terze parti",
+        "p": "Il sito carica font da Google Fonts (fonts.googleapis.com, fonts.gstatic.com). Google potrebbe registrare l'indirizzo IP del richiedente per la consegna del font. Non vengono utilizzati cookie pubblicitari o di analisi di terze parti."
+      },
+      {
+        "h": "4. Gestione dei cookie",
+        "p": "Poiché vengono utilizzati esclusivamente cookie tecnici, non è richiesto alcun consenso preventivo ai sensi dell'art. 122 del D.Lgs. 196/2003. È comunque possibile bloccare o eliminare i cookie tramite le impostazioni del proprio browser."
+      },
+      {
+        "h": "5. Aggiornamenti",
+        "p": "Eventuali modifiche alla presente policy saranno pubblicate in questa pagina con la nuova data di aggiornamento."
+      }
+    ],
+    "sections_en": [
+      {
+        "h": "1. What cookies are",
+        "p": "Cookies are small text files that visited websites send to the user's browser, where they are stored to be re-transmitted on the next visit. Similar technologies (such as localStorage) may be used for the same purposes."
+      },
+      {
+        "h": "2. Technical cookies used",
+        "p": "We use localStorage to remember your selected language (key \"nicola-lang\") and whether you have dismissed the cookie notice (key \"nicola-cookie-consent\"). This data does not identify you and is not shared with third parties."
+      },
+      {
+        "h": "3. Third-party cookies",
+        "p": "The site loads fonts from Google Fonts (fonts.googleapis.com, fonts.gstatic.com). Google may log the requester's IP address to deliver the font. No third-party advertising or analytics cookies are used."
+      },
+      {
+        "h": "4. Managing cookies",
+        "p": "Since only technical cookies are used, no prior consent is required under art. 122 of Italian Legislative Decree 196/2003. You can still block or delete cookies through your browser settings."
+      },
+      {
+        "h": "5. Updates",
+        "p": "Any changes to this policy will be published on this page with the new update date."
+      }
+    ]
+  },
+  "terms": {
+    "title_it": "Termini e Condizioni",
+    "title_en": "Terms and Conditions",
+    "intro_it": "L'accesso e l'utilizzo di questo sito implicano l'accettazione dei termini riportati di seguito. Se non sei d'accordo con queste condizioni, ti invitiamo a non utilizzare il sito.",
+    "intro_en": "Accessing and using this site implies acceptance of the terms set out below. If you do not agree with these conditions, please do not use the site.",
+    "sections_it": [
+      {
+        "h": "1. Oggetto del sito",
+        "p": "Il sito ha finalità di presentazione professionale dell'attività fotografica di Nicola Capasso. Non è un negozio online e non si perfezionano qui contratti di fornitura di servizi. Eventuali accordi commerciali vengono formalizzati separatamente tramite preventivo e contratto scritto."
+      },
+      {
+        "h": "2. Proprietà intellettuale",
+        "p": "Tutti i contenuti pubblicati — fotografie, testi, logo, grafica — sono di proprietà di Nicola Capasso o degli aventi diritto e sono protetti dalla normativa italiana e internazionale sul diritto d'autore. È vietata la riproduzione, distribuzione o utilizzo, anche parziale, senza autorizzazione scritta."
+      },
+      {
+        "h": "3. Modulo di contatto",
+        "p": "Compilando il modulo di contatto l'utente dichiara che i dati forniti sono veri e corretti. Le informazioni inviate saranno trattate come indicato nell'Informativa sulla Privacy."
+      },
+      {
+        "h": "4. Limitazione di responsabilità",
+        "p": "Il sito viene fornito \"così com'è\". Viene fatto il possibile per mantenere informazioni aggiornate e precise, ma non viene fornita alcuna garanzia in merito a completezza, affidabilità o disponibilità del servizio. L'utilizzo del sito avviene a rischio dell'utente."
+      },
+      {
+        "h": "5. Link esterni",
+        "p": "Il sito può contenere collegamenti verso siti di terze parti (ad esempio Instagram o WhatsApp). Non siamo responsabili dei contenuti, delle politiche o delle pratiche di tali siti."
+      },
+      {
+        "h": "6. Legge applicabile",
+        "p": "I presenti termini sono regolati dalla legge italiana. Per ogni eventuale controversia sarà competente in via esclusiva il Foro del luogo di residenza del titolare, salvo diversa inderogabile disposizione di legge."
+      }
+    ],
+    "sections_en": [
+      {
+        "h": "1. Scope",
+        "p": "This site is intended to present the professional photography work of Nicola Capasso. It is not an online store and no service contracts are concluded here. Any commercial agreement is formalised separately via written quote and contract."
+      },
+      {
+        "h": "2. Intellectual property",
+        "p": "All published content — photographs, texts, logo, graphics — is owned by Nicola Capasso or the respective right holders and is protected by Italian and international copyright law. Reproduction, distribution or use, even partial, is prohibited without written authorisation."
+      },
+      {
+        "h": "3. Contact form",
+        "p": "By filling in the contact form the user declares that the data provided is true and accurate. Submitted information will be processed as described in the Privacy Policy."
+      },
+      {
+        "h": "4. Limitation of liability",
+        "p": "The site is provided \"as is\". Reasonable effort is made to keep information accurate and up to date, but no warranty is given as to completeness, reliability or availability. Use of the site is at the user's own risk."
+      },
+      {
+        "h": "5. External links",
+        "p": "The site may contain links to third-party websites (e.g. Instagram or WhatsApp). We are not responsible for the content, policies or practices of such sites."
+      },
+      {
+        "h": "6. Governing law",
+        "p": "These terms are governed by Italian law. For any dispute, the court of the owner's place of residence shall have exclusive jurisdiction, subject to mandatory legal provisions."
+      }
+    ]
+  }
+}

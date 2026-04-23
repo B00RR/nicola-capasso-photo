@@ -1,6 +1,7 @@
 import homeData from "@/content/home.json";
 import contactData from "@/content/contact.json";
 import siteData from "@/content/site.json";
+import legalData from "@/content/legal.json";
 
 export type Lang = "it" | "en";
 
@@ -54,6 +55,7 @@ const buildLang = (lang: "it" | "en") => {
         message: contactData.form[`message${s}` as keyof typeof contactData.form],
         send: contactData.form[`send${s}` as keyof typeof contactData.form],
         sent: contactData.form[`sent${s}` as keyof typeof contactData.form],
+        error: contactData.form[`error${s}` as keyof typeof contactData.form],
       },
       direct: contactData[`direct${s}` as keyof typeof contactData],
       whatsapp: contactData[`whatsapp${s}` as keyof typeof contactData],
@@ -68,6 +70,25 @@ const buildLang = (lang: "it" | "en") => {
     notFound: {
       title: siteData.notFound[`title${s}` as keyof typeof siteData.notFound],
       back: siteData.notFound[`back${s}` as keyof typeof siteData.notFound],
+    },
+    legal: {
+      kicker: legalData.nav[`legal${s}` as keyof typeof legalData.nav],
+      lastUpdated: lang === "it" ? "Ultimo aggiornamento" : "Last updated",
+      nav: {
+        privacy: legalData.nav[`privacy${s}` as keyof typeof legalData.nav],
+        cookies: legalData.nav[`cookies${s}` as keyof typeof legalData.nav],
+        terms: legalData.nav[`terms${s}` as keyof typeof legalData.nav],
+      },
+      cookieBanner: {
+        title: lang === "it"
+          ? "Questo sito usa solo cookie tecnici."
+          : "This site uses only technical cookies.",
+        body: lang === "it"
+          ? "Nessun tracciamento, nessuna profilazione. Memorizziamo solo la lingua scelta."
+          : "No tracking, no profiling. We only store your chosen language.",
+        accept: lang === "it" ? "Ho capito" : "Got it",
+        more: lang === "it" ? "Maggiori informazioni" : "Learn more",
+      },
     },
   };
 };
