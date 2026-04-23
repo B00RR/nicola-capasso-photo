@@ -32,7 +32,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
       Skip to content
     </a>
     <Header />
-    <main id="main-content">{children}</main>
+    <div id="main-content">{children}</div>
     <Footer />
   </>
 );
