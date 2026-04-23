@@ -41,7 +41,7 @@ const Header = () => {
       >
         <Link
           to="/"
-          className="font-display text-xl md:text-2xl tracking-tight"
+          className="font-display text-xl md:text-2xl tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm"
           aria-label="Nicola — Wedding photography"
         >
           Nicola<span className="text-accent">.</span>
@@ -53,7 +53,7 @@ const Header = () => {
               key={l.to}
               to={l.to}
               className={cn(
-                "font-sans-tight text-[11px] uppercase underline-grow",
+                "font-sans-tight text-[11px] uppercase underline-grow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm",
                 pathname === l.to ? "text-foreground" : "text-foreground/90 hover:text-foreground"
               )}
             >
@@ -94,7 +94,7 @@ const Header = () => {
             <Link
               key={l.to}
               to={l.to}
-              className="font-display text-3xl"
+              className="font-display text-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm"
             >
               {l.label}
             </Link>

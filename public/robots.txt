@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://nicola-captures-dreams.netlify.app/sitemap.xml

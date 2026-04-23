@@ -13,15 +13,15 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col gap-2 font-sans-tight text-[11px] uppercase">
-          <Link to="/" className="underline-grow w-fit text-muted-foreground hover:text-foreground">{t.nav.home}</Link>
-          <Link to="/portfolio" className="underline-grow w-fit text-muted-foreground hover:text-foreground">{t.nav.portfolio}</Link>
-          <Link to="/contact" className="underline-grow w-fit text-muted-foreground hover:text-foreground">{t.nav.contact}</Link>
+          <Link to="/" className="underline-grow w-fit text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm">{t.nav.home}</Link>
+          <Link to="/portfolio" className="underline-grow w-fit text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm">{t.nav.portfolio}</Link>
+          <Link to="/contact" className="underline-grow w-fit text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm">{t.nav.contact}</Link>
         </div>
 
         <div className="flex flex-col gap-2 font-sans-tight text-[11px] uppercase">
-          <a href={CONTACTS.whatsappLink} target="_blank" rel="noreferrer" className="underline-grow w-fit text-muted-foreground hover:text-foreground">WhatsApp</a>
-          <a href={CONTACTS.instagram} target="_blank" rel="noreferrer" className="underline-grow w-fit text-muted-foreground hover:text-foreground">Instagram</a>
-          <a href={`mailto:${CONTACTS.email}`} className="underline-grow w-fit text-muted-foreground hover:text-foreground">{CONTACTS.email}</a>
+          <a href={CONTACTS.whatsappLink} target="_blank" rel="noreferrer" className="underline-grow w-fit text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm">WhatsApp</a>
+          <a href={CONTACTS.instagram} target="_blank" rel="noreferrer" className="underline-grow w-fit text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm">Instagram</a>
+          <a href={`mailto:${CONTACTS.email}`} className="underline-grow w-fit text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm">{CONTACTS.email}</a>
         </div>
       </div>
       <div className="border-t border-border/60">

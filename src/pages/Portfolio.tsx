@@ -172,6 +172,8 @@ const YearSection = ({ yearData, lang, registerRef }: YearSectionProps) => {
                   src={s.image}
                   alt={`${s.title} — ${s.location}`}
                   loading="lazy"
+                  width={s.span === "tall" ? 600 : s.span === "wide" ? 1400 : 600}
+                  height={s.span === "tall" ? 800 : s.span === "wide" ? 788 : 750}
                   className="h-full w-full object-cover hover-lift"
                 />
               </div>

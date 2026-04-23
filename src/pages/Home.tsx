@@ -9,6 +9,7 @@ import { portfolio } from "@/data/portfolio";
 
 const Home = () => {
   const { t, lang } = useLang();
+  const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 800], [0, 160]);
@@ -34,6 +35,21 @@ const Home = () => {
       m.content = desc;
       document.head.appendChild(m);
     }
+
+    const existing = document.getElementById('jsonld-schema');
+    if (existing) existing.remove();
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'jsonld-schema';
+    script.textContent = JSON.stringify([
+      {"@context":"https://schema.org","@type":"WebSite","name":"Nicola — Wedding Photographer","url":"https://nicola-captures-dreams.netlify.app/","potentialAction":{"@type":"SearchAction","target":"https://nicola-captures-dreams.netlify.app/portfolio","query-input":"required name=search_term_string"}},
+      {"@context":"https://schema.org","@type":"Photographer","name":"Nicola","url":"https://nicola-captures-dreams.netlify.app/","sameAs":["https://instagram.com/nicola_captures"],"address":{"@type":"PostalAddress","addressCountry":"IT"},"areaServed":"IT"}
+    ]);
+    document.head.appendChild(script);
+
+    return () => {
+      document.getElementById('jsonld-schema')?.remove();
+    };
   }, [lang]);
 
   // Marquee items (recent locations)
@@ -55,6 +71,8 @@ const Home = () => {
             alt="Cinematic wedding moment at golden hour"
             loading="eager"
             fetchpriority="high"
+            width={1920}
+            height={1280}
             className="h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/75" />
@@ -63,9 +81,9 @@ const Home = () => {
 
         <div className="relative z-10 h-full flex flex-col justify-end pb-16 md:pb-24 px-6 md:px-10 max-w-[1500px] mx-auto">
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+            animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+            transition={prefersReducedMotion ? {} : { duration: 1, delay: 0.2 }}
             className="font-sans-tight text-[11px] uppercase text-background/90 mb-6"
           >
             — {t.hero.eyebrow}
@@ -75,9 +93,9 @@ const Home = () => {
             {t.hero.title.map((line, i) => (
               <span key={i} className="block overflow-hidden">
                 <motion.span
-                  initial={{ y: "110%" }}
-                  animate={{ y: "0%" }}
-                  transition={{ duration: 1.1, delay: 0.35 + i * 0.12, ease: [0.2, 0.7, 0.2, 1] }}
+                  initial={prefersReducedMotion ? false : { y: "110%" }}
+                  animate={prefersReducedMotion ? {} : { y: "0%" }}
+                  transition={prefersReducedMotion ? {} : { duration: 1.1, delay: 0.35 + i * 0.12, ease: [0.2, 0.7, 0.2, 1] }}
                   className="block"
                 >
                   {i === 1 ? <em className="not-italic font-display italic">{line}</em> : line}
@@ -87,9 +105,9 @@ const Home = () => {
           </h1>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.1 }}
+            initial={prefersReducedMotion ? false : { opacity: 0 }}
+            animate={prefersReducedMotion ? {} : { opacity: 1 }}
+            transition={prefersReducedMotion ? {} : { duration: 1, delay: 1.1 }}
             className="mt-10 flex flex-col md:flex-row md:items-end justify-between gap-6"
           >
             <p className="max-w-md text-background/90 text-base md:text-lg leading-relaxed">
@@ -105,9 +123,9 @@ const Home = () => {
         </div>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.4 }}
+          initial={prefersReducedMotion ? false : { opacity: 0 }}
+          animate={prefersReducedMotion ? {} : { opacity: 1 }}
+          transition={prefersReducedMotion ? {} : { duration: 1, delay: 1.4 }}
           className="absolute bottom-6 right-6 md:right-10 z-10 hidden md:flex items-center gap-3 text-background/80 text-[10px] font-sans-tight uppercase tracking-[0.3em] [writing-mode:vertical-rl] rotate-180"
         >
           {t.hero.scroll}
@@ -134,6 +152,8 @@ const Home = () => {
               src={aboutImg}
               alt="Portrait of Nicola"
               loading="lazy"
+              width={800}
+              height={1000}
               className="w-full aspect-[4/5] object-cover"
             />
           </div>
@@ -207,6 +227,8 @@ const Home = () => {
                   src={s.image}
                   alt={s.title}
                   loading="lazy"
+                  width={600}
+                  height={800}
                   className="h-full w-full object-cover hover-lift"
                 />
               </div>
