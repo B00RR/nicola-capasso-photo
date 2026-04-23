@@ -10,13 +10,14 @@ media_library:
 
 publish_mode: editorial_workflow
 
-site_url: # <-- URL del sito deployato su Netlify (es. https://nicola-wedding.netlify.app)
+site_url: "https://ncphoto.netlify.app"
 
 collections:
   - name: site
     label: Impostazioni Generali
     files:
-      - file: src/content/site.json
+      - name: site-settings
+        file: src/content/site.json
         label: Contatti, Navigazione e Footer
         fields:
           - label: Contatti
@@ -48,7 +49,7 @@ collections:
               - { label: Diritti (EN), name: rights_en, widget: string }
               - { label: Crafted (IT), name: crafted_it, widget: string }
               - { label: Crafted (EN), name: crafted_en, widget: string }
-          - label: 404
+          - label: "404"
             name: notFound
             widget: object
             fields:
@@ -60,7 +61,8 @@ collections:
   - name: home
     label: Home Page
     files:
-      - file: src/content/home.json
+      - name: home-page
+        file: src/content/home.json
         label: Testi Home
         fields:
           - label: Hero
@@ -95,12 +97,12 @@ collections:
                 name: body_it
                 widget: list
                 allow_add: true
-                field: { widget: text }
+                field: { label: Paragrafo, name: paragraph, widget: text }
               - label: Paragrafi (EN)
                 name: body_en
                 widget: list
                 allow_add: true
-                field: { widget: text }
+                field: { label: Paragrafo, name: paragraph, widget: text }
               - label: Statistiche
                 name: stats
                 widget: list
@@ -144,7 +146,8 @@ collections:
   - name: portfolio
     label: Portfolio
     files:
-      - file: src/content/portfolio.json
+      - name: portfolio-data
+        file: src/content/portfolio.json
         label: Anni e Shoots
         fields:
           - label: Anni
@@ -174,7 +177,8 @@ collections:
   - name: contact
     label: Contatti
     files:
-      - file: src/content/contact.json
+      - name: contact-page
+        file: src/content/contact.json
         label: Testi Contatti
         fields:
           - { label: Kicker (IT), name: kicker_it, widget: string }
