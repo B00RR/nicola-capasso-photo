@@ -1,11 +1,12 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import heroImg from "@/assets/hero.jpg";
-import aboutImg from "@/assets/about.jpg";
 import { useLang } from "@/i18n/LanguageContext";
 import { useReveal } from "@/hooks/useReveal";
 import { portfolio } from "@/data/portfolio";
+
+const heroImg = "/images/photo-22.jpg";
+const aboutImg = "/images/photo-37.jpg";
 
 const Home = () => {
   const { t, lang } = useLang();
