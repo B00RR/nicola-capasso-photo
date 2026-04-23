@@ -8,7 +8,11 @@ const Footer = () => {
     <footer className="border-t border-border/60 mt-32">
       <div className="mx-auto max-w-[1500px] px-6 md:px-10 py-14 grid gap-10 md:grid-cols-3">
         <div>
-          <p className="font-display text-3xl">Nicola<span className="text-accent">.</span></p>
+          <img
+            src="/logo.svg"
+            alt="Nicola Capasso Photo"
+            className="h-14 md:h-16 w-auto"
+          />
           <p className="mt-3 text-sm text-muted-foreground max-w-xs">{t.footer.tagline}</p>
         </div>
 

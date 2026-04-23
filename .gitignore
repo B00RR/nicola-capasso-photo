@@ -23,3 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 src/assets/Foto/
+
+# Temporary design files
+*.ttf
+logo-bozza-nicola.png
+logo finale.svg

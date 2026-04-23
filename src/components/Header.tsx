@@ -41,10 +41,15 @@ const Header = () => {
       >
         <Link
           to="/"
-          className="font-display text-xl md:text-2xl tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm"
-          aria-label="Nicola — Wedding photography"
+          className="flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm"
+          aria-label="Nicola Capasso — Wedding photography"
         >
-          Nicola<span className="text-accent">.</span>
+          <img
+            src="/favicon.svg"
+            alt=""
+            className="h-9 md:h-10 w-auto"
+            aria-hidden="true"
+          />
         </Link>
 
         <nav className="hidden md:flex items-center gap-10">
