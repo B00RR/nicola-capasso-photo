@@ -6,6 +6,7 @@ import { LanguageProvider } from "@/i18n/LanguageContext";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageTransition from "@/components/PageTransition";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -43,6 +44,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
+        <PageTransition />
         <Suspense fallback={<Fallback />}>
           <ErrorBoundary>
             <Routes>
