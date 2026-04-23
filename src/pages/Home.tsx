@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useLang } from "@/i18n/LanguageContext";
+import { useLang } from "@/i18n/useLang";
 import { useReveal } from "@/hooks/useReveal";
 import { portfolio } from "@/data/portfolio";
 import { SITE_URL } from "@/config/site";
