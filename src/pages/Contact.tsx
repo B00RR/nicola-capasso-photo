@@ -18,12 +18,14 @@ const Contact = () => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
+    const params = new URLSearchParams();
+    data.forEach((value, key) => params.append(key, String(value)));
 
     try {
       await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(data as any).toString(),
+        body: params.toString(),
       });
       setSent(true);
       toast.success(t.contact.form.sent);
