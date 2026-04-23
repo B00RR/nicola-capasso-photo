@@ -7,6 +7,7 @@ const SplashIntro = () => {
   const [show, setShow] = useState(false);
   const [phase, setPhase] = useState(0); // 0=enter, 1=text-fade, 2=move, 3=curtain, 4=mono-fade
   const [winSize, setWinSize] = useState({ w: 0, h: 0 });
+  const [endPos, setEndPos] = useState({ x: 0, y: 0, w: 0, h: 0 });
 
   useEffect(() => {
     const seen = sessionStorage.getItem("splash-seen");
@@ -23,22 +24,73 @@ const SplashIntro = () => {
     }
   }, []);
 
+  /* Measure the actual header favicon position so the monogram lands exactly on it */
+  useEffect(() => {
+    if (!show) return;
+    const measure = () => {
+      const logo = document.querySelector(
+        'header img[aria-hidden="true"]'
+      ) as HTMLElement | null;
+      if (logo) {
+        const rect = logo.getBoundingClientRect();
+        setEndPos({ x: rect.left, y: rect.top, w: rect.width, h: rect.height });
+      }
+    };
+    const id = requestAnimationFrame(() => requestAnimationFrame(measure));
+    window.addEventListener("resize", measure);
+    return () => {
+      cancelAnimationFrame(id);
+      window.removeEventListener("resize", measure);
+    };
+  }, [show]);
+
   if (!show || winSize.w === 0) return null;
 
   const isDesktop = winSize.w >= 768;
-  const monoRatio = 525 / 515;
 
-  const startH = 120;
-  const startW = startH * monoRatio;
-  const endH = isDesktop ? 40 : 36;
-  const endW = endH * monoRatio;
+  /* ------------------------------------------------------------------ */
+  /*  Match the original SVG logo proportions so monogram + text align  */
+  /*  exactly like the source file.                                     */
+  /*  logo-source viewBox: 0 0 1270 816                                 */
+  /*  monogram viewBox  : 355 0 525 515                                 */
+  /*  text viewBox      : 0 560 1270 260                                */
+  /* ------------------------------------------------------------------ */
+  const LOGO_W = 1270;
+  const LOGO_H = 816;
+  const MONO_X = 355;
+  const MONO_W = 525;
+  const MONO_H = 515;
+  const TEXT_Y = 560;
+  const TEXT_H = 260;
 
-  const startX = winSize.w / 2 - startW / 2;
-  const startY = winSize.h / 2 - startH / 2 - 24;
-  const endX = isDesktop ? 40 : 24;
-  const endY = isDesktop ? 20 : 14;
+  /* Monogram target height in the splash — keep it the same as before (~120px) */
+  const startMonoH = 120;
+  const startLogoH = startMonoH * (LOGO_H / MONO_H);
+  const startLogoW = startLogoH * (LOGO_W / LOGO_H);
 
-  const textTop = startY + startH + 32;
+  const containerLeft = winSize.w / 2 - startLogoW / 2;
+  const containerTop = winSize.h / 2 - startLogoH / 2;
+
+  const startW = startLogoW * (MONO_W / LOGO_W);
+  const startH = startLogoH * (MONO_H / LOGO_H);
+  const startX = containerLeft + startLogoW * (MONO_X / LOGO_W);
+  const startY = containerTop;
+
+  const textW = startLogoW;
+  const textH = startLogoH * (TEXT_H / LOGO_H);
+  const textX = containerLeft;
+  const textY = containerTop + startLogoH * (TEXT_Y / LOGO_H);
+
+  /* Fallback end position (header padding) until DOM measurement kicks in */
+  const fallbackEndH = isDesktop ? 40 : 36;
+  const fallbackEndW = fallbackEndH * (MONO_W / MONO_H);
+  const fallbackEndX = isDesktop ? 40 : 24;
+  const fallbackEndY = isDesktop ? 20 : 14;
+
+  const endX = endPos.w > 0 ? endPos.x : fallbackEndX;
+  const endY = endPos.h > 0 ? endPos.y : fallbackEndY;
+  const endW = endPos.w > 0 ? endPos.w : fallbackEndW;
+  const endH = endPos.h > 0 ? endPos.h : fallbackEndH;
 
   return (
     <AnimatePresence>
@@ -52,7 +104,7 @@ const SplashIntro = () => {
             className="absolute inset-0 bg-background"
           />
 
-          {/* Monogram — animates from center to header position */}
+          {/* Monogram — animates from centre to header position */}
           <motion.div
             initial={{
               left: startX,
@@ -70,11 +122,7 @@ const SplashIntro = () => {
             }}
             transition={{
               duration:
-                phase === 2
-                  ? 0.9
-                  : phase === 4
-                  ? 0.15
-                  : 0.3,
+                phase === 2 ? 0.9 : phase === 4 ? 0.15 : 0.3,
               ease: [0.77, 0, 0.18, 1],
             }}
             className="fixed"
@@ -83,7 +131,7 @@ const SplashIntro = () => {
             <MonogramNC className="w-full h-full" />
           </motion.div>
 
-          {/* Logo text — centered below monogram, fades out */}
+          {/* Logo text — positioned with original-logo proportions, fades out */}
           <motion.div
             initial={{ opacity: 1, y: 0 }}
             animate={{
@@ -91,10 +139,10 @@ const SplashIntro = () => {
               y: phase >= 1 ? -8 : 0,
             }}
             transition={{ duration: 0.5, ease: [0.2, 0.7, 0.2, 1] }}
-            className="fixed left-1/2 -translate-x-1/2"
-            style={{ zIndex: 201, top: textTop }}
+            className="fixed"
+            style={{ zIndex: 201, left: textX, top: textY, width: textW, height: textH }}
           >
-            <LogoText className="h-14 md:h-16 w-auto" />
+            <LogoText className="w-full h-full" />
           </motion.div>
         </div>
       )}
