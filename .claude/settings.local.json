@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:pierpaolocimminofilms.it)",
+      "WebFetch(domain:giuseppepiserchiafilms.it)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(git ls-remote *)",
+      "Bash(npm install *)",
+      "Bash(grep -v '^\"$')",
+      "Bash(node -e \"const pkg = require\\('./package.json'\\); console.log\\('=== Dependencies ==='\\); Object.keys\\(pkg.dependencies\\).forEach\\(d => console.log\\(d\\)\\); console.log\\('\\\\\\\\n=== Dev Dependencies ==='\\); Object.keys\\(pkg.devDependencies\\).forEach\\(d => console.log\\(d\\)\\);\")",
+      "Bash(cat)",
+      "Bash(bash /tmp/verify.sh)",
+      "Bash(npm run *)",
+      "Bash(npm test *)"
+    ]
+  }
+}
