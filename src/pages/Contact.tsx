@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLang } from "@/i18n/LanguageContext";
+import { useLang } from "@/i18n/useLang";
 import { CONTACTS } from "@/data/portfolio";
 import { useReveal } from "@/hooks/useReveal";
 import { toast } from "sonner";
@@ -18,19 +18,21 @@ const Contact = () => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
+    const params = new URLSearchParams();
+    data.forEach((value, key) => params.append(key, String(value)));
 
     try {
       await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(data as any).toString(),
+        body: params.toString(),
       });
       setSent(true);
       toast.success(t.contact.form.sent);
       form.reset();
       setTimeout(() => setSent(false), 4000);
     } catch {
-      toast.error("Errore durante l'invio. Riprova.");
+      toast.error(t.contact.form.error);
     }
   };
 

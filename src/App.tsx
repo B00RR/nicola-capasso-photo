@@ -8,11 +8,15 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import SplashIntro from "@/components/SplashIntro";
+import CookieBanner from "@/components/CookieBanner";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
 const Portfolio = lazy(() => import("./pages/Portfolio.tsx"));
 const Contact = lazy(() => import("./pages/Contact.tsx"));
+const Privacy = lazy(() => import("./pages/Legal.tsx").then((m) => ({ default: m.Privacy })));
+const Cookies = lazy(() => import("./pages/Legal.tsx").then((m) => ({ default: m.Cookies })));
+const Terms = lazy(() => import("./pages/Legal.tsx").then((m) => ({ default: m.Terms })));
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -47,12 +51,16 @@ const App = () => (
         <SplashIntro />
         <ScrollToTop />
         <PageTransition />
+        <CookieBanner />
         <Suspense fallback={<Fallback />}>
           <ErrorBoundary>
             <Routes>
               <Route path="/" element={<Layout><Index /></Layout>} />
               <Route path="/portfolio" element={<Layout><Portfolio /></Layout>} />
               <Route path="/contact" element={<Layout><Contact /></Layout>} />
+              <Route path="/privacy" element={<Layout><Privacy /></Layout>} />
+              <Route path="/cookies" element={<Layout><Cookies /></Layout>} />
+              <Route path="/terms" element={<Layout><Terms /></Layout>} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </ErrorBoundary>
