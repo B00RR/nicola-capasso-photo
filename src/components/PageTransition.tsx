@@ -16,7 +16,7 @@ const PageTransition = () => {
       return;
     }
     setShow(true);
-    const timer = setTimeout(() => setShow(false), 300);
+    const timer = setTimeout(() => setShow(false), 450);
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
@@ -31,7 +31,7 @@ const PageTransition = () => {
           transition={{ duration: 0.4, ease: [0.2, 0.7, 0.2, 1] }}
           className="fixed inset-0 z-[100] bg-background pointer-events-none flex items-center justify-center"
         >
-          <MonogramNC className="w-14 h-14 opacity-30" />
+          <MonogramNC className="w-20 h-20" />
         </motion.div>
       )}
     </AnimatePresence>
