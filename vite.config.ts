@@ -6,7 +6,7 @@ import path from "path";
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   // Provide a default so local builds work without a .env file
-  process.env.VITE_SITE_URL = env.VITE_SITE_URL || "https://nicolacapassophoto.com";
+  process.env.VITE_SITE_URL = env.VITE_SITE_URL || "https://b00rr.github.io/nicola-capasso-photo";
 
   return {
     server: {
