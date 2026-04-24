@@ -9,10 +9,10 @@ import { SITE_URL } from "@/config/site";
 import homeData from "@/content/home.json";
 import siteData from "@/content/site.json";
 
-const heroImg = "/images/photo-22.jpg";
-const heroImgWebP = "/images/photo-22.webp";
-const aboutImg = "/images/photo-37.jpg";
-const aboutImgWebP = "/images/photo-37.webp";
+const heroImg = `${import.meta.env.BASE_URL}images/photo-22.jpg`;
+const heroImgWebP = `${import.meta.env.BASE_URL}images/photo-22.webp`;
+const aboutImg = `${import.meta.env.BASE_URL}images/photo-37.jpg`;
+const aboutImgWebP = `${import.meta.env.BASE_URL}images/photo-37.webp`;
 
 const Home = () => {
   const { t, lang } = useLang();
