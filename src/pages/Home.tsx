@@ -161,9 +161,13 @@ const Home = () => {
             />
           </div>
           <div ref={aboutRef} className="order-1 md:order-2 md:pt-4 max-w-2xl reveal">
-            <p className="font-sans-tight text-[11px] uppercase text-muted-foreground mb-6">
-              — {t.about.kicker}
-            </p>
+            <div className="mb-6 flex items-center gap-4">
+              <span className="font-display italic text-accent text-3xl md:text-4xl leading-none">01</span>
+              <span className="h-px flex-1 max-w-[4rem] bg-border" />
+              <p className="font-sans-tight text-[11px] uppercase text-muted-foreground">
+                {t.about.kicker}
+              </p>
+            </div>
             <h2 className="font-display text-4xl md:text-6xl leading-[1.05] whitespace-pre-line">
               {t.about.title}
             </h2>
@@ -184,17 +188,28 @@ const Home = () => {
       </section>
 
       {/* SERVICES */}
-      <section className="bg-secondary/40 border-y border-border/60">
+      <section className="bg-secondary border-y border-border/60">
         <div ref={servicesRef} className="reveal px-6 md:px-10 py-24 md:py-32 max-w-[1500px] mx-auto">
-          <p className="font-sans-tight text-[11px] uppercase text-muted-foreground mb-6">
-            — {t.services.kicker}
-          </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-border/60 border border-border/60">
+          <div className="mb-8 flex items-center gap-4">
+            <span className="font-display italic text-accent text-3xl md:text-4xl leading-none">02</span>
+            <span className="h-px flex-1 max-w-[4rem] bg-border" />
+            <p className="font-sans-tight text-[11px] uppercase text-muted-foreground">
+              {t.services.kicker}
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
             {t.services.items.map((s, i) => (
-              <div key={s.t} className="bg-background p-8 md:p-10 flex flex-col gap-4 hover:bg-secondary/30 transition-colors">
-                <span className="font-sans-tight text-[10px] uppercase text-accent">0{i + 1}</span>
+              <div
+                key={s.t}
+                className="group relative bg-background p-8 md:p-10 flex flex-col gap-4 transition-colors hover:bg-foreground hover:text-background"
+              >
+                <span className="font-sans-tight text-[10px] uppercase text-accent group-hover:text-background/80 transition-colors">
+                  0{i + 1}
+                </span>
                 <h3 className="font-display text-2xl md:text-3xl">{s.t}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{s.d}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed group-hover:text-background/80 transition-colors">
+                  {s.d}
+                </p>
               </div>
             ))}
           </div>
@@ -205,7 +220,13 @@ const Home = () => {
       <section ref={featRef} className="reveal px-6 md:px-10 py-24 md:py-32 max-w-[1500px] mx-auto">
         <div className="flex items-end justify-between mb-12 gap-6">
           <div>
-            <p className="font-sans-tight text-[11px] uppercase text-muted-foreground mb-4">— {t.portfolio.kicker}</p>
+            <div className="mb-4 flex items-center gap-4">
+              <span className="font-display italic text-accent text-3xl md:text-4xl leading-none">03</span>
+              <span className="h-px flex-1 max-w-[4rem] bg-border" />
+              <p className="font-sans-tight text-[11px] uppercase text-muted-foreground">
+                {t.portfolio.kicker}
+              </p>
+            </div>
             <h2 className="font-display text-4xl md:text-6xl leading-tight whitespace-pre-line max-w-2xl">
               {t.portfolio.title}
             </h2>
@@ -218,29 +239,40 @@ const Home = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
-          {featured.map((s, i) => (
-            <Link
-              key={s.id}
-              to="/portfolio"
-              className={`overflow-hidden block ${i % 2 === 0 ? "md:mt-12" : ""}`}
-            >
-              <div className="overflow-hidden aspect-[3/4]">
-                <img
-                  src={s.image}
-                  alt={s.title}
-                  loading="lazy"
-                  width={600}
-                  height={800}
-                  className="h-full w-full object-cover hover-lift"
-                />
-              </div>
-              <div className="mt-3 flex items-center justify-between">
-                <p className="font-display italic text-base md:text-lg">{s.title}</p>
-                <p className="font-sans-tight text-[10px] uppercase text-muted-foreground">{s.location.split(",")[1]?.trim()}</p>
-              </div>
-            </Link>
-          ))}
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-3 md:gap-6">
+          {featured.map((s, i) => {
+            // Editorial 2-row layout on desktop: large+small, then small+large.
+            const layout =
+              i === 0
+                ? { span: "md:col-span-4", aspect: "md:aspect-[4/3]" }
+                : i === 1
+                  ? { span: "md:col-span-2 md:mt-16", aspect: "md:aspect-[3/4]" }
+                  : i === 2
+                    ? { span: "md:col-span-2", aspect: "md:aspect-[3/4]" }
+                    : { span: "md:col-span-4 md:-mt-16", aspect: "md:aspect-[4/3]" };
+            return (
+              <Link
+                key={s.id}
+                to="/portfolio"
+                className={`overflow-hidden block col-span-1 ${layout.span}`}
+              >
+                <div className={`overflow-hidden aspect-[3/4] ${layout.aspect}`}>
+                  <img
+                    src={s.image}
+                    alt={s.title}
+                    loading="lazy"
+                    width={i === 0 || i === 3 ? 1200 : 600}
+                    height={i === 0 || i === 3 ? 900 : 800}
+                    className="h-full w-full object-cover hover-lift"
+                  />
+                </div>
+                <div className="mt-3 flex items-center justify-between gap-3">
+                  <p className="font-display italic text-base md:text-lg">{s.title}</p>
+                  <p className="font-sans-tight text-[10px] uppercase text-muted-foreground">{s.location.split(",")[1]?.trim()}</p>
+                </div>
+              </Link>
+            );
+          })}
         </div>
 
         <Link

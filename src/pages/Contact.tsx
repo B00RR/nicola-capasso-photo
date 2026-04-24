@@ -115,10 +115,10 @@ const Contact = () => {
             />
           </div>
 
-          <p className="mt-12 font-display italic text-2xl md:text-3xl text-muted-foreground leading-snug">
+          <blockquote className="mt-14 border-l-2 border-accent pl-6 font-display italic text-2xl md:text-3xl text-muted-foreground leading-snug">
             {t.contact.quote}
-          </p>
-          <p className="mt-3 font-sans-tight text-[10px] uppercase text-muted-foreground">— Nicola</p>
+          </blockquote>
+          <p className="mt-3 pl-6 font-sans-tight text-[10px] uppercase text-muted-foreground">— Nicola</p>
         </aside>
       </section>
     </main>
