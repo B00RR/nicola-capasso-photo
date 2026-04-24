@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -15,6 +15,7 @@ interface LightboxProps {
   onClose: () => void;
   onPrev: () => void;
   onNext: () => void;
+  lang?: "it" | "en";
 }
 
 const imgVariants = {
@@ -23,12 +24,13 @@ const imgVariants = {
   exit:  (dir: number) => ({ opacity: 0, x: dir * -28 }),
 };
 
-export const Lightbox = ({ images, index, onClose, onPrev, onNext }: LightboxProps) => {
+export const Lightbox = ({ images, index, onClose, onPrev, onNext, lang = "it" }: LightboxProps) => {
   // Track previous index to derive slide direction.
   // prevIndexRef lags one render behind (updated in useEffect), so during the
   // render that fires when index changes it still holds the old value — which
   // is exactly what we need to compute direction correctly.
   const prevIndexRef = useRef<number | null>(null);
+  const [loaded, setLoaded] = useState(false);
   const dir =
     index !== null && prevIndexRef.current !== null
       ? index > prevIndexRef.current ? 1 : -1
@@ -36,6 +38,7 @@ export const Lightbox = ({ images, index, onClose, onPrev, onNext }: LightboxPro
 
   useEffect(() => {
     prevIndexRef.current = index;
+    setLoaded(false);
   }, [index]);
 
   useEffect(() => {
@@ -97,10 +100,16 @@ export const Lightbox = ({ images, index, onClose, onPrev, onNext }: LightboxPro
               className="relative w-full max-w-5xl"
               onClick={(e) => e.stopPropagation()}
             >
+              {!loaded && (
+                <div className="w-full h-[60vh] flex items-center justify-center">
+                  <div className="w-8 h-8 border-2 border-background/20 border-t-background/80 rounded-full animate-spin" />
+                </div>
+              )}
               <img
                 src={current.src}
                 alt={current.alt}
-                className="w-full max-h-[80vh] object-contain"
+                onLoad={() => setLoaded(true)}
+                className={`w-full max-h-[80vh] object-contain ${loaded ? "block" : "hidden"}`}
               />
               <div className="mt-4 flex items-baseline justify-between">
                 <span className="font-display italic text-background text-lg">{current.title}</span>
@@ -113,6 +122,9 @@ export const Lightbox = ({ images, index, onClose, onPrev, onNext }: LightboxPro
                   {(index ?? 0) + 1} / {images.length}
                 </p>
               )}
+              <p className="mt-1 font-sans-tight text-[10px] text-background/30 text-right">
+                {lang === "it" ? "← → per navigare  ·  Esc per chiudere" : "← → to navigate  ·  Esc to close"}
+              </p>
             </motion.div>
           </AnimatePresence>
 

@@ -22,6 +22,7 @@ describe("Contact", () => {
   beforeEach(() => {
     localStorage.setItem("nicola-lang", "it");
     mockFetch.mockClear();
+    process.env.VITE_CONTACT_ENDPOINT = "http://test.com/contact";
   });
   afterEach(() => {
     localStorage.removeItem("nicola-lang");
@@ -35,7 +36,7 @@ describe("Contact", () => {
     expect(screen.getByLabelText(/raccontami/i)).toBeInTheDocument();
   });
 
-  it("submits to Netlify via fetch", async () => {
+  it("submits via fetch as JSON", async () => {
     render(<Contact />, { wrapper: Wrapper });
 
     fireEvent.change(screen.getByLabelText(/nome/i), { target: { value: "Mario" } });
@@ -48,13 +49,13 @@ describe("Contact", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
     });
 
-    const [url, options] = mockFetch.mock.calls[0];
-    expect(url).toBe("/");
-    expect(options?.method).toBe("POST");
-    expect(options?.headers?.["Content-Type"]).toBe("application/x-www-form-urlencoded");
-    const body = String(options?.body);
-    expect(body).toContain("Mario");
-    expect(body).toContain("mario%40test.com");
-    expect(body).toContain("Ciao+Nicola");
+    const [url, options] = mockFetch.mock.calls[0] as unknown as [string, RequestInit];
+    expect(url).toBe("http://test.com/contact");
+    expect(options.method).toBe("POST");
+    expect((options.headers as Record<string, string>)?.["Content-Type"]).toBe("application/json");
+    const body = JSON.parse(String(options.body));
+    expect(body.name).toBe("Mario");
+    expect(body.email).toBe("mario@test.com");
+    expect(body.message).toBe("Ciao Nicola");
   });
 });

@@ -1,39 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://ncphoto.netlify.app/</loc>
-    <lastmod>2026-04-24</lastmod>
+    <loc>https://nicolacapassophoto.com/</loc>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/" />
   </url>
   <url>
-    <loc>https://ncphoto.netlify.app/portfolio</loc>
-    <lastmod>2026-04-24</lastmod>
+    <loc>https://nicolacapassophoto.com/portfolio</loc>
+    <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/portfolio" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/portfolio" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/portfolio" />
   </url>
   <url>
-    <loc>https://ncphoto.netlify.app/contact</loc>
+    <loc>https://nicolacapassophoto.com/contact</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/contact" />
   </url>
   <url>
-    <loc>https://ncphoto.netlify.app/privacy</loc>
+    <loc>https://nicolacapassophoto.com/privacy</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/privacy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/privacy" />
   </url>
   <url>
-    <loc>https://ncphoto.netlify.app/cookies</loc>
+    <loc>https://nicolacapassophoto.com/cookies</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/cookies" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/cookies" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/cookies" />
   </url>
   <url>
-    <loc>https://ncphoto.netlify.app/terms</loc>
+    <loc>https://nicolacapassophoto.com/terms</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/terms" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/terms" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/terms" />
   </url>
 </urlset>

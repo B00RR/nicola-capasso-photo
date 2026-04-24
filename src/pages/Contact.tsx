@@ -1,38 +1,65 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLang } from "@/i18n/useLang";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { CONTACTS } from "@/data/portfolio";
 import { useReveal } from "@/hooks/useReveal";
 import { toast } from "sonner";
 
 const Contact = () => {
   const { t, lang } = useLang();
+  const title = lang === "it" ? "Contatti \u2014 Nicola" : "Contact \u2014 Nicola";
+  const description = lang === "it"
+    ? "Scrivimi per raccontarmi il tuo matrimonio. Rispondo entro 48 ore con disponibilit\u00e0 e dettagli."
+    : "Drop me a line about your wedding. I reply within 48 hours with availability and details.";
+  usePageMeta({ title, description, path: "/contact" });
+
   const [sent, setSent] = useState(false);
   const formRef = useReveal<HTMLDivElement>();
   const directRef = useReveal<HTMLDivElement>();
 
-  useEffect(() => {
-    document.title = lang === "it" ? "Contatti — Nicola" : "Contact — Nicola";
-  }, [lang]);
-
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const endpoint = (import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined) || (typeof process !== "undefined" && process.env.VITE_CONTACT_ENDPOINT);
+    if (!endpoint) {
+      toast.error(lang === "it" ? "Endpoint di contatto non configurato." : "Contact endpoint not configured.");
+      return;
+    }
     const form = e.currentTarget;
     const data = new FormData(form);
-    const params = new URLSearchParams();
-    data.forEach((value, key) => params.append(key, String(value)));
+    const payload = JSON.stringify(Object.fromEntries(data));
+
+    const send = async () => {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: payload,
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res;
+    };
 
     try {
-      await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: params.toString(),
-      });
+      await send();
       setSent(true);
       toast.success(t.contact.form.sent);
       form.reset();
       setTimeout(() => setSent(false), 4000);
-    } catch {
-      toast.error(t.contact.form.error);
+    } catch (err) {
+      const msg = err instanceof Error && err.message.startsWith("HTTP")
+        ? (lang === "it" ? "Errore del server. Riprova tra poco." : "Server error. Please try again shortly.")
+        : (lang === "it" ? "Connessione assente. Verifica la rete e riprova." : "No connection. Check your network and retry.");
+      toast.error(msg);
+      // single retry after 3s
+      setTimeout(() => {
+        send().then(() => {
+          setSent(true);
+          toast.success(t.contact.form.sent);
+          form.reset();
+          setTimeout(() => setSent(false), 4000);
+        }).catch(() => {
+          toast.error(lang === "it" ? "Invio fallito. Contattami direttamente via email." : "Sending failed. Please contact me directly via email.");
+        });
+      }, 3000);
     }
   };
 
@@ -52,20 +79,17 @@ const Contact = () => {
           <form
             name="contact"
             method="POST"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
             onSubmit={onSubmit}
             className="space-y-8"
           >
-            <input type="hidden" name="form-name" value="contact" />
-            <p className="hidden">
+            <p aria-hidden="true" style={{ position: "absolute", left: "-9999px" }}>
               <label>
-                Non compilare questo campo: <input name="bot-field" />
+                <input name="bot-field" tabIndex={-1} autoComplete="off" aria-hidden="true" />
               </label>
             </p>
             <div className="grid md:grid-cols-2 gap-8">
-              <Field name="name" label={t.contact.form.name} required />
-              <Field name="email" label={t.contact.form.email} type="email" required />
+              <Field name="name" label={t.contact.form.name} invalidMsg={lang === "it" ? "Inserisci il tuo nome" : "Please enter your name"} required />
+              <Field name="email" label={t.contact.form.email} invalidMsg={lang === "it" ? "Inserisci una email valida" : "Please enter a valid email"} type="email" required />
             </div>
             <div className="grid md:grid-cols-2 gap-8">
               <Field name="date" label={t.contact.form.date} type="date" />
@@ -80,6 +104,9 @@ const Contact = () => {
                 name="message"
                 rows={5}
                 required
+                aria-invalid={false}
+                onInvalid={(e) => { e.preventDefault(); const el = e.currentTarget; el.setAttribute("aria-invalid", "true"); el.classList.add("border-red-500"); el.classList.remove("border-border"); }}
+                onInput={(e) => { const el = e.currentTarget; el.setAttribute("aria-invalid", "false"); el.classList.remove("border-red-500"); el.classList.add("border-border"); }}
                 className="w-full bg-secondary/40 md:bg-transparent border-b border-border hover:border-foreground/60 focus:border-foreground focus:bg-secondary/60 outline-none transition-[background-color,border-color] py-3 px-3 md:px-2 resize-none font-display text-lg md:text-xl"
               />
             </div>
@@ -125,22 +152,34 @@ const Contact = () => {
   );
 };
 
-const Field = ({ name, label, type = "text", required = false }: {
-  name: string; label: string; type?: string; required?: boolean;
-}) => (
-  <div>
-    <label htmlFor={name} className="block font-sans-tight text-[10px] uppercase text-muted-foreground mb-3">
-      {label}{required && <span className="text-accent ml-1">*</span>}
-    </label>
-    <input
-      id={name}
-      type={type}
-      name={name}
-      required={required}
-      className="w-full bg-secondary/40 md:bg-transparent border-b border-border hover:border-foreground/60 focus:border-foreground focus:bg-secondary/60 outline-none transition-[background-color,border-color] py-3 px-3 md:px-2 font-display text-lg md:text-xl"
-    />
-  </div>
-);
+const Field = ({ name, label, type = "text", required = false, invalidMsg }: {
+  name: string; label: string; type?: string; required?: boolean; invalidMsg?: string;
+}) => {
+  const [invalid, setInvalid] = useState(false);
+  return (
+    <div>
+      <label htmlFor={name} className="block font-sans-tight text-[10px] uppercase text-muted-foreground mb-3">
+        {label}{required && <span className="text-accent ml-1">*</span>}
+      </label>
+      <input
+        id={name}
+        type={type}
+        name={name}
+        required={required}
+        aria-invalid={invalid}
+        aria-describedby={invalid ? `${name}-error` : undefined}
+        onInvalid={(e) => { e.preventDefault(); setInvalid(true); }}
+        onInput={() => setInvalid(false)}
+        className={`w-full bg-secondary/40 md:bg-transparent border-b outline-none transition-[background-color,border-color] py-3 px-3 md:px-2 font-display text-lg md:text-xl ${invalid ? "border-red-500 focus:border-red-600" : "border-border hover:border-foreground/60 focus:border-foreground focus:bg-secondary/60"}`}
+      />
+      {invalid && (
+        <p id={`${name}-error`} className="text-red-500 text-xs mt-2 font-sans-tight">
+          {invalidMsg || (required ? (label + " is required") : "")}
+        </p>
+      )}
+    </div>
+  );
+};
 
 const DirectLink = ({ label, value, href }: { label: string; value: string; href: string }) => (
   <a
