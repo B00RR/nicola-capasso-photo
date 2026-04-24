@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { useLang } from "@/i18n/useLang";
 import { portfolio } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
-import { useReveal } from "@/hooks/useReveal";
 import { Lightbox } from "@/components/Lightbox";
 
 const toWebP = (src: string) => src.replace(/\.(jpg|jpeg|png)$/i, ".webp");
@@ -170,21 +169,30 @@ interface YearSectionProps {
 }
 
 const YearSection = ({ yearData, lang, registerRef, startIndex, onOpenShoot }: YearSectionProps) => {
-  const revealRef = useReveal<HTMLElement>(0.05);
-  const setRefs = (el: HTMLElement | null) => {
-    revealRef.current = el;
-    registerRef(el);
-  };
   return (
-    <section ref={setRefs} className="reveal scroll-mt-32" data-year={yearData.year}>
-      <div className="flex items-baseline gap-6 mb-8 md:mb-12">
+    // Plain section: scroll-spy ref only, no CSS reveal so stagger isn't masked
+    <section ref={registerRef} className="scroll-mt-32" data-year={yearData.year}>
+      {/* Header: slides in from below once, no opacity conflict with figures */}
+      <motion.div
+        className="flex items-baseline gap-6 mb-8 md:mb-12"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.9, ease: [0.2, 0.7, 0.2, 1] }}
+      >
         <h2 className="font-display text-7xl md:text-[9rem] leading-none">{yearData.year}</h2>
         <div className="flex-1 h-px bg-border" />
         <span className="font-sans-tight text-[10px] uppercase text-muted-foreground">{yearData.shoots.length} stories</span>
-      </div>
-      <p className="max-w-xl text-muted-foreground italic font-display text-lg md:text-xl mb-12">
+      </motion.div>
+      <motion.p
+        className="max-w-xl text-muted-foreground italic font-display text-lg md:text-xl mb-12"
+        initial={{ opacity: 0, y: 14 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.8, delay: 0.1, ease: [0.2, 0.7, 0.2, 1] }}
+      >
         {yearData.caption[lang]}
-      </p>
+      </motion.p>
 
       <div className="grid grid-cols-2 md:grid-cols-6 gap-3 md:gap-5">
         {yearData.shoots.map((s, i) => {
@@ -216,6 +224,7 @@ const YearSection = ({ yearData, lang, registerRef, startIndex, onOpenShoot }: Y
                     height={s.span === "tall" ? 800 : s.span === "wide" ? 788 : 750}
                     className="h-full w-full object-cover hover-lift opacity-0 transition-opacity duration-700"
                     onLoad={(e) => e.currentTarget.classList.replace("opacity-0", "opacity-100")}
+                    ref={(img) => { if (img?.complete) img.classList.replace("opacity-0", "opacity-100"); }}
                   />
                 </picture>
               </div>

@@ -167,6 +167,7 @@ const Home = () => {
                 height={1000}
                 className="w-full aspect-[4/5] object-cover opacity-0 transition-opacity duration-700"
                 onLoad={(e) => e.currentTarget.classList.replace("opacity-0", "opacity-100")}
+                ref={(img) => { if (img?.complete) img.classList.replace("opacity-0", "opacity-100"); }}
               />
             </picture>
           </div>
@@ -277,6 +278,7 @@ const Home = () => {
                       height={i === 0 || i === 3 ? 900 : 800}
                       className="h-full w-full object-cover hover-lift opacity-0 transition-opacity duration-700"
                       onLoad={(e) => e.currentTarget.classList.replace("opacity-0", "opacity-100")}
+                      ref={(img) => { if (img?.complete) img.classList.replace("opacity-0", "opacity-100"); }}
                     />
                   </picture>
                 </div>
