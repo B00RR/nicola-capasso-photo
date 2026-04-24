@@ -3,23 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>404 &mdash; Nicola</title>
+  <title>Nicola — Wedding Photographer</title>
   <meta name="robots" content="noindex, nofollow" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:system-ui,-apple-system,sans-serif;background:#0a0a0a;color:#e5e5e5;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:2rem}
-    h1{font-size:6rem;font-weight:200;letter-spacing:-.05em;margin-bottom:1rem}
-    p{color:#888;margin-bottom:2rem;line-height:1.6}
-    a{color:#e5e5e5;text-decoration:none;border-bottom:1px solid rgba(229,229,229,.3);padding-bottom:.2rem;transition:border-color .3s}
-    a:hover{border-color:rgba(229,229,229,.8)}
-  </style>
+  <script>
+    // GitHub Pages SPA redirect: store the intended path and redirect to root.
+    // index.html then restores the path so React Router renders the right page.
+    var base = '/nicola-capasso-photo';
+    var path = window.location.pathname.slice(base.length) || '/';
+    sessionStorage.setItem('gh-pages-redirect', path + window.location.search + window.location.hash);
+    window.location.replace(base + '/');
+  </script>
 </head>
-<body>
-  <div>
-    <h1>404</h1>
-    <p>Questa pagina non esiste.<br>This page doesn&rsquo;t exist.</p>
-    <a href="/">&larr; Torna alla home / Return to home</a>
-  </div>
-</body>
+<body></body>
 </html>
