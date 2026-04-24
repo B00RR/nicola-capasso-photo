@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { MonogramNC } from "./MonogramNC";
 
 const PageTransition = () => {
   const location = useLocation();
@@ -28,8 +29,10 @@ const PageTransition = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4, ease: [0.2, 0.7, 0.2, 1] }}
-          className="fixed inset-0 z-[100] bg-background pointer-events-none"
-        />
+          className="fixed inset-0 z-[100] bg-background pointer-events-none flex items-center justify-center"
+        >
+          <MonogramNC className="w-14 h-14 opacity-30" />
+        </motion.div>
       )}
     </AnimatePresence>
   );
