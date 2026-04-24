@@ -15,7 +15,7 @@ const NotFound = () => {
   return (
     <main className="relative min-h-screen w-full overflow-hidden">
       <img
-        src="/images/photo-37.jpg"
+        src={`${import.meta.env.BASE_URL}images/photo-37.jpg`}
         alt=""
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover opacity-40 grayscale"

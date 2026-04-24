@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => {
   process.env.VITE_SITE_URL = env.VITE_SITE_URL || "https://b00rr.github.io/nicola-capasso-photo";
 
   return {
+    base: "/nicola-capasso-photo/",
     server: {
       host: "::",
       port: 8080,
