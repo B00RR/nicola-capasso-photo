@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -17,7 +17,27 @@ interface LightboxProps {
   onNext: () => void;
 }
 
+const imgVariants = {
+  enter: (dir: number) => ({ opacity: 0, x: dir * 28 }),
+  center:              { opacity: 1, x: 0 },
+  exit:  (dir: number) => ({ opacity: 0, x: dir * -28 }),
+};
+
 export const Lightbox = ({ images, index, onClose, onPrev, onNext }: LightboxProps) => {
+  // Track previous index to derive slide direction.
+  // prevIndexRef lags one render behind (updated in useEffect), so during the
+  // render that fires when index changes it still holds the old value — which
+  // is exactly what we need to compute direction correctly.
+  const prevIndexRef = useRef<number | null>(null);
+  const dir =
+    index !== null && prevIndexRef.current !== null
+      ? index > prevIndexRef.current ? 1 : -1
+      : 0;
+
+  useEffect(() => {
+    prevIndexRef.current = index;
+  }, [index]);
+
   useEffect(() => {
     if (index === null) return;
     const onKey = (e: KeyboardEvent) => {
@@ -58,44 +78,49 @@ export const Lightbox = ({ images, index, onClose, onPrev, onNext }: LightboxPro
             <button
               aria-label="Previous"
               onClick={(e) => { e.stopPropagation(); onPrev(); }}
-              className="absolute left-4 md:left-8 text-background/60 hover:text-background transition-colors"
+              className="absolute left-4 md:left-8 text-background/60 hover:text-background transition-colors z-10"
             >
               <ChevronLeft size={32} />
             </button>
           )}
 
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, scale: 0.97 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.97 }}
-            transition={{ duration: 0.3, ease: [0.2, 0.7, 0.2, 1] }}
-            className="relative w-full max-w-5xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img
-              src={current.src}
-              alt={current.alt}
-              className="w-full max-h-[80vh] object-contain"
-            />
-            <div className="mt-4 flex items-baseline justify-between">
-              <span className="font-display italic text-background text-lg">{current.title}</span>
-              <span className="font-sans-tight text-[10px] uppercase text-background/50 tracking-[0.15em]">
-                {current.location}
-              </span>
-            </div>
-            {images.length > 1 && (
-              <p className="mt-2 font-sans-tight text-[10px] text-background/30 text-right">
-                {(index ?? 0) + 1} / {images.length}
-              </p>
-            )}
-          </motion.div>
+          {/* Inner AnimatePresence handles slide transitions between images */}
+          <AnimatePresence mode="wait" custom={dir}>
+            <motion.div
+              key={index}
+              custom={dir}
+              variants={imgVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.2, ease: [0.2, 0.7, 0.2, 1] }}
+              className="relative w-full max-w-5xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={current.src}
+                alt={current.alt}
+                className="w-full max-h-[80vh] object-contain"
+              />
+              <div className="mt-4 flex items-baseline justify-between">
+                <span className="font-display italic text-background text-lg">{current.title}</span>
+                <span className="font-sans-tight text-[10px] uppercase text-background/50 tracking-[0.15em]">
+                  {current.location}
+                </span>
+              </div>
+              {images.length > 1 && (
+                <p className="mt-2 font-sans-tight text-[10px] text-background/30 text-right">
+                  {(index ?? 0) + 1} / {images.length}
+                </p>
+              )}
+            </motion.div>
+          </AnimatePresence>
 
           {images.length > 1 && (
             <button
               aria-label="Next"
               onClick={(e) => { e.stopPropagation(); onNext(); }}
-              className="absolute right-4 md:right-8 text-background/60 hover:text-background transition-colors"
+              className="absolute right-4 md:right-8 text-background/60 hover:text-background transition-colors z-10"
             >
               <ChevronRight size={32} />
             </button>
