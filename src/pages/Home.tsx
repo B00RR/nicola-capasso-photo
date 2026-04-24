@@ -5,6 +5,7 @@ import { useLang } from "@/i18n/useLang";
 import { useReveal } from "@/hooks/useReveal";
 import { portfolio } from "@/data/portfolio";
 import { SITE_URL } from "@/config/site";
+import homeData from "@/content/home.json";
 
 const heroImg = "/images/photo-22.jpg";
 const aboutImg = "/images/photo-37.jpg";
@@ -54,8 +55,8 @@ const Home = () => {
     };
   }, [lang]);
 
-  // Marquee items (recent locations)
-  const marquee = ["Como", "Positano", "Provence", "Santorini", "Capri", "Marrakech", "Cinque Terre", "Lisbon", "Mykonos"];
+  // Marquee items (editable via CMS in src/content/home.json)
+  const marquee = homeData.marquee;
 
   // Featured grid: pick first shoot of each year
   const featured = portfolio.flatMap((y) => y.shoots.slice(0, 1));

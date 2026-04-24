@@ -138,10 +138,12 @@ collections:
               - { label: Intro (EN), name: intro_en, widget: text }
               - { label: Vedi tutto (IT), name: viewAll_it, widget: string }
               - { label: Vedi tutto (EN), name: viewAll_en, widget: string }
-          - label: Marquee
+          - label: Marquee (location ricorrenti)
             name: marquee
             widget: list
             allow_add: true
+            hint: "Una località per riga"
+            field: { label: Località, name: location, widget: string }
 
   - name: portfolio
     label: Portfolio
