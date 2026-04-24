@@ -23,7 +23,6 @@ const targets = [
   { name: "apple-touch-icon.png", size: 180, pad: true },
   { name: "android-chrome-192.png", size: 192, pad: true },
   { name: "android-chrome-512.png", size: 512, pad: true },
-  { name: "og-image.jpg", size: 1200, height: 630, bg: "#faf5ef", format: "jpeg" },
 ];
 
 const renderIcon = async ({ size, height = size, pad, bg = "#faf5ef", format = "png" }) => {

@@ -10,11 +10,13 @@ const SplashIntro = () => {
   const [endPos, setEndPos] = useState({ x: 0, y: 0, w: 0, h: 0 });
 
   useEffect(() => {
-    const seen = sessionStorage.getItem("splash-seen");
+    // Bump the version when you want every existing visitor to see the splash again.
+    const SPLASH_KEY = "nicola-splash-seen-v1";
+    const seen = localStorage.getItem(SPLASH_KEY);
     if (!seen) {
       setWinSize({ w: window.innerWidth, h: window.innerHeight });
       setShow(true);
-      sessionStorage.setItem("splash-seen", "1");
+      localStorage.setItem(SPLASH_KEY, "1");
 
       setTimeout(() => setPhase(1), 700);
       setTimeout(() => setPhase(2), 1200);

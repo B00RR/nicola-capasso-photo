@@ -13,15 +13,33 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted">
-      <div className="text-center">
-        <h1 className="mb-4 font-display text-8xl">404</h1>
-        <p className="mb-8 text-xl text-muted-foreground">{t.notFound.title}</p>
-        <Link to="/" className="font-sans-tight text-[11px] uppercase border-b border-foreground pb-2 hover:opacity-70 transition-opacity">
-          {t.notFound.back}
+    <main className="relative min-h-screen w-full overflow-hidden">
+      <img
+        src="/images/photo-37.jpg"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover opacity-40 grayscale"
+      />
+      <div className="absolute inset-0 bg-background/70" />
+
+      <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 text-center">
+        <p className="font-sans-tight text-[11px] uppercase tracking-[0.3em] text-muted-foreground mb-8">
+          — 404
+        </p>
+        <h1 className="font-display italic text-[22vw] md:text-[14rem] leading-[0.85] text-foreground">
+          404
+        </h1>
+        <p className="mt-8 max-w-sm font-display text-xl md:text-2xl text-muted-foreground">
+          {t.notFound.title}
+        </p>
+        <Link
+          to="/"
+          className="mt-10 font-sans-tight text-[11px] uppercase border-b border-foreground pb-2 hover:opacity-70 transition-opacity"
+        >
+          {t.notFound.back} →
         </Link>
       </div>
-    </div>
+    </main>
   );
 };
 

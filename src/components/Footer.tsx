@@ -11,7 +11,7 @@ const Footer = () => {
           <img
             src="/logo.svg"
             alt="Nicola Capasso Photo"
-            className="h-14 md:h-16 w-auto"
+            className="h-10 md:h-12 w-auto"
           />
           <p className="mt-3 text-sm text-muted-foreground max-w-xs">{t.footer.tagline}</p>
         </div>

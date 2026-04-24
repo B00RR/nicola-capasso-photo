@@ -73,7 +73,7 @@ const Portfolio = () => {
               <div className="relative pl-4">
                 <div className="absolute left-0 top-2 bottom-2 w-px bg-border" />
                 <div
-                  className="absolute left-0 w-px bg-foreground transition-all duration-700"
+                  className="absolute left-0 w-[2px] bg-accent transition-all duration-700"
                   style={{
                     top: `${portfolio.findIndex((p) => p.year === activeYear) * 56 + 8}px`,
                     height: "32px",

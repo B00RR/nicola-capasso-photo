@@ -26,9 +26,7 @@ const ScrollToTop = () => {
 
 const Fallback = () => (
   <div className="flex min-h-screen items-center justify-center">
-    <div className="font-sans-tight text-[11px] uppercase text-muted-foreground animate-pulse">
-      Loading...
-    </div>
+    <div className="h-px w-24 bg-foreground/60 animate-pulse" aria-label="Loading" role="status" />
   </div>
 );
 

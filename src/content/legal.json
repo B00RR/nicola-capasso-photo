@@ -104,7 +104,7 @@
       },
       {
         "h": "2. Cookie tecnici utilizzati",
-        "p": "Usiamo localStorage per ricordare la lingua selezionata (chiave \"nicola-lang\") e lo stato del messaggio di consenso cookie (chiave \"nicola-cookie-consent\"). Questi dati non identificano l'utente e non vengono condivisi con terze parti."
+        "p": "Usiamo localStorage per ricordare la lingua selezionata (chiave \"nicola-lang\"), lo stato del messaggio di consenso cookie (chiave \"nicola-cookie-consent\") e l'avvenuta visualizzazione dell'animazione introduttiva (chiave \"nicola-splash-seen-v1\"). Questi dati non identificano l'utente e non vengono condivisi con terze parti."
       },
       {
         "h": "3. Cookie di terze parti",
@@ -126,7 +126,7 @@
       },
       {
         "h": "2. Technical cookies used",
-        "p": "We use localStorage to remember your selected language (key \"nicola-lang\") and whether you have dismissed the cookie notice (key \"nicola-cookie-consent\"). This data does not identify you and is not shared with third parties."
+        "p": "We use localStorage to remember your selected language (key \"nicola-lang\"), whether you have dismissed the cookie notice (key \"nicola-cookie-consent\") and whether you have seen the intro animation (key \"nicola-splash-seen-v1\"). This data does not identify you and is not shared with third parties."
       },
       {
         "h": "3. Third-party cookies",

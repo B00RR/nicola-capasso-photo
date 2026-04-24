@@ -80,7 +80,7 @@ const Contact = () => {
                 name="message"
                 rows={5}
                 required
-                className="w-full bg-transparent border-b border-border focus:border-foreground outline-none transition-colors py-2 resize-none font-display text-lg md:text-xl"
+                className="w-full bg-secondary/40 md:bg-transparent border-b border-border hover:border-foreground/60 focus:border-foreground focus:bg-secondary/60 outline-none transition-[background-color,border-color] py-3 px-3 md:px-2 resize-none font-display text-lg md:text-xl"
               />
             </div>
             <button
@@ -115,10 +115,10 @@ const Contact = () => {
             />
           </div>
 
-          <p className="mt-12 font-display italic text-2xl md:text-3xl text-muted-foreground leading-snug">
+          <blockquote className="mt-14 border-l-2 border-accent pl-6 font-display italic text-2xl md:text-3xl text-muted-foreground leading-snug">
             {t.contact.quote}
-          </p>
-          <p className="mt-3 font-sans-tight text-[10px] uppercase text-muted-foreground">— Nicola</p>
+          </blockquote>
+          <p className="mt-3 pl-6 font-sans-tight text-[10px] uppercase text-muted-foreground">— Nicola</p>
         </aside>
       </section>
     </main>
@@ -137,7 +137,7 @@ const Field = ({ name, label, type = "text", required = false }: {
       type={type}
       name={name}
       required={required}
-      className="w-full bg-transparent border-b border-border focus:border-foreground outline-none transition-colors py-2 font-display text-lg md:text-xl"
+      className="w-full bg-secondary/40 md:bg-transparent border-b border-border hover:border-foreground/60 focus:border-foreground focus:bg-secondary/60 outline-none transition-[background-color,border-color] py-3 px-3 md:px-2 font-display text-lg md:text-xl"
     />
   </div>
 );
@@ -147,10 +147,18 @@ const DirectLink = ({ label, value, href }: { label: string; value: string; href
     href={href}
     target="_blank"
     rel="noreferrer"
-    className="group flex items-center justify-between border-b border-border py-5 hover:pl-2 transition-all"
+    className="group flex items-center justify-between gap-4 border-b border-border py-5 md:hover:pl-2 transition-all"
   >
     <span className="font-sans-tight text-[10px] uppercase text-muted-foreground">{label}</span>
-    <span className="font-display text-xl md:text-2xl group-hover:italic transition-all">{value}</span>
+    <span className="flex items-center gap-3 min-w-0">
+      <span className="font-display text-xl md:text-2xl group-hover:italic transition-all truncate">{value}</span>
+      <span
+        aria-hidden
+        className="font-sans-tight text-base text-muted-foreground/70 group-hover:text-foreground group-hover:translate-x-1 transition-all shrink-0"
+      >
+        →
+      </span>
+    </span>
   </a>
 );
 
