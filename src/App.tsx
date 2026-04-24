@@ -45,7 +45,7 @@ const App = () => (
   <LanguageProvider>
     <TooltipProvider>
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename="/nicola-capasso-photo">
         <SplashIntro />
         <ScrollToTop />
         <PageTransition />

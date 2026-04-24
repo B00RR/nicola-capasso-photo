@@ -50,7 +50,7 @@ const Header = () => {
           aria-label="Nicola Capasso — Wedding photography"
         >
           <img
-            src="/favicon.svg"
+            src={`${import.meta.env.BASE_URL}favicon.svg`}
             alt=""
             className="h-9 md:h-10 w-auto"
             aria-hidden="true"
