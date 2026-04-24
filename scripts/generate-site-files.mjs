@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
@@ -23,13 +23,22 @@ const readEnv = (path) => {
 const env = { ...readEnv(envPath), ...readEnv(envLocal), ...process.env };
 const siteUrl = (env.VITE_SITE_URL || "https://ncphoto.netlify.app").replace(/\/$/, "");
 
+const contentDir = join(root, "src", "content");
+const getLastMod = (file) => {
+  try {
+    return statSync(join(contentDir, file)).mtime.toISOString().split("T")[0];
+  } catch {
+    return new Date().toISOString().split("T")[0];
+  }
+};
+
 const routes = [
-  { loc: "/", changefreq: "weekly", priority: "1.0" },
-  { loc: "/portfolio", changefreq: "weekly", priority: "0.8" },
-  { loc: "/contact", changefreq: "monthly", priority: "0.6" },
-  { loc: "/privacy", changefreq: "yearly", priority: "0.3" },
-  { loc: "/cookies", changefreq: "yearly", priority: "0.3" },
-  { loc: "/terms", changefreq: "yearly", priority: "0.3" },
+  { loc: "/",          changefreq: "weekly",  priority: "1.0", lastmod: getLastMod("home.json") },
+  { loc: "/portfolio", changefreq: "weekly",  priority: "0.8", lastmod: getLastMod("portfolio.json") },
+  { loc: "/contact",   changefreq: "monthly", priority: "0.6", lastmod: getLastMod("contact.json") },
+  { loc: "/privacy",   changefreq: "yearly",  priority: "0.3", lastmod: getLastMod("legal.json") },
+  { loc: "/cookies",   changefreq: "yearly",  priority: "0.3", lastmod: getLastMod("legal.json") },
+  { loc: "/terms",     changefreq: "yearly",  priority: "0.3", lastmod: getLastMod("legal.json") },
 ];
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -38,6 +47,7 @@ ${routes
   .map(
     (r) => `  <url>
     <loc>${siteUrl}${r.loc}</loc>
+    <lastmod>${r.lastmod}</lastmod>
     <changefreq>${r.changefreq}</changefreq>
     <priority>${r.priority}</priority>
   </url>`

@@ -24,7 +24,7 @@ const Portfolio = () => {
   }, {});
 
   useEffect(() => {
-    document.title = lang === "it" ? "Portfolio — Nicola" : "Portfolio — Nicola";
+    document.title = lang === "it" ? "Portfolio — Nicola" : "Portfolio — Nicola · Wedding Photographer";
   }, [lang]);
 
   useEffect(() => {
