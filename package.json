@@ -1,11 +1,11 @@
 {
-  "name": "vite_react_shadcn_ts",
+  "name": "nicola-capasso-portfolio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "node scripts/generate-site-files.mjs && node scripts/generate-webp.mjs",
+    "prebuild": "node scripts/generate-site-files.mjs",
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",

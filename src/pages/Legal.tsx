@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLang } from "@/i18n/useLang";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import legalData from "@/content/legal.json";
 
 type PageKey = "privacy" | "cookies" | "terms";
@@ -19,8 +20,10 @@ const LegalPage = ({ page }: { page: PageKey }) => {
   const intro = data[`intro${s}` as keyof typeof data] as string;
   const sections = data[`sections${s}` as keyof typeof data] as Section[];
 
+  usePageMeta({ title: `${title} \u2014 Nicola`, description: intro, path: `/${page}` });
+
   useEffect(() => {
-    document.title = `${title} — Nicola`;
+    document.title = `${title} \u2014 Nicola`;
   }, [title]);
 
   return (

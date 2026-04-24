@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useLang } from "@/i18n/useLang";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { portfolio } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 import { Lightbox } from "@/components/Lightbox";
@@ -9,22 +10,21 @@ const toWebP = (src: string) => src.replace(/\.(jpg|jpeg|png)$/i, ".webp");
 
 const Portfolio = () => {
   const { t, lang } = useLang();
+  const title = lang === "it" ? "Portfolio \u2014 Nicola" : "Portfolio \u2014 Nicola \u00b7 Wedding Photographer";
+  const description = lang === "it"
+    ? "Una selezione di reportage di matrimonio in Italia e nel mondo. Ogni storia \u00e8 unica \u2014 scoprila nel portfolio di Nicola."
+    : "A curated selection of wedding reportages in Italy and worldwide. Every story is unique \u2014 explore Nicola\u2019s portfolio.";
+  usePageMeta({ title, description, path: "/portfolio" });
+
   const [activeYear, setActiveYear] = useState(portfolio[0].year);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const sectionRefs = useRef<Record<number, HTMLElement | null>>({});
 
-  // Flat list of all shoots for the lightbox
   const allShoots = portfolio.flatMap((y) => y.shoots);
-
-  // Start index of each year inside allShoots
   const yearStartIndex = portfolio.reduce<Record<number, number>>((acc, y, i) => {
     acc[y.year] = portfolio.slice(0, i).reduce((s, p) => s + p.shoots.length, 0);
     return acc;
   }, {});
-
-  useEffect(() => {
-    document.title = lang === "it" ? "Portfolio — Nicola" : "Portfolio — Nicola · Wedding Photographer";
-  }, [lang]);
 
   useEffect(() => {
     let raf = 0;
@@ -155,6 +155,7 @@ const Portfolio = () => {
         onClose={() => setLightboxIndex(null)}
         onPrev={() => setLightboxIndex((i) => (i !== null ? Math.max(0, i - 1) : null))}
         onNext={() => setLightboxIndex((i) => (i !== null ? Math.min(allShoots.length - 1, i + 1) : null))}
+        lang={lang}
       />
     </>
   );

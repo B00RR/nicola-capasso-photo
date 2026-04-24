@@ -18,7 +18,7 @@ export interface YearBlock {
 export const portfolio: YearBlock[] = portfolioData.years.map((y) => ({
   year: y.year,
   caption: { it: y.caption_it, en: y.caption_en },
-  shoots: y.shoots,
+  shoots: y.shoots as Shoot[],
 }));
 
 export const CONTACTS = siteData.contacts;

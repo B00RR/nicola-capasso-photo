@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLang } from "@/i18n/useLang";
 
@@ -8,6 +8,8 @@ const CookieBanner = () => {
   const { t } = useLang();
   const [visible, setVisible] = useState(false);
 
+  const returnFocusRef = useRef<HTMLElement | null>(null);
+
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (!localStorage.getItem(STORAGE_KEY)) {
@@ -15,6 +17,21 @@ const CookieBanner = () => {
       return () => window.clearTimeout(id);
     }
   }, []);
+
+  useEffect(() => {
+    if (!visible) return;
+    returnFocusRef.current = document.activeElement as HTMLElement;
+    const acceptBtn = document.querySelector('[data-cookie-accept]') as HTMLElement | null;
+    acceptBtn?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") dismiss();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      returnFocusRef.current?.focus?.();
+    };
+  }, [visible]);
 
   const dismiss = () => {
     localStorage.setItem(STORAGE_KEY, "1");
@@ -26,6 +43,7 @@ const CookieBanner = () => {
   return (
     <div
       role="dialog"
+      aria-modal="true"
       aria-live="polite"
       aria-label={t.legal.cookieBanner.title}
       className="fixed bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-auto md:max-w-md z-[60] bg-background border border-border rounded-sm shadow-lg p-5 md:p-6"
@@ -45,6 +63,7 @@ const CookieBanner = () => {
         </Link>
         <button
           type="button"
+          data-cookie-accept
           onClick={dismiss}
           className="font-sans-tight text-[11px] uppercase border-b border-foreground pb-1 hover:opacity-70 transition-opacity"
         >

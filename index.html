@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -32,20 +32,20 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Nicola — Wedding Photographer">
     <meta name="twitter:description" content="Nicola is a freelance wedding photographer based in Italy, available worldwide. Cinematic, honest, tailor-made wedding reportage.">
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  </head>
+    <script>
+    (function(){
+      var h = location.hostname;
+      if (/netlify\.app|vercel\.app|preview|deploy-preview|feature--/.test(h)) {
+        var m = document.createElement('meta');
+        m.name = 'robots';
+        m.content = 'noindex, nofollow';
+        document.head.appendChild(m);
+      }
+    })();
+  </script>
+</head>
 
   <body>
-    <!-- Hidden form for Netlify Forms detection -->
-    <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
-      <input type="text" name="name" />
-      <input type="email" name="email" />
-      <input type="date" name="date" />
-      <input type="text" name="location" />
-      <textarea name="message"></textarea>
-      <input name="bot-field" />
-    </form>
-
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

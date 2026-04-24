@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://ncphoto.netlify.app/sitemap.xml
+Sitemap: https://nicolacapassophoto.com/sitemap.xml

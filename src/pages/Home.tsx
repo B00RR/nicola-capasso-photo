@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useLang } from "@/i18n/useLang";
 import { useReveal } from "@/hooks/useReveal";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { portfolio } from "@/data/portfolio";
 import { SITE_URL } from "@/config/site";
 import homeData from "@/content/home.json";
+import siteData from "@/content/site.json";
 
 const heroImg = "/images/photo-22.jpg";
 const heroImgWebP = "/images/photo-22.webp";
@@ -14,6 +16,12 @@ const aboutImgWebP = "/images/photo-37.webp";
 
 const Home = () => {
   const { t, lang } = useLang();
+  const title = lang === "it" ? "Nicola \u2014 Fotografo di matrimoni" : "Nicola \u2014 Wedding Photographer";
+  const description = lang === "it"
+    ? "Nicola, fotografo freelance specializzato in matrimoni in Italia e nel mondo. Reportage cinematografico, autentico, su misura."
+    : "Nicola, freelance wedding photographer based in Italy, available worldwide. Cinematic, honest, tailor-made reportage.";
+  usePageMeta({ title, description, path: "/" });
+
   const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
@@ -26,35 +34,17 @@ const Home = () => {
   const featRef = useReveal<HTMLDivElement>(0.05);
 
   useEffect(() => {
-    document.title = lang === "it"
-      ? "Nicola — Fotografo di matrimoni"
-      : "Nicola — Wedding Photographer";
-    const meta = document.querySelector('meta[name="description"]');
-    const desc = lang === "it"
-      ? "Nicola, fotografo freelance specializzato in matrimoni in Italia e nel mondo. Reportage cinematografico, autentico, su misura."
-      : "Nicola, freelance wedding photographer based in Italy, available worldwide. Cinematic, honest, tailor-made reportage.";
-    if (meta) meta.setAttribute("content", desc);
-    else {
-      const m = document.createElement("meta");
-      m.name = "description";
-      m.content = desc;
-      document.head.appendChild(m);
-    }
-
     const existing = document.getElementById('jsonld-schema');
     if (existing) existing.remove();
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     script.id = 'jsonld-schema';
     script.textContent = JSON.stringify([
-      {"@context":"https://schema.org","@type":"WebSite","name":"Nicola — Wedding Photographer","url":`${SITE_URL}/`,"potentialAction":{"@type":"SearchAction","target":`${SITE_URL}/portfolio`,"query-input":"required name=search_term_string"}},
-      {"@context":"https://schema.org","@type":"Photographer","name":"Nicola","url":`${SITE_URL}/`,"sameAs":["https://instagram.com/nicolacapassofoto"],"address":{"@type":"PostalAddress","addressCountry":"IT"},"areaServed":"IT"}
+      {"@context":"https://schema.org","@type":"WebSite","name":"Nicola \u2014 Wedding Photographer","url":`${SITE_URL}/`,"potentialAction":{"@type":"SearchAction","target":`${SITE_URL}/portfolio`,"query-input":"required name=search_term_string"}},
+      {"@context":"https://schema.org","@type":"LocalBusiness","name":"Nicola Capasso","url":`${SITE_URL}/`,"email":siteData.contacts.email,"telephone":siteData.contacts.whatsapp,"address":{"@type":"PostalAddress","addressCountry":"IT"},"areaServed":"IT","contactPoint":{"@type":"ContactPoint","telephone":siteData.contacts.whatsapp,"contactType":"Customer Service","availableLanguage":["Italian","English"]}}
     ]);
     document.head.appendChild(script);
-
-    return () => {
-      document.getElementById('jsonld-schema')?.remove();
-    };
+    return () => { document.getElementById('jsonld-schema')?.remove(); };
   }, [lang]);
 
   // Marquee items (editable via CMS in src/content/home.json)
@@ -77,7 +67,7 @@ const Home = () => {
               src={heroImg}
               alt="Cinematic wedding moment at golden hour"
               loading="eager"
-              fetchpriority="high"
+              fetchPriority="high"
               width={1920}
               height={1280}
               className="h-full w-full object-cover"

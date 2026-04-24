@@ -12,8 +12,11 @@ const SplashIntro = () => {
   useEffect(() => {
     // Bump the version when you want every existing visitor to see the splash again.
     const SPLASH_KEY = "nicola-splash-seen-v1";
+    const url = new URL(window.location.href);
+    const force = url.searchParams.get("splash") === "reset";
     const seen = localStorage.getItem(SPLASH_KEY);
-    if (!seen) {
+    if (force || !seen) {
+      if (force) url.searchParams.delete("splash"); window.history.replaceState({}, "", url.toString());
       setWinSize({ w: window.innerWidth, h: window.innerHeight });
       setShow(true);
       localStorage.setItem(SPLASH_KEY, "1");

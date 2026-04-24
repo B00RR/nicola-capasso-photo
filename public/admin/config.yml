@@ -10,7 +10,7 @@ media_library:
 
 publish_mode: editorial_workflow
 
-site_url: "https://ncphoto.netlify.app"
+site_url: "https://nicolacapassophoto.com"
 
 collections:
   - name: site

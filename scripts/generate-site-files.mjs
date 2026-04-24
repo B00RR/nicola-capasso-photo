@@ -21,7 +21,7 @@ const readEnv = (path) => {
 };
 
 const env = { ...readEnv(envPath), ...readEnv(envLocal), ...process.env };
-const siteUrl = (env.VITE_SITE_URL || "https://ncphoto.netlify.app").replace(/\/$/, "");
+const siteUrl = (env.VITE_SITE_URL || "https://nicolacapassophoto.com").replace(/\/$/, "");
 
 const contentDir = join(root, "src", "content");
 const getLastMod = (file) => {
@@ -42,7 +42,7 @@ const routes = [
 ];
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${routes
   .map(
     (r) => `  <url>
@@ -50,6 +50,9 @@ ${routes
     <lastmod>${r.lastmod}</lastmod>
     <changefreq>${r.changefreq}</changefreq>
     <priority>${r.priority}</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="${siteUrl}${r.loc}" />
+    <xhtml:link rel="alternate" hreflang="en" href="${siteUrl}${r.loc}" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="${siteUrl}${r.loc}" />
   </url>`
   )
   .join("\n")}
