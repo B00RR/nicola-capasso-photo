@@ -8,7 +8,9 @@ import { SITE_URL } from "@/config/site";
 import homeData from "@/content/home.json";
 
 const heroImg = "/images/photo-22.jpg";
+const heroImgWebP = "/images/photo-22.webp";
 const aboutImg = "/images/photo-37.jpg";
+const aboutImgWebP = "/images/photo-37.webp";
 
 const Home = () => {
   const { t, lang } = useLang();
@@ -69,15 +71,18 @@ const Home = () => {
           style={{ y: heroY, scale: heroScale }}
           className="absolute inset-0"
         >
-          <img
-            src={heroImg}
-            alt="Cinematic wedding moment at golden hour"
-            loading="eager"
-            fetchpriority="high"
-            width={1920}
-            height={1280}
-            className="h-full w-full object-cover"
-          />
+          <picture>
+            <source srcSet={heroImgWebP} type="image/webp" />
+            <img
+              src={heroImg}
+              alt="Cinematic wedding moment at golden hour"
+              loading="eager"
+              fetchpriority="high"
+              width={1920}
+              height={1280}
+              className="h-full w-full object-cover"
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/75" />
           <div className="absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
         </motion.div>
@@ -151,15 +156,20 @@ const Home = () => {
       {/* ABOUT */}
       <section className="px-6 md:px-10 py-16 md:py-32 max-w-6xl mx-auto">
         <div className="grid gap-8 md:grid-cols-[minmax(320px,420px)_minmax(0,1fr)] lg:gap-16 items-start">
-          <div ref={aboutImgRef} className="order-2 md:order-1 overflow-hidden">
-            <img
-              src={aboutImg}
-              alt="Portrait of Nicola"
-              loading="lazy"
-              width={800}
-              height={1000}
-              className="w-full aspect-[4/5] object-cover"
-            />
+          <div ref={aboutImgRef} className="order-2 md:order-1 overflow-hidden bg-secondary">
+            <picture>
+              <source srcSet={aboutImgWebP} type="image/webp" />
+              <img
+                src={aboutImg}
+                alt="Portrait of Nicola"
+                loading="lazy"
+                width={800}
+                height={1000}
+                className="w-full aspect-[4/5] object-cover opacity-0 transition-opacity duration-700"
+                onLoad={(e) => e.currentTarget.classList.replace("opacity-0", "opacity-100")}
+                ref={(img) => { if (img?.complete) img.classList.replace("opacity-0", "opacity-100"); }}
+              />
+            </picture>
           </div>
           <div ref={aboutRef} className="order-1 md:order-2 md:pt-4 max-w-2xl reveal">
             <div className="mb-6 flex items-center gap-4">
@@ -257,15 +267,20 @@ const Home = () => {
                 to="/portfolio"
                 className={`overflow-hidden block col-span-1 ${layout.span}`}
               >
-                <div className={`overflow-hidden aspect-[3/4] ${layout.aspect}`}>
-                  <img
-                    src={s.image}
-                    alt={s.title}
-                    loading="lazy"
-                    width={i === 0 || i === 3 ? 1200 : 600}
-                    height={i === 0 || i === 3 ? 900 : 800}
-                    className="h-full w-full object-cover hover-lift"
-                  />
+                <div className={`overflow-hidden aspect-[3/4] bg-secondary ${layout.aspect}`}>
+                  <picture>
+                    <source srcSet={s.image.replace(/\.(jpg|jpeg|png)$/i, ".webp")} type="image/webp" />
+                    <img
+                      src={s.image}
+                      alt={s.title}
+                      loading="lazy"
+                      width={i === 0 || i === 3 ? 1200 : 600}
+                      height={i === 0 || i === 3 ? 900 : 800}
+                      className="h-full w-full object-cover hover-lift opacity-0 transition-opacity duration-700"
+                      onLoad={(e) => e.currentTarget.classList.replace("opacity-0", "opacity-100")}
+                      ref={(img) => { if (img?.complete) img.classList.replace("opacity-0", "opacity-100"); }}
+                    />
+                  </picture>
                 </div>
                 <div className="mt-3 flex items-center justify-between gap-3">
                   <p className="font-display italic text-base md:text-lg">{s.title}</p>
