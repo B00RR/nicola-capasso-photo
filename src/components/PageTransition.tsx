@@ -15,7 +15,7 @@ const PageTransition = () => {
       return;
     }
     setShow(true);
-    const timer = setTimeout(() => setShow(false), 220);
+    const timer = setTimeout(() => setShow(false), 300);
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
@@ -24,9 +24,10 @@ const PageTransition = () => {
       {show && (
         <motion.div
           key={location.pathname}
-          initial={{ opacity: 0.9 }}
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.28, ease: [0.2, 0.7, 0.2, 1] }}
+          transition={{ duration: 0.4, ease: [0.2, 0.7, 0.2, 1] }}
           className="fixed inset-0 z-[100] bg-background pointer-events-none"
         />
       )}
