@@ -24,24 +24,29 @@ const Header = () => {
     { to: "/contact", label: t.nav.contact },
   ];
 
+  // On the Home page the header sits on top of a dark hero image; elsewhere
+  // it sits on the ivory background. Switch chrome accordingly.
+  const onHero = pathname === "/" && !scrolled && !open;
+  const solid = scrolled || open;
+
   return (
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-        scrolled || open
+        solid
           ? "bg-background/85 backdrop-blur-md border-b border-border/60"
-          : "bg-gradient-to-b from-background/85 via-background/45 to-transparent"
+          : onHero
+            ? "bg-gradient-to-b from-black/55 via-black/25 to-transparent"
+            : "bg-background/0"
       )}
     >
-      <div
-        className={cn(
-          "mx-auto max-w-[1500px] px-6 md:px-10 h-16 md:h-20 flex items-center justify-between",
-          !(scrolled || open) && "[text-shadow:0_1px_3px_rgba(255,250,240,0.75)]"
-        )}
-      >
+      <div className="mx-auto max-w-[1500px] px-6 md:px-10 h-16 md:h-20 flex items-center justify-between">
         <Link
           to="/"
-          className="flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm"
+          className={cn(
+            "flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:rounded-sm transition-[filter] duration-500",
+            onHero ? "focus-visible:ring-background/60 [filter:brightness(0)_invert(1)]" : "focus-visible:ring-foreground/50"
+          )}
           aria-label="Nicola Capasso — Wedding photography"
         >
           <img
@@ -58,8 +63,11 @@ const Header = () => {
               key={l.to}
               to={l.to}
               className={cn(
-                "font-sans-tight text-[11px] uppercase underline-grow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm",
-                pathname === l.to ? "text-foreground" : "text-foreground/90 hover:text-foreground"
+                "font-sans-tight text-[11px] uppercase underline-grow focus-visible:outline-none focus-visible:ring-2 focus-visible:rounded-sm transition-colors",
+                onHero
+                  ? "text-background/90 hover:text-background focus-visible:ring-background/60"
+                  : "text-foreground/90 hover:text-foreground focus-visible:ring-foreground/50",
+                pathname === l.to && (onHero ? "text-background" : "text-foreground")
               )}
             >
               {l.label}
@@ -67,12 +75,15 @@ const Header = () => {
           ))}
           <button
             onClick={toggle}
-            className="font-sans-tight text-[11px] uppercase tracking-[0.2em] text-foreground/90 hover:text-foreground transition-colors"
+            className={cn(
+              "font-sans-tight text-[11px] uppercase tracking-[0.2em] transition-colors",
+              onHero ? "text-background/90 hover:text-background" : "text-foreground/90 hover:text-foreground"
+            )}
             aria-label="Switch language"
           >
-            <span className={lang === "it" ? "text-foreground" : ""}>IT</span>
+            <span className={cn(lang === "it" && (onHero ? "text-background" : "text-foreground"))}>IT</span>
             <span className="mx-1.5 opacity-40">/</span>
-            <span className={lang === "en" ? "text-foreground" : ""}>EN</span>
+            <span className={cn(lang === "en" && (onHero ? "text-background" : "text-foreground"))}>EN</span>
           </button>
         </nav>
 
@@ -81,9 +92,9 @@ const Header = () => {
           className="md:hidden flex flex-col gap-1.5 p-2 -mr-2"
           aria-label="Menu"
         >
-          <span className={cn("h-px w-6 bg-foreground transition-transform", open && "translate-y-[6px] rotate-45")} />
-          <span className={cn("h-px w-6 bg-foreground transition-opacity", open && "opacity-0")} />
-          <span className={cn("h-px w-6 bg-foreground transition-transform", open && "-translate-y-[6px] -rotate-45")} />
+          <span className={cn("h-px w-6 transition-transform", onHero ? "bg-background" : "bg-foreground", open && "translate-y-[6px] rotate-45")} />
+          <span className={cn("h-px w-6 transition-opacity", onHero ? "bg-background" : "bg-foreground", open && "opacity-0")} />
+          <span className={cn("h-px w-6 transition-transform", onHero ? "bg-background" : "bg-foreground", open && "-translate-y-[6px] -rotate-45")} />
         </button>
       </div>
 

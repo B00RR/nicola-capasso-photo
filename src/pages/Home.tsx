@@ -139,8 +139,9 @@ const Home = () => {
       <section className="border-y border-border/60 py-6 overflow-hidden">
         <div className="flex marquee-track whitespace-nowrap">
           {[...marquee, ...marquee].map((m, i) => (
-            <span key={`${m}-${i}`} className="font-display italic text-3xl md:text-5xl px-8 text-muted-foreground">
-              {m} <span className="text-accent mx-2">✦</span>
+            <span key={`${m}-${i}`} className="font-display italic text-3xl md:text-5xl px-8 text-foreground/80 inline-flex items-center">
+              {m}
+              <span aria-hidden className="mx-6 h-[1px] w-8 bg-accent" />
             </span>
           ))}
         </div>

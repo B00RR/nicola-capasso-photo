@@ -13,7 +13,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "generate:site-files": "node scripts/generate-site-files.mjs",
-    "generate:favicons": "node scripts/generate-favicons.mjs"
+    "generate:favicons": "node scripts/generate-favicons.mjs",
+    "generate:og-image": "node scripts/generate-og-image.mjs"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
