@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="mx-auto max-w-[1500px] px-6 md:px-10 py-14 grid gap-10 md:grid-cols-3">
         <div>
           <img
-            src="/logo.svg"
+            src={`${import.meta.env.BASE_URL}logo.svg`}
             alt=""
             className="h-10 md:h-12 w-auto"
           />
