@@ -9,7 +9,7 @@ const ThrowError = () => {
 const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
 
 describe("ErrorBoundary", () => {
-  afterAll(() => {
+  afterEach(() => {
     consoleError.mockRestore();
   });
 
