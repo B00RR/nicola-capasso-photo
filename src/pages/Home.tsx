@@ -89,7 +89,7 @@ const Home = () => {
 
           <h1 className="font-display text-background text-[15vw] md:text-[9vw] leading-[0.95] tracking-tight">
             {t.hero.title.map((line, i) => (
-              <span key={i} className="block overflow-hidden">
+              <span key={i} className="block overflow-hidden pb-[0.15em] -mb-[0.15em]">
                 <motion.span
                   initial={prefersReducedMotion ? false : { y: "110%" }}
                   animate={prefersReducedMotion ? {} : { y: "0%" }}
