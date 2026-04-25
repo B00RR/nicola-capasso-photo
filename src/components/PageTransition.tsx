@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { MonogramNC } from "./MonogramNC";
 
 const PageTransition = () => {
   const location = useLocation();
@@ -9,8 +7,6 @@ const PageTransition = () => {
   const isFirst = useRef(true);
 
   useEffect(() => {
-    // Skip the very first render — the splash intro / initial paint already
-    // covers that. Only animate on subsequent route changes.
     if (isFirst.current) {
       isFirst.current = false;
       return;
@@ -21,20 +17,20 @@ const PageTransition = () => {
   }, [location.pathname]);
 
   return (
-    <AnimatePresence>
-      {show && (
-        <motion.div
-          key={location.pathname}
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.4, ease: [0.2, 0.7, 0.2, 1] }}
-          className="fixed inset-0 z-[100] bg-background pointer-events-none flex items-center justify-center"
-        >
-          <MonogramNC className="w-20 h-20" />
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <div
+      aria-hidden="true"
+      className="fixed inset-0 z-[100] bg-background pointer-events-none flex items-center justify-center"
+      style={{
+        opacity: show ? 1 : 0,
+        transition: show ? "none" : "opacity 0.5s cubic-bezier(0.2,0.7,0.2,1)",
+      }}
+    >
+      <img
+        src={`${import.meta.env.BASE_URL}favicon.svg`}
+        alt=""
+        className="w-20 h-20"
+      />
+    </div>
   );
 };
 
