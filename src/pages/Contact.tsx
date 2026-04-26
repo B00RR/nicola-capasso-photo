@@ -72,7 +72,11 @@ const Contact = () => {
   return (
     <main className="pt-28 md:pt-36 pb-10">
       <section className="px-6 md:px-10 max-w-[1500px] mx-auto">
-        <p className="font-sans-tight text-[11px] uppercase text-muted-foreground mb-6">— {t.contact.kicker}</p>
+        <div className="mb-6 flex items-center gap-4">
+          <span className="font-display italic text-accent text-3xl md:text-4xl leading-none">01</span>
+          <span className="h-px flex-1 max-w-[4rem] bg-border" />
+          <p className="font-sans-tight text-[11px] uppercase text-muted-foreground">{t.contact.kicker}</p>
+        </div>
         <h1 className="font-display text-5xl md:text-8xl leading-[0.95] whitespace-pre-line max-w-4xl">
           {t.contact.title}
         </h1>

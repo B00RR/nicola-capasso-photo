@@ -100,17 +100,25 @@ export const Lightbox = ({ images, index, onClose, onPrev, onNext, lang = "it" }
               className="relative w-full max-w-5xl"
               onClick={(e) => e.stopPropagation()}
             >
-              {!loaded && (
-                <div className="w-full h-[60vh] flex items-center justify-center">
-                  <div className="w-8 h-8 border-2 border-background/20 border-t-background/80 rounded-full animate-spin" />
-                </div>
-              )}
-              <img
-                src={current.src}
-                alt={current.alt}
-                onLoad={() => setLoaded(true)}
-                className={`w-full max-h-[80vh] object-contain ${loaded ? "block" : "hidden"}`}
-              />
+              <div className="relative w-full min-h-[40vh] md:min-h-[60vh] flex items-center justify-center">
+                {!loaded && (
+                  <>
+                    <div
+                      aria-hidden="true"
+                      className="absolute inset-0 bg-background/5 backdrop-blur-sm"
+                    />
+                    <div className="relative w-8 h-8 border-2 border-background/20 border-t-background/80 rounded-full animate-spin motion-reduce:animate-none" />
+                  </>
+                )}
+                <img
+                  src={current.src}
+                  alt={current.alt}
+                  loading="eager"
+                  decoding="async"
+                  onLoad={() => setLoaded(true)}
+                  className={`w-full max-h-[80vh] object-contain transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0 absolute inset-0 pointer-events-none"}`}
+                />
+              </div>
               <div className="mt-4 flex items-baseline justify-between">
                 <span className="font-display italic text-background text-lg">{current.title}</span>
                 <span className="font-sans-tight text-[10px] uppercase text-background/50 tracking-[0.15em]">
