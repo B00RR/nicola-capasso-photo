@@ -32,9 +32,29 @@ const getLastMod = (file) => {
   }
 };
 
+const portfolioLastMod = getLastMod("portfolio.json");
+
+let storyRoutes = [];
+try {
+  const portfolioJson = JSON.parse(
+    readFileSync(join(contentDir, "portfolio.json"), "utf8")
+  );
+  storyRoutes = (portfolioJson.years || []).flatMap((y) =>
+    (y.shoots || []).map((s) => ({
+      loc: `/portfolio/${s.id}`,
+      changefreq: "monthly",
+      priority: "0.7",
+      lastmod: portfolioLastMod,
+    }))
+  );
+} catch (err) {
+  console.warn("Could not read portfolio.json for sitemap:", err.message);
+}
+
 const routes = [
   { loc: "/",          changefreq: "weekly",  priority: "1.0", lastmod: getLastMod("home.json") },
-  { loc: "/portfolio", changefreq: "weekly",  priority: "0.8", lastmod: getLastMod("portfolio.json") },
+  { loc: "/portfolio", changefreq: "weekly",  priority: "0.8", lastmod: portfolioLastMod },
+  ...storyRoutes,
   { loc: "/contact",   changefreq: "monthly", priority: "0.6", lastmod: getLastMod("contact.json") },
   { loc: "/privacy",   changefreq: "yearly",  priority: "0.3", lastmod: getLastMod("legal.json") },
   { loc: "/cookies",   changefreq: "yearly",  priority: "0.3", lastmod: getLastMod("legal.json") },

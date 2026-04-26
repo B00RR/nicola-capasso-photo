@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useLang } from "@/i18n/useLang";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { portfolio } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
-import { Lightbox } from "@/components/Lightbox";
 
 const toWebP = (src: string) => src.replace(/\.(jpg|jpeg|png)$/i, ".webp");
 
@@ -17,14 +17,7 @@ const Portfolio = () => {
   usePageMeta({ title, description, path: "/portfolio" });
 
   const [activeYear, setActiveYear] = useState(portfolio[0].year);
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const sectionRefs = useRef<Record<number, HTMLElement | null>>({});
-
-  const allShoots = portfolio.flatMap((y) => y.shoots);
-  const yearStartIndex = portfolio.reduce<Record<number, number>>((acc, y, i) => {
-    acc[y.year] = portfolio.slice(0, i).reduce((s, p) => s + p.shoots.length, 0);
-    return acc;
-  }, {});
 
   useEffect(() => {
     let raf = 0;
@@ -139,28 +132,12 @@ const Portfolio = () => {
                   yearData={y}
                   lang={lang}
                   registerRef={(el) => (sectionRefs.current[y.year] = el)}
-                  startIndex={yearStartIndex[y.year]}
-                  onOpenShoot={setLightboxIndex}
                 />
               ))}
             </div>
           </div>
         </div>
       </main>
-
-      <Lightbox
-        images={allShoots.map((s) => ({
-          src: s.image,
-          alt: `${s.title} — ${s.location}`,
-          title: s.title,
-          location: s.location,
-        }))}
-        index={lightboxIndex}
-        onClose={() => setLightboxIndex(null)}
-        onPrev={() => setLightboxIndex((i) => (i !== null ? Math.max(0, i - 1) : null))}
-        onNext={() => setLightboxIndex((i) => (i !== null ? Math.min(allShoots.length - 1, i + 1) : null))}
-        lang={lang}
-      />
     </>
   );
 };
@@ -169,11 +146,9 @@ interface YearSectionProps {
   yearData: typeof portfolio[number];
   lang: "it" | "en";
   registerRef: (el: HTMLElement | null) => void;
-  startIndex: number;
-  onOpenShoot: (globalIndex: number) => void;
 }
 
-const YearSection = ({ yearData, lang, registerRef, startIndex, onOpenShoot }: YearSectionProps) => {
+const YearSection = ({ yearData, lang, registerRef }: YearSectionProps) => {
   return (
     // Plain section: scroll-spy ref only, no CSS reveal so stagger isn't masked
     <section ref={registerRef} className="scroll-mt-32" data-year={yearData.year}>
@@ -209,47 +184,54 @@ const YearSection = ({ yearData, lang, registerRef, startIndex, onOpenShoot }: Y
               : "col-span-2 md:col-span-2";
           const aspect = s.span === "tall" ? "aspect-[3/4]" : s.span === "wide" ? "aspect-[16/9]" : "aspect-[4/5]";
           return (
-            <motion.figure
+            <motion.div
               key={s.id}
-              className={cn("group cursor-zoom select-none", span, i % 2 === 1 && "md:mt-12")}
+              className={cn(span, i % 2 === 1 && "md:mt-12")}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.08 }}
               transition={{ duration: 0.9, delay: i * 0.08, ease: [0.2, 0.7, 0.2, 1] }}
-              onClick={() => onOpenShoot(startIndex + i)}
             >
-              <div className={cn("relative overflow-hidden bg-secondary", aspect)}>
-                <picture>
-                  <source srcSet={toWebP(s.image)} type="image/webp" />
-                  <img
-                    src={s.image}
-                    alt={`${s.title} — ${s.location}`}
-                    loading="lazy"
-                    width={s.span === "tall" ? 600 : s.span === "wide" ? 1400 : 600}
-                    height={s.span === "tall" ? 800 : s.span === "wide" ? 788 : 750}
-                    className="h-full w-full object-cover hover-lift opacity-0 transition-opacity duration-700"
-                    onLoad={(e) => e.currentTarget.classList.replace("opacity-0", "opacity-100")}
-                    ref={(img) => { if (img?.complete) img.classList.replace("opacity-0", "opacity-100"); }}
-                  />
-                </picture>
-                {/* Hover vignette + view label */}
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-foreground/40 via-foreground/0 to-foreground/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 motion-reduce:transition-none"
-                />
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute left-3 bottom-3 md:left-4 md:bottom-4 inline-flex items-center gap-2 font-sans-tight text-[10px] uppercase tracking-[0.22em] text-background opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-[opacity,transform] duration-500 ease-editorial motion-reduce:transition-none motion-reduce:translate-y-0"
-                >
-                  <span className="h-px w-5 bg-background/80" />
-                  {lang === "it" ? "Apri" : "View"}
-                </span>
-              </div>
-              <figcaption className="mt-3 flex items-baseline justify-between transition-colors duration-500 group-hover:text-foreground">
-                <span className="font-display italic text-base md:text-lg">{s.title}</span>
-                <span className="font-sans-tight text-[10px] uppercase text-muted-foreground transition-colors duration-500 group-hover:text-foreground/80">{s.location}</span>
-              </figcaption>
-            </motion.figure>
+              <Link
+                to={`/portfolio/${s.id}`}
+                aria-label={`${s.title} — ${s.location}`}
+                className="group cursor-zoom block select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm"
+              >
+                <figure>
+                  <div className={cn("relative overflow-hidden bg-secondary", aspect)}>
+                    <picture>
+                      <source srcSet={toWebP(s.image)} type="image/webp" />
+                      <img
+                        src={s.image}
+                        alt={`${s.title} — ${s.location}`}
+                        loading="lazy"
+                        width={s.span === "tall" ? 600 : s.span === "wide" ? 1400 : 600}
+                        height={s.span === "tall" ? 800 : s.span === "wide" ? 788 : 750}
+                        className="h-full w-full object-cover hover-lift opacity-0 transition-opacity duration-700"
+                        onLoad={(e) => e.currentTarget.classList.replace("opacity-0", "opacity-100")}
+                        ref={(img) => { if (img?.complete) img.classList.replace("opacity-0", "opacity-100"); }}
+                      />
+                    </picture>
+                    {/* Hover vignette + view label */}
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 bg-gradient-to-t from-foreground/40 via-foreground/0 to-foreground/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 motion-reduce:transition-none"
+                    />
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute left-3 bottom-3 md:left-4 md:bottom-4 inline-flex items-center gap-2 font-sans-tight text-[10px] uppercase tracking-[0.22em] text-background opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-[opacity,transform] duration-500 ease-editorial motion-reduce:transition-none motion-reduce:translate-y-0"
+                    >
+                      <span className="h-px w-5 bg-background/80" />
+                      {lang === "it" ? "Apri storia" : "Open story"}
+                    </span>
+                  </div>
+                  <figcaption className="mt-3 flex items-baseline justify-between transition-colors duration-500 group-hover:text-foreground">
+                    <span className="font-display italic text-base md:text-lg">{s.title}</span>
+                    <span className="font-sans-tight text-[10px] uppercase text-muted-foreground transition-colors duration-500 group-hover:text-foreground/80">{s.location}</span>
+                  </figcaption>
+                </figure>
+              </Link>
+            </motion.div>
           );
         })}
       </div>
