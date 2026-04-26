@@ -75,6 +75,7 @@ const Home = () => {
           </picture>
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/75" />
           <div className="absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
+          <div aria-hidden="true" className="grain-overlay" />
         </motion.div>
 
         <div className="relative z-10 h-full flex flex-col justify-end pb-16 md:pb-24 px-6 md:px-10 max-w-[1500px] mx-auto">

@@ -67,7 +67,11 @@ const Portfolio = () => {
       <main className="pt-32 md:pt-36">
         {/* Intro */}
         <section className="px-6 md:px-10 max-w-[1500px] mx-auto pt-12 md:pt-0 pb-16 md:pb-24">
-          <p className="font-sans-tight text-[11px] uppercase text-muted-foreground mb-6">— {t.portfolio.kicker}</p>
+          <div className="mb-6 flex items-center gap-4">
+            <span className="font-display italic text-accent text-3xl md:text-4xl leading-none">01</span>
+            <span className="h-px flex-1 max-w-[4rem] bg-border" />
+            <p className="font-sans-tight text-[11px] uppercase text-muted-foreground">{t.portfolio.kicker}</p>
+          </div>
           <h1 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.05] md:leading-[1] whitespace-pre-line max-w-4xl">
             {t.portfolio.title}
           </h1>
@@ -207,14 +211,14 @@ const YearSection = ({ yearData, lang, registerRef, startIndex, onOpenShoot }: Y
           return (
             <motion.figure
               key={s.id}
-              className={cn("group cursor-pointer", span, i % 2 === 1 && "md:mt-12")}
+              className={cn("group cursor-zoom select-none", span, i % 2 === 1 && "md:mt-12")}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.08 }}
               transition={{ duration: 0.9, delay: i * 0.08, ease: [0.2, 0.7, 0.2, 1] }}
               onClick={() => onOpenShoot(startIndex + i)}
             >
-              <div className={cn("overflow-hidden bg-secondary", aspect)}>
+              <div className={cn("relative overflow-hidden bg-secondary", aspect)}>
                 <picture>
                   <source srcSet={toWebP(s.image)} type="image/webp" />
                   <img
@@ -228,10 +232,22 @@ const YearSection = ({ yearData, lang, registerRef, startIndex, onOpenShoot }: Y
                     ref={(img) => { if (img?.complete) img.classList.replace("opacity-0", "opacity-100"); }}
                   />
                 </picture>
+                {/* Hover vignette + view label */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-foreground/40 via-foreground/0 to-foreground/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 motion-reduce:transition-none"
+                />
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute left-3 bottom-3 md:left-4 md:bottom-4 inline-flex items-center gap-2 font-sans-tight text-[10px] uppercase tracking-[0.22em] text-background opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-[opacity,transform] duration-500 ease-editorial motion-reduce:transition-none motion-reduce:translate-y-0"
+                >
+                  <span className="h-px w-5 bg-background/80" />
+                  {lang === "it" ? "Apri" : "View"}
+                </span>
               </div>
-              <figcaption className="mt-3 flex items-baseline justify-between">
+              <figcaption className="mt-3 flex items-baseline justify-between transition-colors duration-500 group-hover:text-foreground">
                 <span className="font-display italic text-base md:text-lg">{s.title}</span>
-                <span className="font-sans-tight text-[10px] uppercase text-muted-foreground">{s.location}</span>
+                <span className="font-sans-tight text-[10px] uppercase text-muted-foreground transition-colors duration-500 group-hover:text-foreground/80">{s.location}</span>
               </figcaption>
             </motion.figure>
           );
