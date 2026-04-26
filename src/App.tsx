@@ -13,6 +13,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
 const Portfolio = lazy(() => import("./pages/Portfolio.tsx"));
+const Story = lazy(() => import("./pages/Story.tsx"));
 const Contact = lazy(() => import("./pages/Contact.tsx"));
 const Privacy = lazy(() => import("./pages/Legal.tsx").then((m) => ({ default: m.Privacy })));
 const Cookies = lazy(() => import("./pages/Legal.tsx").then((m) => ({ default: m.Cookies })));
@@ -55,6 +56,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Layout><Index /></Layout>} />
               <Route path="/portfolio" element={<Layout><Portfolio /></Layout>} />
+              <Route path="/portfolio/:id" element={<Layout><Story /></Layout>} />
               <Route path="/contact" element={<Layout><Contact /></Layout>} />
               <Route path="/privacy" element={<Layout><Privacy /></Layout>} />
               <Route path="/cookies" element={<Layout><Cookies /></Layout>} />

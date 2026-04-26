@@ -10,7 +10,16 @@
           "title": "Sofia & Marco",
           "location": "Lago di Como, IT",
           "image": "/images/photo-01.jpg",
-          "span": "tall"
+          "span": "tall",
+          "date": "Giugno 2025",
+          "story": {
+            "it": "Una luce limpida sul Lario, un pomeriggio di vento leggero e parole sussurrate. Sofia e Marco hanno scelto la villa di famiglia per dirsi sì davanti a venti persone: solo i più cari, e il rumore del lago come sottofondo.",
+            "en": "Crisp light over Lake Como, a soft afternoon breeze and whispered vows. Sofia and Marco chose the family villa to say yes in front of twenty people: only the closest, with the sound of the lake as the only soundtrack."
+          },
+          "gallery": [
+            "/images/photo-17.jpg",
+            "/images/photo-18.jpg"
+          ]
         },
         {
           "id": "25-2",
