@@ -58,21 +58,26 @@ const Header = () => {
         </Link>
 
         <nav className="hidden md:flex items-center gap-10">
-          {links.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              className={cn(
-                "font-sans-tight text-[11px] uppercase underline-grow focus-visible:outline-none focus-visible:ring-2 focus-visible:rounded-sm transition-colors",
-                onHero
-                  ? "text-background/90 hover:text-background focus-visible:ring-background/60"
-                  : "text-foreground/90 hover:text-foreground focus-visible:ring-foreground/50",
-                pathname === l.to && (onHero ? "text-background" : "text-foreground")
-              )}
-            >
-              {l.label}
-            </Link>
-          ))}
+          {links.map((l) => {
+            const isActive = pathname === l.to;
+            return (
+              <Link
+                key={l.to}
+                to={l.to}
+                aria-current={isActive ? "page" : undefined}
+                className={cn(
+                  "font-sans-tight text-[11px] uppercase focus-visible:outline-none focus-visible:ring-2 focus-visible:rounded-sm transition-colors",
+                  isActive ? "underline-active" : "underline-grow",
+                  onHero
+                    ? "text-background/90 hover:text-background focus-visible:ring-background/60"
+                    : "text-foreground/90 hover:text-foreground focus-visible:ring-foreground/50",
+                  isActive && (onHero ? "text-background" : "text-foreground")
+                )}
+              >
+                {l.label}
+              </Link>
+            );
+          })}
           <button
             onClick={toggle}
             className={cn(
@@ -106,15 +111,23 @@ const Header = () => {
         )}
       >
         <nav className="flex flex-col px-6 py-6 gap-5">
-          {links.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              className="font-display text-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm"
-            >
-              {l.label}
-            </Link>
-          ))}
+          {links.map((l) => {
+            const isActive = pathname === l.to;
+            return (
+              <Link
+                key={l.to}
+                to={l.to}
+                aria-current={isActive ? "page" : undefined}
+                className={cn(
+                  "font-display text-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm transition-colors flex items-center gap-3",
+                  isActive ? "text-foreground" : "text-foreground/70"
+                )}
+              >
+                {isActive && <span aria-hidden="true" className="h-px w-6 bg-accent" />}
+                {l.label}
+              </Link>
+            );
+          })}
           <button
             onClick={toggle}
             className="font-sans-tight text-[11px] uppercase tracking-[0.2em] text-muted-foreground self-start mt-2"
