@@ -89,7 +89,7 @@ const Home = () => {
 
           <h1 className="font-display text-background text-[15vw] md:text-[9vw] leading-[0.95] tracking-tight">
             {t.hero.title.map((line, i) => (
-              <span key={i} className="block overflow-hidden">
+              <span key={i} className="block overflow-hidden pb-[0.15em] -mb-[0.15em]">
                 <motion.span
                   initial={prefersReducedMotion ? false : { y: "110%" }}
                   animate={prefersReducedMotion ? {} : { y: "0%" }}
@@ -132,7 +132,7 @@ const Home = () => {
       </section>
 
       {/* MARQUEE */}
-      <section className="border-y border-border/60 py-6 overflow-hidden">
+      <section aria-hidden="true" className="border-y border-border/60 py-6 overflow-hidden">
         <div className="flex marquee-track whitespace-nowrap">
           {[...marquee, ...marquee].map((m, i) => (
             <span key={`${m}-${i}`} className="font-display italic text-3xl md:text-5xl px-8 text-foreground/80 inline-flex items-center">
