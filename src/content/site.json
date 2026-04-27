@@ -45,6 +45,8 @@
     "lightboxNext_it": "Immagine successiva",
     "lightboxNext_en": "Next image",
     "lightboxLabel_it": "Galleria immagini",
-    "lightboxLabel_en": "Image gallery"
+    "lightboxLabel_en": "Image gallery",
+    "lightboxHint_it": "← → per navigare  ·  Esc per chiudere",
+    "lightboxHint_en": "← → to navigate  ·  Esc to close"
   }
 }

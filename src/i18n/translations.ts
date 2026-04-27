@@ -81,6 +81,7 @@ const buildLang = (lang: "it" | "en") => {
       lightboxPrev: siteData.a11y[`lightboxPrev${s}` as keyof typeof siteData.a11y] as string,
       lightboxNext: siteData.a11y[`lightboxNext${s}` as keyof typeof siteData.a11y] as string,
       lightboxLabel: siteData.a11y[`lightboxLabel${s}` as keyof typeof siteData.a11y] as string,
+      lightboxHint: siteData.a11y[`lightboxHint${s}` as keyof typeof siteData.a11y] as string,
     },
     legal: {
       kicker: legalData.nav[`legal${s}` as keyof typeof legalData.nav] as string,

@@ -250,7 +250,6 @@ const Story = () => {
             i !== null ? Math.min(images.length - 1, i + 1) : null
           )
         }
-        lang={lang}
       />
     </>
   );

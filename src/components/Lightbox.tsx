@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { useLang } from "@/i18n/useLang";
 
 interface LightboxImage {
   src: string;
@@ -15,7 +16,6 @@ interface LightboxProps {
   onClose: () => void;
   onPrev: () => void;
   onNext: () => void;
-  lang?: "it" | "en";
 }
 
 const imgVariants = {
@@ -24,13 +24,17 @@ const imgVariants = {
   exit:  (dir: number) => ({ opacity: 0, x: dir * -28 }),
 };
 
-export const Lightbox = ({ images, index, onClose, onPrev, onNext, lang = "it" }: LightboxProps) => {
+export const Lightbox = ({ images, index, onClose, onPrev, onNext }: LightboxProps) => {
+  const { t } = useLang();
   // Track previous index to derive slide direction.
   // prevIndexRef lags one render behind (updated in useEffect), so during the
   // render that fires when index changes it still holds the old value — which
   // is exactly what we need to compute direction correctly.
   const prevIndexRef = useRef<number | null>(null);
   const [loaded, setLoaded] = useState(false);
+  const closeBtnRef = useRef<HTMLButtonElement | null>(null);
+  const previouslyFocusedRef = useRef<HTMLElement | null>(null);
+  const dialogRef = useRef<HTMLDivElement | null>(null);
   const dir =
     index !== null && prevIndexRef.current !== null
       ? index > prevIndexRef.current ? 1 : -1
@@ -43,16 +47,46 @@ export const Lightbox = ({ images, index, onClose, onPrev, onNext, lang = "it" }
 
   useEffect(() => {
     if (index === null) return;
+    // Save focus, move it to close button so screen readers anchor on the
+    // dialog and Tab keeps a sensible starting point.
+    previouslyFocusedRef.current = document.activeElement as HTMLElement | null;
+    const focusTimer = window.setTimeout(() => closeBtnRef.current?.focus(), 0);
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
       if (e.key === "ArrowLeft") onPrev();
       if (e.key === "ArrowRight") onNext();
+      if (e.key === "Tab") {
+        // Trap focus inside the dialog: cycle between focusable elements.
+        const root = dialogRef.current;
+        if (!root) return;
+        const focusables = root.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), [href], [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        const active = document.activeElement as HTMLElement | null;
+        if (e.shiftKey && active === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && active === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
     window.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     return () => {
+      window.clearTimeout(focusTimer);
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
+      // Restore focus to whatever opened the lightbox.
+      previouslyFocusedRef.current?.focus?.();
     };
   }, [index, onClose, onPrev, onNext]);
 
@@ -62,26 +96,31 @@ export const Lightbox = ({ images, index, onClose, onPrev, onNext, lang = "it" }
     <AnimatePresence>
       {current && (
         <motion.div
+          ref={dialogRef}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
           className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/96 px-4 md:px-16"
           onClick={onClose}
+          role="dialog"
+          aria-modal="true"
+          aria-label={t.a11y.lightboxLabel}
         >
           <button
-            aria-label="Close"
+            ref={closeBtnRef}
+            aria-label={t.a11y.lightboxClose}
             onClick={onClose}
-            className="absolute top-6 right-6 text-background/70 hover:text-background transition-colors"
+            className="absolute top-6 right-6 text-background/70 hover:text-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background/60 focus-visible:rounded-sm"
           >
             <X size={22} />
           </button>
 
           {images.length > 1 && (
             <button
-              aria-label="Previous"
+              aria-label={t.a11y.lightboxPrev}
               onClick={(e) => { e.stopPropagation(); onPrev(); }}
-              className="absolute left-4 md:left-8 text-background/60 hover:text-background transition-colors z-10"
+              className="absolute left-4 md:left-8 text-background/60 hover:text-background transition-colors z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background/60 focus-visible:rounded-sm"
             >
               <ChevronLeft size={32} />
             </button>
@@ -131,16 +170,16 @@ export const Lightbox = ({ images, index, onClose, onPrev, onNext, lang = "it" }
                 </p>
               )}
               <p className="mt-1 font-sans-tight text-[10px] text-background/30 text-right">
-                {lang === "it" ? "← → per navigare  ·  Esc per chiudere" : "← → to navigate  ·  Esc to close"}
+                {t.a11y.lightboxHint}
               </p>
             </motion.div>
           </AnimatePresence>
 
           {images.length > 1 && (
             <button
-              aria-label="Next"
+              aria-label={t.a11y.lightboxNext}
               onClick={(e) => { e.stopPropagation(); onNext(); }}
-              className="absolute right-4 md:right-8 text-background/60 hover:text-background transition-colors z-10"
+              className="absolute right-4 md:right-8 text-background/60 hover:text-background transition-colors z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background/60 focus-visible:rounded-sm"
             >
               <ChevronRight size={32} />
             </button>
