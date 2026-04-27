@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MonogramNC } from "./MonogramNC";
 import { LogoText } from "./LogoText";
@@ -9,7 +9,6 @@ const SplashIntro = () => {
   const [winSize, setWinSize] = useState({ w: 0, h: 0 });
 
   useEffect(() => {
-    // Bump the version when you want every existing visitor to see the splash again.
     const SPLASH_KEY = "nicola-splash-seen-v1";
     const url = new URL(window.location.href);
     const force = url.searchParams.get("splash") === "reset";
@@ -32,13 +31,6 @@ const SplashIntro = () => {
 
   const isDesktop = winSize.w >= 768;
 
-  /* ------------------------------------------------------------------ */
-  /*  Match the original SVG logo proportions so monogram + text align  */
-  /*  exactly like the source file.                                     */
-  /*  logo-source viewBox: 0 0 1270 816                                 */
-  /*  monogram viewBox  : 355 0 525 515                                 */
-  /*  text viewBox      : 0 560 1270 260                                */
-  /* ------------------------------------------------------------------ */
   const LOGO_W = 1270;
   const LOGO_H = 816;
   const MONO_X = 355;
@@ -47,7 +39,6 @@ const SplashIntro = () => {
   const TEXT_Y = 560;
   const TEXT_H = 260;
 
-  /* Monogram target height in the splash — keep it the same as before (~120px) */
   const startMonoH = 120;
   const startLogoH = startMonoH * (LOGO_H / MONO_H);
   const startLogoW = startLogoH * (LOGO_W / LOGO_H);
@@ -65,22 +56,81 @@ const SplashIntro = () => {
   const textX = containerLeft;
   const textY = containerTop + startLogoH * (TEXT_Y / LOGO_H);
 
-  /* End position: deterministic based on known header layout
-     Header: fixed, h-16 (64px) mobile / h-20 (80px) desktop
-     Inner container: max-w-[1500px] mx-auto px-6 (24px) / px-10 (40px)
-     Logo img: h-9 (36px) / h-10 (40px)
-  */
+  /* deterministic fallback */
   const HEADER_MAX_W = 1500;
   const PAD_X = isDesktop ? 40 : 24;
   const HEADER_H = isDesktop ? 80 : 64;
   const LOGO_TARGET_H = isDesktop ? 40 : 36;
 
-  const endX = winSize.w > HEADER_MAX_W
+  const fallbackEndX = winSize.w > HEADER_MAX_W
     ? (winSize.w - HEADER_MAX_W) / 2 + PAD_X
     : PAD_X;
-  const endY = (HEADER_H - LOGO_TARGET_H) / 2;
-  const endW = LOGO_TARGET_H * (MONO_W / MONO_H);
-  const endH = LOGO_TARGET_H;
+  const fallbackEndY = (HEADER_H - LOGO_TARGET_H) / 2;
+  const fallbackEndW = LOGO_TARGET_H * (MONO_W / MONO_H);
+  const fallbackEndH = LOGO_TARGET_H;
+
+  return (
+    <InnerSplash
+      show={show}
+      phase={phase}
+      startX={startX}
+      startY={startY}
+      startW={startW}
+      startH={startH}
+      textX={textX}
+      textY={textY}
+      textW={textW}
+      textH={textH}
+      fallbackEndX={fallbackEndX}
+      fallbackEndY={fallbackEndY}
+      fallbackEndW={fallbackEndW}
+      fallbackEndH={fallbackEndH}
+    />
+  );
+};
+
+const InnerSplash = ({
+  show,
+  phase,
+  startX, startY, startW, startH,
+  textX, textY, textW, textH,
+  fallbackEndX, fallbackEndY, fallbackEndW, fallbackEndH,
+}: {
+  show: boolean;
+  phase: number;
+  startX: number; startY: number; startW: number; startH: number;
+  textX: number; textY: number; textW: number; textH: number;
+  fallbackEndX: number; fallbackEndY: number; fallbackEndW: number; fallbackEndH: number;
+}) => {
+  const [endPos, setEndPos] = useState({
+    x: fallbackEndX,
+    y: fallbackEndY,
+    w: fallbackEndW,
+    h: fallbackEndH,
+  });
+
+  useLayoutEffect(() => {
+    if (!show) return;
+    const measure = () => {
+      const img = document.querySelector(
+        'header img[aria-hidden="true"]'
+      ) as HTMLElement | null;
+      if (img) {
+        const rect = img.getBoundingClientRect();
+        if (rect.width > 0 && rect.height > 0) {
+          setEndPos({ x: rect.left, y: rect.top, w: rect.width, h: rect.height });
+          return true;
+        }
+      }
+      return false;
+    };
+    // try immediately — Header is already in the DOM because it mounts before SplashIntro
+    if (!measure()) {
+      // if not ready, retry on next frame once
+      const id = requestAnimationFrame(() => measure());
+      return () => cancelAnimationFrame(id);
+    }
+  }, [show]);
 
   return (
     <AnimatePresence>
@@ -94,7 +144,7 @@ const SplashIntro = () => {
             className="absolute inset-0 bg-background"
           />
 
-          {/* Monogram — animates from centre to header position */}
+          {/* Monogram */}
           <motion.div
             initial={{
               left: startX,
@@ -104,21 +154,19 @@ const SplashIntro = () => {
               opacity: 1,
             }}
             animate={{
-              left: phase >= 2 ? endX : startX,
-              top: phase >= 2 ? endY : startY,
-              width: phase >= 2 ? endW : startW,
-              height: phase >= 2 ? endH : startH,
+              left: phase >= 2 ? endPos.x : startX,
+              top: phase >= 2 ? endPos.y : startY,
+              width: phase >= 2 ? endPos.w : startW,
+              height: phase >= 2 ? endPos.h : startH,
               opacity: phase >= 4 ? 0 : 1,
             }}
             transition={{
-              duration:
-                phase === 2 ? 0.9 : phase === 4 ? 0.15 : 0.3,
+              duration: phase === 2 ? 0.9 : phase === 4 ? 0.15 : 0.3,
               ease: [0.77, 0, 0.18, 1],
             }}
             className="fixed"
             style={{ zIndex: 201 }}
           >
-            {/* Micro-spring overshoot when the monogram lands on the header */}
             <motion.div
               initial={{ scale: 1 }}
               animate={{ scale: phase >= 3 ? [1, 1.08, 0.97, 1.02, 1] : 1 }}
@@ -129,7 +177,7 @@ const SplashIntro = () => {
             </motion.div>
           </motion.div>
 
-          {/* Logo text — positioned with original-logo proportions, fades out */}
+          {/* Logo text */}
           <motion.div
             initial={{ opacity: 1, y: 0 }}
             animate={{
