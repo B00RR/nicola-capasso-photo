@@ -105,6 +105,11 @@ const Contact = () => {
               href={CONTACTS.whatsappLink}
             />
             <DirectLink
+              label={t.contact.phone}
+              value={CONTACTS.phone}
+              href={`tel:${CONTACTS.phone}`}
+            />
+            <DirectLink
               label={t.contact.instagram}
               value={CONTACTS.instagramHandle}
               href={CONTACTS.instagram}
@@ -148,7 +153,7 @@ const MessageForm = ({
         <Field name="email" label={t.contact.form.email} invalidMsg={lang === "it" ? "Inserisci una email valida" : "Please enter a valid email"} type="email" required />
       </div>
       <div className="grid md:grid-cols-2 gap-8">
-        <Field name="date" label={t.contact.form.date} type="date" />
+        <Field name="date" label={t.contact.form.date} type="date" lang={lang} />
         <Field name="location" label={t.contact.form.location} />
       </div>
       <div>
@@ -177,15 +182,15 @@ const MessageForm = ({
         disabled={sent || sending}
         className="group inline-flex items-center gap-3 mt-4 font-sans-tight text-[11px] uppercase border-b border-foreground pb-2 hover:gap-5 transition-all disabled:opacity-50"
       >
-        {sent ? t.contact.form.sent : sending ? (lang === "it" ? "Invio…" : "Sending…") : t.contact.form.send}
+        {sent ? t.contact.form.sent : sending ? (lang === "it" ? "Invio\u2026" : "Sending\u2026") : t.contact.form.send}
         <span aria-hidden>→</span>
       </button>
     </form>
   );
 };
 
-const Field = ({ name, label, type = "text", required = false, invalidMsg }: {
-  name: string; label: string; type?: string; required?: boolean; invalidMsg?: string;
+const Field = ({ name, label, type = "text", required = false, invalidMsg, lang }: {
+  name: string; label: string; type?: string; required?: boolean; invalidMsg?: string; lang?: string;
 }) => {
   const [invalid, setInvalid] = useState(false);
   return (
@@ -202,6 +207,7 @@ const Field = ({ name, label, type = "text", required = false, invalidMsg }: {
         aria-describedby={invalid ? `${name}-error` : undefined}
         onInvalid={(e) => { e.preventDefault(); setInvalid(true); }}
         onInput={() => setInvalid(false)}
+        {...(lang ? { lang } : {})}
         className={`w-full bg-secondary/40 md:bg-transparent border-b outline-none transition-[background-color,border-color] py-3 px-3 md:px-2 font-display text-lg md:text-xl ${invalid ? "border-red-500 focus:border-red-600" : "border-border hover:border-foreground/60 focus:border-foreground focus:bg-secondary/60"}`}
       />
       {invalid && (
@@ -213,13 +219,14 @@ const Field = ({ name, label, type = "text", required = false, invalidMsg }: {
   );
 };
 
-const DirectLink = ({ label, value, href }: { label: string; value: string; href: string }) => (
-  <a
-    href={href}
-    target="_blank"
-    rel="noreferrer"
-    className="group flex items-center justify-between gap-4 border-b border-border py-5 md:hover:pl-2 transition-all"
-  >
+const DirectLink = ({ label, value, href }: { label: string; value: string; href: string }) => {
+  const isExternal = href.startsWith("http");
+  return (
+    <a
+      href={href}
+      {...(isExternal ? { target: "_blank", rel: "noreferrer" } : {})}
+      className="group flex items-center justify-between gap-4 border-b border-border py-5 md:hover:pl-2 transition-all"
+    >
     <span className="font-sans-tight text-[10px] uppercase text-muted-foreground">{label}</span>
     <span className="flex items-center gap-3 min-w-0">
       <span className="font-display text-xl md:text-2xl group-hover:italic transition-all truncate">{value}</span>
@@ -231,6 +238,7 @@ const DirectLink = ({ label, value, href }: { label: string; value: string; href
       </span>
     </span>
   </a>
-);
+  );
+};
 
 export default Contact;

@@ -128,14 +128,7 @@ const Header = () => {
               </Link>
             );
           })}
-          <button
-            onClick={toggle}
-            className="font-sans-tight text-[11px] uppercase tracking-[0.2em] text-muted-foreground self-start mt-2"
-          >
-            <span className={lang === "it" ? "text-foreground" : ""}>IT</span>
-            <span className="mx-1.5 opacity-40">/</span>
-            <span className={lang === "en" ? "text-foreground" : ""}>EN</span>
-          </button>
+          {/* Language switch hidden on mobile — auto-detected from OS */}
         </nav>
       </div>
     </header>

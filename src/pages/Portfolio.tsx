@@ -194,7 +194,7 @@ const YearSection = ({ yearData, lang, registerRef }: YearSectionProps) => {
             >
               <Link
                 to={`/portfolio/${s.id}`}
-                aria-label={`${s.title} — ${s.location}`}
+                aria-label={`${s.title} \u2014 ${s.location}`}
                 className="group cursor-zoom block select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm"
               >
                 <figure>
@@ -203,7 +203,7 @@ const YearSection = ({ yearData, lang, registerRef }: YearSectionProps) => {
                       <source srcSet={toWebP(s.image)} type="image/webp" />
                       <img
                         src={s.image}
-                        alt={`${s.title} — ${s.location}`}
+                        alt={`${s.title} \u2014 ${s.location}`}
                         loading="lazy"
                         width={s.span === "tall" ? 600 : s.span === "wide" ? 1400 : 600}
                         height={s.span === "tall" ? 800 : s.span === "wide" ? 788 : 750}

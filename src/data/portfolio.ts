@@ -71,4 +71,4 @@ export const findShoot = (id: string) => {
   };
 };
 
-export const CONTACTS = siteData.contacts;
+export const CONTACTS = siteData.contacts as typeof siteData.contacts & { phone: string };

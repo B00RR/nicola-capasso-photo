@@ -61,6 +61,7 @@ const buildLang = (lang: "it" | "en") => {
       whatsapp: contactData[`whatsapp${s}` as keyof typeof contactData] as string,
       instagram: contactData[`instagram${s}` as keyof typeof contactData] as string,
       email: contactData[`email${s}` as keyof typeof contactData] as string,
+      phone: contactData[`phone${s}` as keyof typeof contactData] as string,
     },
     footer: {
       tagline: siteData.footer[`tagline${s}` as keyof typeof siteData.footer] as string,

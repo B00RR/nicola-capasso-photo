@@ -263,7 +263,7 @@ const Home = () => {
             return (
               <Link
                 key={s.id}
-                to="/portfolio"
+                to={`/portfolio/${s.id}`}
                 className={`overflow-hidden block col-span-1 ${layout.span}`}
               >
                 <div className={`overflow-hidden aspect-[3/4] bg-secondary ${layout.aspect}`}>
