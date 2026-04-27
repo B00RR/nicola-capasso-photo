@@ -14,11 +14,13 @@ const Contact = () => {
   usePageMeta({ title, description, path: "/contact" });
 
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
   const formRef = useReveal<HTMLDivElement>();
   const directRef = useReveal<HTMLDivElement>();
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (sending || sent) return;
     const endpoint = (import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined) || (typeof process !== "undefined" && process.env.VITE_CONTACT_ENDPOINT);
     if (!endpoint) {
       toast.error(lang === "it" ? "Endpoint di contatto non configurato." : "Contact endpoint not configured.");
@@ -38,8 +40,10 @@ const Contact = () => {
       return res;
     };
 
+    setSending(true);
     try {
       await send();
+      setSending(false);
       setSent(true);
       toast.success(t.contact.form.sent);
       form.reset();
@@ -49,14 +53,16 @@ const Contact = () => {
         ? (lang === "it" ? "Errore del server. Riprova tra poco." : "Server error. Please try again shortly.")
         : (lang === "it" ? "Connessione assente. Verifica la rete e riprova." : "No connection. Check your network and retry.");
       toast.error(msg);
-      // single retry after 3s
+      // single retry after 3s — sending rimane true per bloccare ulteriori invii
       setTimeout(() => {
         send().then(() => {
+          setSending(false);
           setSent(true);
           toast.success(t.contact.form.sent);
           form.reset();
           setTimeout(() => setSent(false), 4000);
         }).catch(() => {
+          setSending(false);
           toast.error(lang === "it" ? "Invio fallito. Contattami direttamente via email." : "Sending failed. Please contact me directly via email.");
         });
       }, 3000);
@@ -66,7 +72,11 @@ const Contact = () => {
   return (
     <main className="pt-28 md:pt-36 pb-10">
       <section className="px-6 md:px-10 max-w-[1500px] mx-auto">
-        <p className="font-sans-tight text-[11px] uppercase text-muted-foreground mb-6">— {t.contact.kicker}</p>
+        <div className="mb-6 flex items-center gap-4">
+          <span className="font-display italic text-accent text-3xl md:text-4xl leading-none">01</span>
+          <span className="h-px flex-1 max-w-[4rem] bg-border" />
+          <p className="font-sans-tight text-[11px] uppercase text-muted-foreground">{t.contact.kicker}</p>
+        </div>
         <h1 className="font-display text-5xl md:text-8xl leading-[0.95] whitespace-pre-line max-w-4xl">
           {t.contact.title}
         </h1>
@@ -76,49 +86,13 @@ const Contact = () => {
       <section className="px-6 md:px-10 max-w-[1500px] mx-auto mt-20 md:mt-28 grid md:grid-cols-12 gap-12 md:gap-20">
         {/* Form */}
         <div ref={formRef} className="reveal md:col-span-7">
-          <form
-            name="contact"
-            method="POST"
+          <MessageForm
+            t={t}
+            lang={lang}
+            sent={sent}
+            sending={sending}
             onSubmit={onSubmit}
-            className="space-y-8"
-          >
-            <p aria-hidden="true" style={{ position: "absolute", left: "-9999px" }}>
-              <label>
-                <input name="bot-field" tabIndex={-1} autoComplete="off" aria-hidden="true" />
-              </label>
-            </p>
-            <div className="grid md:grid-cols-2 gap-8">
-              <Field name="name" label={t.contact.form.name} invalidMsg={lang === "it" ? "Inserisci il tuo nome" : "Please enter your name"} required />
-              <Field name="email" label={t.contact.form.email} invalidMsg={lang === "it" ? "Inserisci una email valida" : "Please enter a valid email"} type="email" required />
-            </div>
-            <div className="grid md:grid-cols-2 gap-8">
-              <Field name="date" label={t.contact.form.date} type="date" lang={lang} />
-              <Field name="location" label={t.contact.form.location} />
-            </div>
-            <div>
-              <label htmlFor="message" className="block font-sans-tight text-[10px] uppercase text-muted-foreground mb-3">
-                {t.contact.form.message}
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows={5}
-                required
-                aria-invalid={false}
-                onInvalid={(e) => { e.preventDefault(); const el = e.currentTarget; el.setAttribute("aria-invalid", "true"); el.classList.add("border-red-500"); el.classList.remove("border-border"); }}
-                onInput={(e) => { const el = e.currentTarget; el.setAttribute("aria-invalid", "false"); el.classList.remove("border-red-500"); el.classList.add("border-border"); }}
-                className="w-full bg-secondary/40 md:bg-transparent border-b border-border hover:border-foreground/60 focus:border-foreground focus:bg-secondary/60 outline-none transition-[background-color,border-color] py-3 px-3 md:px-2 resize-none font-display text-lg md:text-xl"
-              />
-            </div>
-            <button
-              type="submit"
-              disabled={sent}
-              className="group inline-flex items-center gap-3 mt-4 font-sans-tight text-[11px] uppercase border-b border-foreground pb-2 hover:gap-5 transition-all disabled:opacity-50"
-            >
-              {sent ? t.contact.form.sent : t.contact.form.send}
-              <span aria-hidden>→</span>
-            </button>
-          </form>
+          />
         </div>
 
         {/* Direct contacts */}
@@ -154,6 +128,64 @@ const Contact = () => {
         </aside>
       </section>
     </main>
+  );
+};
+
+const MessageForm = ({
+  t, lang, sent, sending, onSubmit,
+}: {
+  t: ReturnType<typeof import("@/i18n/useLang").useLang>["t"];
+  lang: string;
+  sent: boolean;
+  sending: boolean;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+}) => {
+  const [msgInvalid, setMsgInvalid] = useState(false);
+  return (
+    <form name="contact" method="POST" onSubmit={onSubmit} className="space-y-8">
+      <p aria-hidden="true" style={{ position: "absolute", left: "-9999px" }}>
+        <label>
+          <input name="bot-field" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+        </label>
+      </p>
+      <div className="grid md:grid-cols-2 gap-8">
+        <Field name="name" label={t.contact.form.name} invalidMsg={lang === "it" ? "Inserisci il tuo nome" : "Please enter your name"} required />
+        <Field name="email" label={t.contact.form.email} invalidMsg={lang === "it" ? "Inserisci una email valida" : "Please enter a valid email"} type="email" required />
+      </div>
+      <div className="grid md:grid-cols-2 gap-8">
+        <Field name="date" label={t.contact.form.date} type="date" lang={lang} />
+        <Field name="location" label={t.contact.form.location} />
+      </div>
+      <div>
+        <label htmlFor="message" className="block font-sans-tight text-[10px] uppercase text-muted-foreground mb-3">
+          {t.contact.form.message}
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          rows={5}
+          required
+          aria-invalid={msgInvalid}
+          aria-describedby={msgInvalid ? "message-error" : undefined}
+          onInvalid={(e) => { e.preventDefault(); setMsgInvalid(true); }}
+          onInput={() => setMsgInvalid(false)}
+          className={`w-full bg-secondary/40 md:bg-transparent border-b outline-none transition-[background-color,border-color] py-3 px-3 md:px-2 resize-none font-display text-lg md:text-xl ${msgInvalid ? "border-red-500 focus:border-red-600" : "border-border hover:border-foreground/60 focus:border-foreground focus:bg-secondary/60"}`}
+        />
+        {msgInvalid && (
+          <p id="message-error" className="text-red-500 text-xs mt-2 font-sans-tight">
+            {lang === "it" ? "Inserisci un messaggio" : "Please enter a message"}
+          </p>
+        )}
+      </div>
+      <button
+        type="submit"
+        disabled={sent || sending}
+        className="group inline-flex items-center gap-3 mt-4 font-sans-tight text-[11px] uppercase border-b border-foreground pb-2 hover:gap-5 transition-all disabled:opacity-50"
+      >
+        {sent ? t.contact.form.sent : sending ? (lang === "it" ? "Invio\u2026" : "Sending\u2026") : t.contact.form.send}
+        <span aria-hidden>→</span>
+      </button>
+    </form>
   );
 };
 

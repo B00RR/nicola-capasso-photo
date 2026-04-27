@@ -133,7 +133,15 @@ const SplashIntro = () => {
             className="fixed"
             style={{ zIndex: 201 }}
           >
-            <MonogramNC className="w-full h-full" />
+            {/* Micro-spring overshoot when the monogram lands on the header */}
+            <motion.div
+              initial={{ scale: 1 }}
+              animate={{ scale: phase >= 3 ? [1, 1.08, 0.97, 1.02, 1] : 1 }}
+              transition={{ duration: 0.55, times: [0, 0.35, 0.65, 0.85, 1], ease: [0.2, 0.7, 0.2, 1] }}
+              className="w-full h-full origin-center"
+            >
+              <MonogramNC className="w-full h-full" />
+            </motion.div>
           </motion.div>
 
           {/* Logo text — positioned with original-logo proportions, fades out */}

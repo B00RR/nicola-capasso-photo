@@ -9,27 +9,27 @@ const Footer = () => {
       <div className="mx-auto max-w-[1500px] px-6 md:px-10 py-14 grid gap-10 md:grid-cols-3">
         <div>
           <img
-            src="/logo.svg"
+            src={`${import.meta.env.BASE_URL}logo.svg`}
             alt=""
             className="h-10 md:h-12 w-auto"
           />
           <p className="mt-3 text-sm text-muted-foreground max-w-xs">{t.footer.tagline}</p>
         </div>
 
-        <div className="flex flex-col gap-2 font-sans-tight text-[11px] uppercase">
+        <div className="flex flex-col gap-2.5 font-sans-tight text-xs uppercase tracking-[0.12em]">
           <Link to="/" className="underline-grow w-fit text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm">{t.nav.home}</Link>
           <Link to="/portfolio" className="underline-grow w-fit text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm">{t.nav.portfolio}</Link>
           <Link to="/contact" className="underline-grow w-fit text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm">{t.nav.contact}</Link>
         </div>
 
-        <div className="flex flex-col gap-2 font-sans-tight text-[11px] uppercase">
+        <div className="flex flex-col gap-2.5 font-sans-tight text-xs uppercase tracking-[0.12em]">
           <a href={CONTACTS.whatsappLink} target="_blank" rel="noreferrer" className="underline-grow w-fit text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm">WhatsApp</a>
           <a href={CONTACTS.instagram} target="_blank" rel="noreferrer" className="underline-grow w-fit text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm">Instagram</a>
-          <a href={`mailto:${CONTACTS.email}`} className="underline-grow w-fit text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm">{CONTACTS.email}</a>
+          <a href={`mailto:${CONTACTS.email}`} className="underline-grow w-fit text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm normal-case tracking-normal">{CONTACTS.email}</a>
         </div>
       </div>
       <div className="border-t border-border/60">
-        <div className="mx-auto max-w-[1500px] px-6 md:px-10 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] font-sans-tight uppercase text-muted-foreground">
+        <div className="mx-auto max-w-[1500px] px-6 md:px-10 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs font-sans-tight uppercase tracking-[0.1em] text-muted-foreground">
           <p>© {new Date().getFullYear()} Nicola — {t.footer.rights}</p>
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
             <Link to="/privacy" className="underline-grow hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm">{t.legal.nav.privacy}</Link>

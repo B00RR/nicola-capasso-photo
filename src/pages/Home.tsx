@@ -75,6 +75,7 @@ const Home = () => {
           </picture>
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/75" />
           <div className="absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
+          <div aria-hidden="true" className="grain-overlay" />
         </motion.div>
 
         <div className="relative z-10 h-full flex flex-col justify-end pb-16 md:pb-24 px-6 md:px-10 max-w-[1500px] mx-auto">
@@ -87,9 +88,9 @@ const Home = () => {
             — {t.hero.eyebrow}
           </motion.p>
 
-          <h1 className="font-display text-background text-[15vw] md:text-[9vw] leading-[0.95] tracking-tight">
+          <h1 className="font-display text-background text-[clamp(2.75rem,13vw,6rem)] md:text-[9vw] leading-[0.95] tracking-tight">
             {t.hero.title.map((line, i) => (
-              <span key={i} className="block overflow-hidden pb-[0.15em]">
+              <span key={i} className="block overflow-hidden pb-[0.15em] -mb-[0.15em]">
                 <motion.span
                   initial={prefersReducedMotion ? false : { y: "110%" }}
                   animate={prefersReducedMotion ? {} : { y: "0%" }}
@@ -132,8 +133,15 @@ const Home = () => {
       </section>
 
       {/* MARQUEE */}
-      <section className="border-y border-border/60 py-6 overflow-hidden">
-        <div className="flex marquee-track whitespace-nowrap">
+      <section className="border-y border-border/60 py-6 overflow-hidden relative">
+        <span
+          aria-hidden="true"
+          className="hidden md:flex absolute left-6 md:left-10 top-1/2 -translate-y-1/2 z-10 items-center gap-2 font-sans-tight text-[10px] uppercase tracking-[0.3em] text-muted-foreground bg-background/80 backdrop-blur-sm pr-4"
+        >
+          <span className="h-px w-6 bg-accent" />
+          {lang === "it" ? "Destinazioni" : "Destinations"}
+        </span>
+        <div aria-hidden="true" className="flex marquee-track whitespace-nowrap">
           {[...marquee, ...marquee].map((m, i) => (
             <span key={`${m}-${i}`} className="font-display italic text-3xl md:text-5xl px-8 text-foreground/80 inline-flex items-center">
               {m}
@@ -202,15 +210,16 @@ const Home = () => {
             {t.services.items.map((s, i) => (
               <div
                 key={s.t}
-                className="group relative bg-background p-8 md:p-10 flex flex-col gap-4 transition-colors hover:bg-foreground hover:text-background"
+                className="group relative bg-background p-8 md:p-10 flex flex-col gap-4 transition-[background-color,color,transform,box-shadow] duration-500 ease-editorial hover:bg-foreground hover:text-background hover:-translate-y-1 hover:shadow-[0_24px_48px_-24px_hsl(25_18%_14%/0.35)] motion-reduce:transition-colors motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-none"
               >
-                <span className="font-sans-tight text-[10px] uppercase text-accent group-hover:text-background/80 transition-colors">
+                <span className="font-sans-tight text-[10px] uppercase text-accent transition-colors group-hover:text-accent/90">
                   0{i + 1}
                 </span>
                 <h3 className="font-display text-2xl md:text-3xl">{s.t}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed group-hover:text-background/80 transition-colors">
                   {s.d}
                 </p>
+                <span aria-hidden="true" className="absolute inset-x-8 md:inset-x-10 bottom-6 h-px bg-current opacity-0 group-hover:opacity-30 transition-opacity duration-500" />
               </div>
             ))}
           </div>
@@ -254,7 +263,7 @@ const Home = () => {
             return (
               <Link
                 key={s.id}
-                to={`/shoot/${s.id}`}
+                to={`/portfolio/${s.id}`}
                 className={`overflow-hidden block col-span-1 ${layout.span}`}
               >
                 <div className={`overflow-hidden aspect-[3/4] bg-secondary ${layout.aspect}`}>
