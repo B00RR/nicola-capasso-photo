@@ -35,7 +35,7 @@
     <script>
     (function(){
       var h = location.hostname;
-      if (/netlify\.app|vercel\.app|preview|deploy-preview|feature--/.test(h)) {
+      if (/vercel\.app|preview|deploy-preview|feature--/.test(h)) {
         var m = document.createElement('meta');
         m.name = 'robots';
         m.content = 'noindex, nofollow';
