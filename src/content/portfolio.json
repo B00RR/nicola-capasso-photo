@@ -18,27 +18,44 @@
           },
           "gallery": [
             "/images/photo-17.jpg",
-            "/images/photo-18.jpg"
+            "/images/photo-18.jpg",
+            "/images/photo-19.jpg",
+            "/images/photo-20.jpg",
+            "/images/photo-21.jpg",
+            "/images/photo-22.jpg",
+            "/images/photo-23.jpg"
           ]
         },
         {
           "id": "25-2",
           "title": "Emma & Liam",
           "location": "Positano, IT",
-          "image": "/images/photo-02.jpg"
+          "image": "/images/photo-02.jpg",
+          "gallery": [
+            "/images/photo-24.jpg",
+            "/images/photo-25.jpg"
+          ]
         },
         {
           "id": "25-3",
           "title": "Chiara & Paul",
           "location": "Val d'Orcia, IT",
           "image": "/images/photo-03.jpg",
-          "span": "wide"
+          "span": "wide",
+          "gallery": [
+            "/images/photo-26.jpg",
+            "/images/photo-27.jpg"
+          ]
         },
         {
           "id": "25-4",
           "title": "Anna & Theo",
           "location": "Santorini, GR",
-          "image": "/images/photo-04.jpg"
+          "image": "/images/photo-04.jpg",
+          "gallery": [
+            "/images/photo-28.jpg",
+            "/images/photo-29.jpg"
+          ]
         }
       ]
     },
@@ -51,27 +68,43 @@
           "id": "24-1",
           "title": "Hannah & Noah",
           "location": "Siena, IT",
-          "image": "/images/photo-05.jpg"
+          "image": "/images/photo-05.jpg",
+          "gallery": [
+            "/images/photo-30.jpg",
+            "/images/photo-31.jpg"
+          ]
         },
         {
           "id": "24-2",
           "title": "Léa & Antoine",
           "location": "Provence, FR",
           "image": "/images/photo-06.jpg",
-          "span": "tall"
+          "span": "tall",
+          "gallery": [
+            "/images/photo-32.jpg",
+            "/images/photo-33.jpg"
+          ]
         },
         {
           "id": "24-3",
           "title": "Maya & Jonas",
           "location": "Cinque Terre, IT",
-          "image": "/images/photo-07.jpg"
+          "image": "/images/photo-07.jpg",
+          "gallery": [
+            "/images/photo-34.jpg",
+            "/images/photo-35.jpg"
+          ]
         },
         {
           "id": "24-4",
           "title": "Olivia & Sam",
           "location": "Capri, IT",
           "image": "/images/photo-08.jpg",
-          "span": "wide"
+          "span": "wide",
+          "gallery": [
+            "/images/photo-36.jpg",
+            "/images/photo-37.jpg"
+          ]
         }
       ]
     },
@@ -85,26 +118,42 @@
           "title": "Greta & Ben",
           "location": "Lisbon, PT",
           "image": "/images/photo-09.jpg",
-          "span": "wide"
+          "span": "wide",
+          "gallery": [
+            "/images/photo-38.jpg",
+            "/images/photo-39.jpg"
+          ]
         },
         {
           "id": "23-2",
           "title": "Ines & Diego",
           "location": "Sevilla, ES",
-          "image": "/images/photo-10.jpg"
+          "image": "/images/photo-10.jpg",
+          "gallery": [
+            "/images/photo-40.jpg",
+            "/images/photo-41.jpg"
+          ]
         },
         {
           "id": "23-3",
           "title": "Aurora & Tom",
           "location": "Roma, IT",
           "image": "/images/photo-11.jpg",
-          "span": "tall"
+          "span": "tall",
+          "gallery": [
+            "/images/photo-42.jpg",
+            "/images/photo-43.jpg"
+          ]
         },
         {
           "id": "23-4",
           "title": "Mila & Jack",
           "location": "Mykonos, GR",
-          "image": "/images/photo-12.jpg"
+          "image": "/images/photo-12.jpg",
+          "gallery": [
+            "/images/photo-44.jpg",
+            "/images/photo-45.jpg"
+          ]
         }
       ]
     },
@@ -117,27 +166,48 @@
           "id": "22-1",
           "title": "Beatrice & Luca",
           "location": "Puglia, IT",
-          "image": "/images/photo-13.jpg"
+          "image": "/images/photo-13.jpg",
+          "gallery": [
+            "/images/photo-46.jpg",
+            "/images/photo-47.jpg"
+          ]
         },
         {
           "id": "22-2",
           "title": "Sara & Ahmad",
           "location": "Marrakech, MA",
           "image": "/images/photo-14.jpg",
-          "span": "wide"
+          "span": "wide",
+          "gallery": [
+            "/images/photo-48.jpg",
+            "/images/photo-49.jpg"
+          ]
         },
         {
           "id": "22-3",
           "title": "Nora & Felix",
           "location": "Wien, AT",
           "image": "/images/photo-15.jpg",
-          "span": "tall"
+          "span": "tall",
+          "gallery": [
+            "/images/photo-50.jpg",
+            "/images/photo-51.jpg"
+          ]
         },
         {
           "id": "22-4",
           "title": "Eva & Karl",
           "location": "Hallstatt, AT",
-          "image": "/images/photo-16.jpg"
+          "image": "/images/photo-16.jpg",
+          "gallery": [
+            "/images/photo-52.jpg",
+            "/images/photo-53.jpg",
+            "/images/photo-54.jpg",
+            "/images/photo-55.jpg",
+            "/images/photo-56.jpg",
+            "/images/photo-57.jpg",
+            "/images/photo-58.jpg"
+          ]
         }
       ]
     }

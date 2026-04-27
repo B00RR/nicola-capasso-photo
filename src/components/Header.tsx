@@ -84,7 +84,7 @@ const Header = () => {
               "font-sans-tight text-[11px] uppercase tracking-[0.2em] transition-colors",
               onHero ? "text-background/90 hover:text-background" : "text-foreground/90 hover:text-foreground"
             )}
-            aria-label="Switch language"
+            aria-label={lang === "it" ? "Cambia lingua" : "Switch language"}
           >
             <span className={cn(lang === "it" && (onHero ? "text-background" : "text-foreground"))}>IT</span>
             <span className="mx-1.5 opacity-40">/</span>
