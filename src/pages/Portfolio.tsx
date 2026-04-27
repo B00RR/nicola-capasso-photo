@@ -19,7 +19,6 @@ const Portfolio = () => {
   const [activeYear, setActiveYear] = useState(portfolio[0].year);
   const sectionRefs = useRef<Record<number, HTMLElement | null>>({});
 
-  const allShoots = portfolio.flatMap((y) => y.shoots);
   const yearStartIndex = portfolio.reduce<Record<number, number>>((acc, y, i) => {
     acc[y.year] = portfolio.slice(0, i).reduce((s, p) => s + p.shoots.length, 0);
     return acc;
