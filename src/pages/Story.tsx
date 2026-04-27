@@ -34,6 +34,7 @@ const Story = () => {
     title: meta?.title ?? "",
     description: meta?.description ?? "",
     path: `/portfolio/${id ?? ""}`,
+    image: found?.shoot.image,
   });
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);

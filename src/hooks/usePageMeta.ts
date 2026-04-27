@@ -5,9 +5,27 @@ interface PageMeta {
   title: string;
   description: string;
   path: string;
+  /** Optional absolute or root-relative image URL for og:image / twitter:image. */
+  image?: string;
 }
 
-export const usePageMeta = ({ title, description, path }: PageMeta) => {
+const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
+
+// Build an absolute URL from a path that may already be base-prefixed (via
+// withBase()). SITE_URL is expected to include the deploy base, so we strip
+// the base from the path before concatenating to avoid duplication.
+const toAbsolute = (url: string) => {
+  if (/^https?:\/\//i.test(url)) return url;
+  const base = import.meta.env.BASE_URL || "/";
+  const path = url.startsWith(base)
+    ? "/" + url.slice(base.length)
+    : url.startsWith("/")
+    ? url
+    : "/" + url;
+  return `${SITE_URL}${path}`;
+};
+
+export const usePageMeta = ({ title, description, path, image }: PageMeta) => {
   useEffect(() => {
     document.title = title;
 
@@ -22,12 +40,16 @@ export const usePageMeta = ({ title, description, path }: PageMeta) => {
       el.setAttribute("content", val);
     };
 
+    const ogImage = image ? toAbsolute(image) : DEFAULT_OG_IMAGE;
+
     setMeta('meta[name="description"]', "description", description);
     setMeta('meta[property="og:title"]', "og:title", title, true);
     setMeta('meta[property="og:description"]', "og:description", description, true);
     setMeta('meta[property="og:url"]', "og:url", `${SITE_URL}${path}`, true);
+    setMeta('meta[property="og:image"]', "og:image", ogImage, true);
     setMeta('meta[name="twitter:title"]', "twitter:title", title);
     setMeta('meta[name="twitter:description"]', "twitter:description", description);
+    setMeta('meta[name="twitter:image"]', "twitter:image", ogImage);
 
     // Canonical
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
@@ -49,5 +71,5 @@ export const usePageMeta = ({ title, description, path }: PageMeta) => {
       }
       link.href = `${SITE_URL}${path}`;
     });
-  }, [title, description, path]);
+  }, [title, description, path, image]);
 };
