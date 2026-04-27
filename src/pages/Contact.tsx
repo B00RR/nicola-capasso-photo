@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLang } from "@/i18n/useLang";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { CONTACTS } from "@/data/portfolio";
@@ -18,9 +18,39 @@ const Contact = () => {
   const formRef = useReveal<HTMLDivElement>();
   const directRef = useReveal<HTMLDivElement>();
 
+  // Time-trap: timestamp of mount; submit before 2s is treated as bot.
+  const mountedAtRef = useRef<number>(0);
+  // Track active retry timer + abort controller so we can cancel on unmount.
+  const retryTimerRef = useRef<number | null>(null);
+  const abortRef = useRef<AbortController | null>(null);
+  const isMountedRef = useRef(true);
+
+  useEffect(() => {
+    mountedAtRef.current = Date.now();
+    return () => {
+      isMountedRef.current = false;
+      if (retryTimerRef.current !== null) {
+        window.clearTimeout(retryTimerRef.current);
+        retryTimerRef.current = null;
+      }
+      abortRef.current?.abort();
+    };
+  }, []);
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (sending || sent) return;
+
+    // Honeypot already in the form. Time-trap: if submitted < 2s after mount,
+    // silently accept then drop. Real users take > 2s to fill anything.
+    const elapsed = Date.now() - mountedAtRef.current;
+    if (elapsed < 2000) {
+      // Mimic success to avoid signaling the trap to bots.
+      setSent(true);
+      setTimeout(() => isMountedRef.current && setSent(false), 4000);
+      return;
+    }
+
     const endpoint = (import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined) || (typeof process !== "undefined" && process.env.VITE_CONTACT_ENDPOINT);
     if (!endpoint) {
       toast.error(lang === "it" ? "Endpoint di contatto non configurato." : "Contact endpoint not configured.");
@@ -31,40 +61,56 @@ const Contact = () => {
     const payload = JSON.stringify(Object.fromEntries(data));
 
     const send = async () => {
+      abortRef.current?.abort();
+      const ctrl = new AbortController();
+      abortRef.current = ctrl;
       const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: payload,
+        signal: ctrl.signal,
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return res;
     };
 
-    setSending(true);
-    try {
-      await send();
+    const finalizeSuccess = () => {
+      if (!isMountedRef.current) return;
       setSending(false);
       setSent(true);
       toast.success(t.contact.form.sent);
       form.reset();
-      setTimeout(() => setSent(false), 4000);
+      setTimeout(() => isMountedRef.current && setSent(false), 4000);
+    };
+
+    setSending(true);
+    try {
+      await send();
+      finalizeSuccess();
     } catch (err) {
+      // If the fetch was aborted during unmount, bail silently.
+      if (err instanceof DOMException && err.name === "AbortError") return;
+
       const msg = err instanceof Error && err.message.startsWith("HTTP")
         ? (lang === "it" ? "Errore del server. Riprova tra poco." : "Server error. Please try again shortly.")
         : (lang === "it" ? "Connessione assente. Verifica la rete e riprova." : "No connection. Check your network and retry.");
       toast.error(msg);
-      // single retry after 3s — sending rimane true per bloccare ulteriori invii
-      setTimeout(() => {
-        send().then(() => {
-          setSending(false);
-          setSent(true);
-          toast.success(t.contact.form.sent);
-          form.reset();
-          setTimeout(() => setSent(false), 4000);
-        }).catch(() => {
-          setSending(false);
-          toast.error(lang === "it" ? "Invio fallito. Contattami direttamente via email." : "Sending failed. Please contact me directly via email.");
-        });
+
+      // Single retry, scheduled via tracked timer so we can cancel on unmount.
+      // `sending` stays true so the submit button stays disabled and the
+      // user cannot kick off a parallel request.
+      if (retryTimerRef.current !== null) window.clearTimeout(retryTimerRef.current);
+      retryTimerRef.current = window.setTimeout(() => {
+        retryTimerRef.current = null;
+        if (!isMountedRef.current) return;
+        send()
+          .then(finalizeSuccess)
+          .catch((retryErr) => {
+            if (retryErr instanceof DOMException && retryErr.name === "AbortError") return;
+            if (!isMountedRef.current) return;
+            setSending(false);
+            toast.error(lang === "it" ? "Invio fallito. Contattami direttamente via email." : "Sending failed. Please contact me directly via email.");
+          });
       }, 3000);
     }
   };
