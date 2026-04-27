@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -6,6 +6,7 @@ import { useLang } from "@/i18n/useLang";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { findShoot, type ShootVideo } from "@/data/portfolio";
 import { Lightbox } from "@/components/Lightbox";
+import { SITE_URL } from "@/config/site";
 
 const toWebP = (src: string) => src.replace(/\.(jpg|jpeg|png)$/i, ".webp");
 
@@ -38,6 +39,26 @@ const Story = () => {
   });
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (!found) return;
+    const elId = "jsonld-breadcrumb";
+    document.getElementById(elId)?.remove();
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = elId;
+    script.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+        { "@type": "ListItem", position: 2, name: "Portfolio", item: `${SITE_URL}/portfolio` },
+        { "@type": "ListItem", position: 3, name: found.shoot.title, item: `${SITE_URL}/portfolio/${found.shoot.id}` },
+      ],
+    });
+    document.head.appendChild(script);
+    return () => { document.getElementById(elId)?.remove(); };
+  }, [found]);
 
   if (!found) return <Navigate to="/portfolio" replace />;
 

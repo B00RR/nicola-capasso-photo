@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useLang } from "@/i18n/useLang";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { portfolio } from "@/data/portfolio";
+import { SITE_URL } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 const toWebP = (src: string) => src.replace(/\.(jpg|jpeg|png)$/i, ".webp");
@@ -18,6 +19,24 @@ const Portfolio = () => {
 
   const [activeYear, setActiveYear] = useState(portfolio[0].year);
   const sectionRefs = useRef<Record<number, HTMLElement | null>>({});
+
+  useEffect(() => {
+    const id = "jsonld-breadcrumb";
+    document.getElementById(id)?.remove();
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = id;
+    script.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: lang === "it" ? "Home" : "Home", item: `${SITE_URL}/` },
+        { "@type": "ListItem", position: 2, name: "Portfolio", item: `${SITE_URL}/portfolio` },
+      ],
+    });
+    document.head.appendChild(script);
+    return () => { document.getElementById(id)?.remove(); };
+  }, [lang]);
 
   useEffect(() => {
     let raf = 0;
