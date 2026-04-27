@@ -72,6 +72,16 @@ const buildLang = (lang: "it" | "en") => {
       title: siteData.notFound[`title${s}` as keyof typeof siteData.notFound] as string,
       back: siteData.notFound[`back${s}` as keyof typeof siteData.notFound] as string,
     },
+    a11y: {
+      skipToContent: siteData.a11y[`skipToContent${s}` as keyof typeof siteData.a11y] as string,
+      openMenu: siteData.a11y[`openMenu${s}` as keyof typeof siteData.a11y] as string,
+      closeMenu: siteData.a11y[`closeMenu${s}` as keyof typeof siteData.a11y] as string,
+      switchLanguage: siteData.a11y[`switchLanguage${s}` as keyof typeof siteData.a11y] as string,
+      lightboxClose: siteData.a11y[`lightboxClose${s}` as keyof typeof siteData.a11y] as string,
+      lightboxPrev: siteData.a11y[`lightboxPrev${s}` as keyof typeof siteData.a11y] as string,
+      lightboxNext: siteData.a11y[`lightboxNext${s}` as keyof typeof siteData.a11y] as string,
+      lightboxLabel: siteData.a11y[`lightboxLabel${s}` as keyof typeof siteData.a11y] as string,
+    },
     legal: {
       kicker: legalData.nav[`legal${s}` as keyof typeof legalData.nav] as string,
       lastUpdated: lang === "it" ? "Ultimo aggiornamento" : "Last updated",

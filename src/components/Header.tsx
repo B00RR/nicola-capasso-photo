@@ -84,7 +84,7 @@ const Header = () => {
               "font-sans-tight text-[11px] uppercase tracking-[0.2em] transition-colors",
               onHero ? "text-background/90 hover:text-background" : "text-foreground/90 hover:text-foreground"
             )}
-            aria-label={lang === "it" ? "Cambia lingua" : "Switch language"}
+            aria-label={t.a11y.switchLanguage}
           >
             <span className={cn(lang === "it" && (onHero ? "text-background" : "text-foreground"))}>IT</span>
             <span className="mx-1.5 opacity-40">/</span>
@@ -95,7 +95,9 @@ const Header = () => {
         <button
           onClick={() => setOpen(!open)}
           className="md:hidden flex flex-col gap-1.5 p-2 -mr-2"
-          aria-label="Menu"
+          aria-label={open ? t.a11y.closeMenu : t.a11y.openMenu}
+          aria-expanded={open}
+          aria-controls="mobile-nav"
         >
           <span className={cn("h-px w-6 transition-transform", onHero ? "bg-background" : "bg-foreground", open && "translate-y-[6px] rotate-45")} />
           <span className={cn("h-px w-6 transition-opacity", onHero ? "bg-background" : "bg-foreground", open && "opacity-0")} />
@@ -105,6 +107,7 @@ const Header = () => {
 
       {/* Mobile menu */}
       <div
+        id="mobile-nav"
         className={cn(
           "md:hidden overflow-hidden transition-[max-height] duration-500 bg-background/95 backdrop-blur-md",
           open ? "max-h-96" : "max-h-0"
