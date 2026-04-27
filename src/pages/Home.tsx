@@ -65,7 +65,7 @@ const Home = () => {
             <source srcSet={heroImgWebP} type="image/webp" />
             <img
               src={heroImg}
-              alt="Cinematic wedding moment at golden hour"
+              alt={t.hero.imageAlt}
               loading="eager"
               fetchPriority="high"
               width={1920}
@@ -159,7 +159,7 @@ const Home = () => {
               <source srcSet={aboutImgWebP} type="image/webp" />
               <img
                 src={aboutImg}
-                alt="Portrait of Nicola"
+                alt={t.about.imageAlt}
                 loading="lazy"
                 width={800}
                 height={1000}

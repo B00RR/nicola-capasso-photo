@@ -19,6 +19,7 @@ const buildLang = (lang: "it" | "en") => {
       subtitle: homeData.hero[`subtitle${s}` as keyof typeof homeData.hero] as string,
       cta: homeData.hero[`cta${s}` as keyof typeof homeData.hero] as string,
       scroll: homeData.hero[`scroll${s}` as keyof typeof homeData.hero] as string,
+      imageAlt: homeData.hero[`imageAlt${s}` as keyof typeof homeData.hero] as string,
     },
     about: {
       kicker: homeData.about[`kicker${s}` as keyof typeof homeData.about] as string,
@@ -28,6 +29,7 @@ const buildLang = (lang: "it" | "en") => {
         n: st.n,
         l: st[`l${s}` as keyof typeof st] as string,
       })),
+      imageAlt: homeData.about[`imageAlt${s}` as keyof typeof homeData.about] as string,
     },
     services: {
       kicker: homeData.services[`kicker${s}` as keyof typeof homeData.services] as string,
