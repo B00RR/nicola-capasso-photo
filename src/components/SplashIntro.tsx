@@ -7,7 +7,6 @@ const SplashIntro = () => {
   const [show, setShow] = useState(false);
   const [phase, setPhase] = useState(0); // 0=enter, 1=text-fade, 2=move, 3=curtain, 4=mono-fade
   const [winSize, setWinSize] = useState({ w: 0, h: 0 });
-  const [endPos, setEndPos] = useState({ x: 0, y: 0, w: 0, h: 0 });
 
   useEffect(() => {
     // Bump the version when you want every existing visitor to see the splash again.
@@ -28,26 +27,6 @@ const SplashIntro = () => {
       setTimeout(() => setShow(false), 3300);
     }
   }, []);
-
-  /* Measure the actual header favicon position so the monogram lands exactly on it */
-  useEffect(() => {
-    if (!show) return;
-    const measure = () => {
-      const logo = document.querySelector(
-        'header img[aria-hidden="true"]'
-      ) as HTMLElement | null;
-      if (logo) {
-        const rect = logo.getBoundingClientRect();
-        setEndPos({ x: rect.left, y: rect.top, w: rect.width, h: rect.height });
-      }
-    };
-    const id = requestAnimationFrame(() => requestAnimationFrame(measure));
-    window.addEventListener("resize", measure);
-    return () => {
-      cancelAnimationFrame(id);
-      window.removeEventListener("resize", measure);
-    };
-  }, [show]);
 
   if (!show || winSize.w === 0) return null;
 
@@ -86,16 +65,22 @@ const SplashIntro = () => {
   const textX = containerLeft;
   const textY = containerTop + startLogoH * (TEXT_Y / LOGO_H);
 
-  /* Fallback end position (header padding) until DOM measurement kicks in */
-  const fallbackEndH = isDesktop ? 40 : 36;
-  const fallbackEndW = fallbackEndH * (MONO_W / MONO_H);
-  const fallbackEndX = isDesktop ? 40 : 24;
-  const fallbackEndY = isDesktop ? 20 : 14;
+  /* End position: deterministic based on known header layout
+     Header: fixed, h-16 (64px) mobile / h-20 (80px) desktop
+     Inner container: max-w-[1500px] mx-auto px-6 (24px) / px-10 (40px)
+     Logo img: h-9 (36px) / h-10 (40px)
+  */
+  const HEADER_MAX_W = 1500;
+  const PAD_X = isDesktop ? 40 : 24;
+  const HEADER_H = isDesktop ? 80 : 64;
+  const LOGO_TARGET_H = isDesktop ? 40 : 36;
 
-  const endX = endPos.w > 0 ? endPos.x : fallbackEndX;
-  const endY = endPos.h > 0 ? endPos.y : fallbackEndY;
-  const endW = endPos.w > 0 ? endPos.w : fallbackEndW;
-  const endH = endPos.h > 0 ? endPos.h : fallbackEndH;
+  const endX = winSize.w > HEADER_MAX_W
+    ? (winSize.w - HEADER_MAX_W) / 2 + PAD_X
+    : PAD_X;
+  const endY = (HEADER_H - LOGO_TARGET_H) / 2;
+  const endW = LOGO_TARGET_H * (MONO_W / MONO_H);
+  const endH = LOGO_TARGET_H;
 
   return (
     <AnimatePresence>
