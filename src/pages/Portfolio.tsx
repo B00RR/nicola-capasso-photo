@@ -59,7 +59,7 @@ const Portfolio = () => {
     <>
       <main className="pt-32 md:pt-36">
         {/* Intro */}
-        <section className="px-6 md:px-10 max-w-[1500px] mx-auto pt-12 md:pt-0 pb-16 md:pb-24">
+        <section className="px-6 md:px-10 max-w-[1500px] mx-auto pt-6 md:pt-0 pb-10 md:pb-16">
           <div className="mb-6 flex items-center gap-4">
             <span className="font-display italic text-accent text-3xl md:text-4xl leading-none">01</span>
             <span className="h-px flex-1 max-w-[4rem] bg-border" />
