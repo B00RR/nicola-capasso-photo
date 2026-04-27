@@ -24,4 +24,4 @@ export const portfolio: YearBlock[] = portfolioData.years.map((y) => ({
   })),
 }));
 
-export const CONTACTS = siteData.contacts;
+export const CONTACTS = siteData.contacts as typeof siteData.contacts & { phone: string };

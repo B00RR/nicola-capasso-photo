@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useLang } from "@/i18n/useLang";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { portfolio } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
-import { Lightbox } from "@/components/Lightbox";
 
 const toWebP = (src: string) => src.replace(/\.(jpg|jpeg|png)$/i, ".webp");
 
@@ -17,7 +17,6 @@ const Portfolio = () => {
   usePageMeta({ title, description, path: "/portfolio" });
 
   const [activeYear, setActiveYear] = useState(portfolio[0].year);
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const sectionRefs = useRef<Record<number, HTMLElement | null>>({});
 
   const allShoots = portfolio.flatMap((y) => y.shoots);
@@ -136,27 +135,12 @@ const Portfolio = () => {
                   lang={lang}
                   registerRef={(el) => (sectionRefs.current[y.year] = el)}
                   startIndex={yearStartIndex[y.year]}
-                  onOpenShoot={setLightboxIndex}
                 />
               ))}
             </div>
           </div>
         </div>
       </main>
-
-      <Lightbox
-        images={allShoots.map((s) => ({
-          src: s.image,
-          alt: `${s.title} — ${s.location}`,
-          title: s.title,
-          location: s.location,
-        }))}
-        index={lightboxIndex}
-        onClose={() => setLightboxIndex(null)}
-        onPrev={() => setLightboxIndex((i) => (i !== null ? Math.max(0, i - 1) : null))}
-        onNext={() => setLightboxIndex((i) => (i !== null ? Math.min(allShoots.length - 1, i + 1) : null))}
-        lang={lang}
-      />
     </>
   );
 };
@@ -166,10 +150,10 @@ interface YearSectionProps {
   lang: "it" | "en";
   registerRef: (el: HTMLElement | null) => void;
   startIndex: number;
-  onOpenShoot: (globalIndex: number) => void;
 }
 
-const YearSection = ({ yearData, lang, registerRef, startIndex, onOpenShoot }: YearSectionProps) => {
+const YearSection = ({ yearData, lang, registerRef, startIndex }: YearSectionProps) => {
+  const navigate = useNavigate();
   return (
     // Plain section: scroll-spy ref only, no CSS reveal so stagger isn't masked
     <section ref={registerRef} className="scroll-mt-32" data-year={yearData.year}>
@@ -212,7 +196,7 @@ const YearSection = ({ yearData, lang, registerRef, startIndex, onOpenShoot }: Y
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.08 }}
               transition={{ duration: 0.9, delay: i * 0.08, ease: [0.2, 0.7, 0.2, 1] }}
-              onClick={() => onOpenShoot(startIndex + i)}
+              onClick={() => navigate(`/shoot/${s.id}`)}
             >
               <div className={cn("overflow-hidden bg-secondary", aspect)}>
                 <picture>
