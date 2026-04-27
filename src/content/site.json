@@ -48,5 +48,29 @@
     "lightboxLabel_en": "Image gallery",
     "lightboxHint_it": "← → per navigare  ·  Esc per chiudere",
     "lightboxHint_en": "← → to navigate  ·  Esc to close"
+  },
+  "story": {
+    "kicker_it": "Una storia",
+    "kicker_en": "A story",
+    "sectionStory_it": "Il racconto",
+    "sectionStory_en": "The story",
+    "sectionGallery_it": "Galleria",
+    "sectionGallery_en": "Gallery",
+    "sectionFilm_it": "Il film",
+    "sectionFilm_en": "The film",
+    "allStories_it": "Tutte le storie",
+    "allStories_en": "All stories",
+    "previous_it": "Precedente",
+    "previous_en": "Previous",
+    "next_it": "Successiva",
+    "next_en": "Next",
+    "openStory_it": "Apri storia",
+    "openStory_en": "Open story",
+    "playFilm_it": "Riproduci film",
+    "playFilm_en": "Play film"
+  },
+  "marquee": {
+    "label_it": "Destinazioni",
+    "label_en": "Destinations"
   }
 }

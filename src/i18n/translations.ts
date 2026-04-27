@@ -85,6 +85,20 @@ const buildLang = (lang: "it" | "en") => {
       lightboxLabel: siteData.a11y[`lightboxLabel${s}` as keyof typeof siteData.a11y] as string,
       lightboxHint: siteData.a11y[`lightboxHint${s}` as keyof typeof siteData.a11y] as string,
     },
+    story: {
+      kicker: siteData.story[`kicker${s}` as keyof typeof siteData.story] as string,
+      sectionStory: siteData.story[`sectionStory${s}` as keyof typeof siteData.story] as string,
+      sectionGallery: siteData.story[`sectionGallery${s}` as keyof typeof siteData.story] as string,
+      sectionFilm: siteData.story[`sectionFilm${s}` as keyof typeof siteData.story] as string,
+      allStories: siteData.story[`allStories${s}` as keyof typeof siteData.story] as string,
+      previous: siteData.story[`previous${s}` as keyof typeof siteData.story] as string,
+      next: siteData.story[`next${s}` as keyof typeof siteData.story] as string,
+      openStory: siteData.story[`openStory${s}` as keyof typeof siteData.story] as string,
+      playFilm: siteData.story[`playFilm${s}` as keyof typeof siteData.story] as string,
+    },
+    marquee: {
+      label: siteData.marquee[`label${s}` as keyof typeof siteData.marquee] as string,
+    },
     legal: {
       kicker: legalData.nav[`legal${s}` as keyof typeof legalData.nav] as string,
       lastUpdated: lang === "it" ? "Ultimo aggiornamento" : "Last updated",

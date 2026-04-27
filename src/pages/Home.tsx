@@ -139,7 +139,7 @@ const Home = () => {
           className="hidden md:flex absolute left-6 md:left-10 top-1/2 -translate-y-1/2 z-10 items-center gap-2 font-sans-tight text-[10px] uppercase tracking-[0.3em] text-muted-foreground bg-background/80 backdrop-blur-sm pr-4"
         >
           <span className="h-px w-6 bg-accent" />
-          {lang === "it" ? "Destinazioni" : "Destinations"}
+          {t.marquee.label}
         </span>
         <div aria-hidden="true" className="flex marquee-track whitespace-nowrap">
           {[...marquee, ...marquee].map((m, i) => (

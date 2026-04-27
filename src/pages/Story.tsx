@@ -74,7 +74,7 @@ const Story = () => {
               className="font-sans-tight text-[11px] uppercase tracking-[0.22em] text-background/85 mb-5 inline-flex items-center gap-3"
             >
               <span aria-hidden="true" className="h-px w-8 bg-accent" />
-              {lang === "it" ? "Una storia" : "A story"}
+              {t.story.kicker}
             </motion.p>
 
             <motion.h1
@@ -106,7 +106,7 @@ const Story = () => {
               <span className="font-display italic text-accent text-3xl md:text-4xl leading-none">01</span>
               <span className="h-px flex-1 max-w-[4rem] bg-border" />
               <p className="font-sans-tight text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                {lang === "it" ? "Il racconto" : "The story"}
+                {t.story.sectionStory}
               </p>
             </div>
             <p className="font-display italic text-2xl md:text-4xl leading-snug text-foreground">
@@ -123,7 +123,7 @@ const Story = () => {
             </span>
             <span className="h-px flex-1 max-w-[4rem] bg-border" />
             <p className="font-sans-tight text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-              {lang === "it" ? "Galleria" : "Gallery"}
+              {t.story.sectionGallery}
             </p>
           </div>
 
@@ -187,7 +187,7 @@ const Story = () => {
               </span>
               <span className="h-px flex-1 max-w-[4rem] bg-border" />
               <p className="font-sans-tight text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                {lang === "it" ? "Il film" : "The film"}
+                {t.story.sectionFilm}
               </p>
             </div>
             <VideoEmbed video={shoot.video} title={shoot.title} />
@@ -202,7 +202,7 @@ const Story = () => {
                 to="/portfolio"
                 className="font-sans-tight text-[11px] uppercase tracking-[0.22em] underline-grow pb-1 text-foreground/80 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm"
               >
-                {lang === "it" ? "Tutte le storie" : "All stories"}
+                {t.story.allStories}
               </Link>
             </div>
 
@@ -211,7 +211,7 @@ const Story = () => {
                 <NavCard
                   shoot={prev}
                   direction="prev"
-                  label={lang === "it" ? "Precedente" : "Previous"}
+                  label={t.story.previous}
                 />
               ) : (
                 <span aria-hidden="true" className="block h-full" />
@@ -223,7 +223,7 @@ const Story = () => {
                 <NavCard
                   shoot={next}
                   direction="next"
-                  label={lang === "it" ? "Successiva" : "Next"}
+                  label={t.story.next}
                 />
               ) : (
                 <span aria-hidden="true" className="block h-full" />
@@ -302,6 +302,7 @@ interface VideoEmbedProps {
 }
 
 const VideoEmbed = ({ video, title }: VideoEmbedProps) => {
+  const { t } = useLang();
   const [playing, setPlaying] = useState(false);
 
   // mp4: native <video> with poster + click-to-play
@@ -341,7 +342,7 @@ const VideoEmbed = ({ video, title }: VideoEmbedProps) => {
           type="button"
           onClick={() => setPlaying(true)}
           className="absolute inset-0 flex items-center justify-center group"
-          aria-label="Play film"
+          aria-label={t.story.playFilm}
         >
           {video.poster && (
             <img

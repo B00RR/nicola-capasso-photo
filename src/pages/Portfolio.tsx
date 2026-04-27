@@ -149,6 +149,7 @@ interface YearSectionProps {
 }
 
 const YearSection = ({ yearData, lang, registerRef }: YearSectionProps) => {
+  const { t } = useLang();
   return (
     // Plain section: scroll-spy ref only, no CSS reveal so stagger isn't masked
     <section ref={registerRef} className="scroll-mt-32" data-year={yearData.year}>
@@ -222,7 +223,7 @@ const YearSection = ({ yearData, lang, registerRef }: YearSectionProps) => {
                       className="pointer-events-none absolute left-3 bottom-3 md:left-4 md:bottom-4 inline-flex items-center gap-2 font-sans-tight text-[10px] uppercase tracking-[0.22em] text-background opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-[opacity,transform] duration-500 ease-editorial motion-reduce:transition-none motion-reduce:translate-y-0"
                     >
                       <span className="h-px w-5 bg-background/80" />
-                      {lang === "it" ? "Apri storia" : "Open story"}
+                      {t.story.openStory}
                     </span>
                   </div>
                   <figcaption className="mt-3 flex items-baseline justify-between transition-colors duration-500 group-hover:text-foreground">
