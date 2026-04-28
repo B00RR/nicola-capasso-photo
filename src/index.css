@@ -109,6 +109,11 @@
     animation: marquee 40s linear infinite;
     will-change: transform;
   }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
 
   /* Subtle hover lift for thumbnails */
   .hover-lift { transition: transform .9s cubic-bezier(.2,.7,.2,1), filter .9s ease; }

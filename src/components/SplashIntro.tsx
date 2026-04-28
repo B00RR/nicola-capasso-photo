@@ -12,12 +12,13 @@ const SplashIntro = () => {
     const SPLASH_KEY = "nicola-splash-seen-v1";
     const url = new URL(window.location.href);
     const force = url.searchParams.get("splash") === "reset";
-    const seen = localStorage.getItem(SPLASH_KEY);
+    let seen = false;
+    try { seen = !!localStorage.getItem(SPLASH_KEY); } catch {}
     if (force || !seen) {
       if (force) url.searchParams.delete("splash"); window.history.replaceState({}, "", url.toString());
       setWinSize({ w: window.innerWidth, h: window.innerHeight });
       setShow(true);
-      localStorage.setItem(SPLASH_KEY, "1");
+      try { localStorage.setItem(SPLASH_KEY, "1"); } catch {}
 
       setTimeout(() => setPhase(1), 700);
       setTimeout(() => setPhase(2), 1200);

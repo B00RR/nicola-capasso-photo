@@ -69,11 +69,10 @@ export const PictureImg = ({
         src={src}
         alt={alt}
         loading={loading}
-        fetchPriority={fetchPriority}
+        fetchpriority={fetchPriority}
         decoding={decoding}
         width={width}
         height={height}
-        sizes={responsive ? sizes : undefined}
         className={cn(fadeClass, className)}
         onLoad={
           fadeIn

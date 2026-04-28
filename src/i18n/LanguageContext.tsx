@@ -5,13 +5,15 @@ import { LanguageContext } from "./useLang";
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [lang, setLang] = useState<Lang>(() => {
     if (typeof window === "undefined") return "en";
-    const saved = localStorage.getItem("nicola-lang") as Lang | null;
-    if (saved === "it" || saved === "en") return saved;
+    try {
+      const saved = localStorage.getItem("nicola-lang") as Lang | null;
+      if (saved === "it" || saved === "en") return saved;
+    } catch {}
     return navigator.language?.toLowerCase().startsWith("it") ? "it" : "en";
   });
 
   useEffect(() => {
-    localStorage.setItem("nicola-lang", lang);
+    try { localStorage.setItem("nicola-lang", lang); } catch {}
     document.documentElement.lang = lang;
   }, [lang]);
 

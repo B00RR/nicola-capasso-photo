@@ -12,7 +12,9 @@ const CookieBanner = () => {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (!localStorage.getItem(STORAGE_KEY)) {
+    let consent = false;
+    try { consent = !!localStorage.getItem(STORAGE_KEY); } catch {}
+    if (!consent) {
       const id = window.setTimeout(() => setVisible(true), 800);
       return () => window.clearTimeout(id);
     }
@@ -34,7 +36,7 @@ const CookieBanner = () => {
   }, [visible]);
 
   const dismiss = () => {
-    localStorage.setItem(STORAGE_KEY, "1");
+    try { localStorage.setItem(STORAGE_KEY, "1"); } catch {}
     setVisible(false);
   };
 

@@ -52,7 +52,7 @@ const Contact = () => {
       return;
     }
 
-    const endpoint = (import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined) || (typeof process !== "undefined" && process.env.VITE_CONTACT_ENDPOINT);
+    const endpoint = (import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined);
     if (!endpoint) {
       toast.error(lang === "it" ? "Endpoint di contatto non configurato." : "Contact endpoint not configured.");
       return;
