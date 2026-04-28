@@ -108,7 +108,7 @@
       },
       {
         "h": "3. Cookie di terze parti",
-        "p": "Il sito carica font da Google Fonts (fonts.googleapis.com, fonts.gstatic.com). Google potrebbe registrare l'indirizzo IP del richiedente per la consegna del font. Non vengono utilizzati cookie pubblicitari o di analisi di terze parti."
+        "p": "Nessuno. I font sono ospitati direttamente dal nostro server e non vengono effettuate richieste verso CDN esterne. Non vengono utilizzati cookie pubblicitari o di analisi di terze parti."
       },
       {
         "h": "4. Gestione dei cookie",
@@ -130,7 +130,7 @@
       },
       {
         "h": "3. Third-party cookies",
-        "p": "The site loads fonts from Google Fonts (fonts.googleapis.com, fonts.gstatic.com). Google may log the requester's IP address to deliver the font. No third-party advertising or analytics cookies are used."
+        "p": "None. Fonts are self-hosted on our own server and no requests are made to external CDNs. No third-party advertising or analytics cookies are used."
       },
       {
         "h": "4. Managing cookies",
