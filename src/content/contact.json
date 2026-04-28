@@ -23,7 +23,15 @@
     "sent_it": "Messaggio inviato. Ti risponder\u00f2 presto.",
     "sent_en": "Message sent. I'll be in touch soon.",
     "error_it": "Errore durante l'invio. Riprova.",
-    "error_en": "Something went wrong. Please try again."
+    "error_en": "Something went wrong. Please try again.",
+    "dateHint_it": "gg/mm/aaaa",
+    "dateHint_en": "dd/mm/yyyy",
+    "gdprBefore_it": "Inviando accetti la ",
+    "gdprBefore_en": "By sending you accept the ",
+    "gdprLink_it": "privacy policy",
+    "gdprLink_en": "privacy policy",
+    "gdprAfter_it": ".",
+    "gdprAfter_en": "."
   },
   "direct_it": "O contattami direttamente",
   "direct_en": "Or reach me directly",

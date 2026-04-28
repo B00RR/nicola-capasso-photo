@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useLang } from "@/i18n/useLang";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { portfolio } from "@/data/portfolio";
+import { SITE_URL } from "@/config/site";
+import { PictureImg } from "@/components/PictureImg";
 import { cn } from "@/lib/utils";
-
-const toWebP = (src: string) => src.replace(/\.(jpg|jpeg|png)$/i, ".webp");
 
 const Portfolio = () => {
   const { t, lang } = useLang();
+  const prefersReducedMotion = usePrefersReducedMotion();
   const title = lang === "it" ? "Portfolio \u2014 Nicola" : "Portfolio \u2014 Nicola \u00b7 Wedding Photographer";
   const description = lang === "it"
     ? "Una selezione di reportage di matrimonio in Italia e nel mondo. Ogni storia \u00e8 unica \u2014 scoprila nel portfolio di Nicola."
@@ -18,6 +20,24 @@ const Portfolio = () => {
 
   const [activeYear, setActiveYear] = useState(portfolio[0].year);
   const sectionRefs = useRef<Record<number, HTMLElement | null>>({});
+
+  useEffect(() => {
+    const id = "jsonld-breadcrumb";
+    document.getElementById(id)?.remove();
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = id;
+    script.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: lang === "it" ? "Home" : "Home", item: `${SITE_URL}/` },
+        { "@type": "ListItem", position: 2, name: "Portfolio", item: `${SITE_URL}/portfolio` },
+      ],
+    });
+    document.head.appendChild(script);
+    return () => { document.getElementById(id)?.remove(); };
+  }, [lang]);
 
   useEffect(() => {
     let raf = 0;
@@ -131,6 +151,7 @@ const Portfolio = () => {
                   key={y.year}
                   yearData={y}
                   lang={lang}
+                  prefersReducedMotion={prefersReducedMotion}
                   registerRef={(el) => (sectionRefs.current[y.year] = el)}
                 />
               ))}
@@ -145,20 +166,22 @@ const Portfolio = () => {
 interface YearSectionProps {
   yearData: typeof portfolio[number];
   lang: "it" | "en";
+  prefersReducedMotion: boolean;
   registerRef: (el: HTMLElement | null) => void;
 }
 
-const YearSection = ({ yearData, lang, registerRef }: YearSectionProps) => {
+const YearSection = ({ yearData, lang, prefersReducedMotion, registerRef }: YearSectionProps) => {
+  const { t } = useLang();
   return (
     // Plain section: scroll-spy ref only, no CSS reveal so stagger isn't masked
     <section ref={registerRef} className="scroll-mt-32" data-year={yearData.year}>
       {/* Header: slides in from below once, no opacity conflict with figures */}
       <motion.div
         className="flex items-baseline gap-6 mb-8 md:mb-12"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+        whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.9, ease: [0.2, 0.7, 0.2, 1] }}
+        transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.9, ease: [0.2, 0.7, 0.2, 1] }}
       >
         <h2 className="font-display text-7xl md:text-[9rem] leading-none">{yearData.year}</h2>
         <div className="flex-1 h-px bg-border" />
@@ -166,10 +189,10 @@ const YearSection = ({ yearData, lang, registerRef }: YearSectionProps) => {
       </motion.div>
       <motion.p
         className="max-w-xl text-muted-foreground italic font-display text-lg md:text-xl mb-12"
-        initial={{ opacity: 0, y: 14 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={prefersReducedMotion ? false : { opacity: 0, y: 14 }}
+        whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.8, delay: 0.1, ease: [0.2, 0.7, 0.2, 1] }}
+        transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.8, delay: 0.1, ease: [0.2, 0.7, 0.2, 1] }}
       >
         {yearData.caption[lang]}
       </motion.p>
@@ -187,10 +210,10 @@ const YearSection = ({ yearData, lang, registerRef }: YearSectionProps) => {
             <motion.div
               key={s.id}
               className={cn(span, i % 2 === 1 && "md:mt-12")}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
+              whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.08 }}
-              transition={{ duration: 0.9, delay: i * 0.08, ease: [0.2, 0.7, 0.2, 1] }}
+              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.9, delay: i * 0.08, ease: [0.2, 0.7, 0.2, 1] }}
             >
               <Link
                 to={`/portfolio/${s.id}`}
@@ -199,19 +222,15 @@ const YearSection = ({ yearData, lang, registerRef }: YearSectionProps) => {
               >
                 <figure>
                   <div className={cn("relative overflow-hidden bg-secondary", aspect)}>
-                    <picture>
-                      <source srcSet={toWebP(s.image)} type="image/webp" />
-                      <img
-                        src={s.image}
-                        alt={`${s.title} \u2014 ${s.location}`}
-                        loading="lazy"
-                        width={s.span === "tall" ? 600 : s.span === "wide" ? 1400 : 600}
-                        height={s.span === "tall" ? 800 : s.span === "wide" ? 788 : 750}
-                        className="h-full w-full object-cover hover-lift opacity-0 transition-opacity duration-700"
-                        onLoad={(e) => e.currentTarget.classList.replace("opacity-0", "opacity-100")}
-                        ref={(img) => { if (img?.complete) img.classList.replace("opacity-0", "opacity-100"); }}
-                      />
-                    </picture>
+                    <PictureImg
+                      src={s.image}
+                      alt={`${s.title} \u2014 ${s.location}`}
+                      width={s.span === "tall" ? 600 : s.span === "wide" ? 1400 : 600}
+                      height={s.span === "tall" ? 800 : s.span === "wide" ? 788 : 750}
+                      fadeIn
+                      sizes={s.span === "wide" ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 50vw, 33vw"}
+                      className="h-full w-full object-cover hover-lift"
+                    />
                     {/* Hover vignette + view label */}
                     <div
                       aria-hidden="true"
@@ -222,7 +241,7 @@ const YearSection = ({ yearData, lang, registerRef }: YearSectionProps) => {
                       className="pointer-events-none absolute left-3 bottom-3 md:left-4 md:bottom-4 inline-flex items-center gap-2 font-sans-tight text-[10px] uppercase tracking-[0.22em] text-background opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-[opacity,transform] duration-500 ease-editorial motion-reduce:transition-none motion-reduce:translate-y-0"
                     >
                       <span className="h-px w-5 bg-background/80" />
-                      {lang === "it" ? "Apri storia" : "Open story"}
+                      {t.story.openStory}
                     </span>
                   </div>
                   <figcaption className="mt-3 flex items-baseline justify-between transition-colors duration-500 group-hover:text-foreground">

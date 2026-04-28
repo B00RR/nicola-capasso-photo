@@ -1,17 +1,19 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useLang } from "@/i18n/useLang";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { findShoot, type ShootVideo } from "@/data/portfolio";
 import { Lightbox } from "@/components/Lightbox";
-
-const toWebP = (src: string) => src.replace(/\.(jpg|jpeg|png)$/i, ".webp");
+import { PictureImg } from "@/components/PictureImg";
+import { SITE_URL } from "@/config/site";
 
 const Story = () => {
   const { id } = useParams<{ id: string }>();
-  const { lang } = useLang();
+  const { t, lang } = useLang();
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   const found = useMemo(() => (id ? findShoot(id) : null), [id]);
 
@@ -34,9 +36,30 @@ const Story = () => {
     title: meta?.title ?? "",
     description: meta?.description ?? "",
     path: `/portfolio/${id ?? ""}`,
+    image: found?.shoot.image,
   });
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (!found) return;
+    const elId = "jsonld-breadcrumb";
+    document.getElementById(elId)?.remove();
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = elId;
+    script.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+        { "@type": "ListItem", position: 2, name: "Portfolio", item: `${SITE_URL}/portfolio` },
+        { "@type": "ListItem", position: 3, name: found.shoot.title, item: `${SITE_URL}/portfolio/${found.shoot.id}` },
+      ],
+    });
+    document.head.appendChild(script);
+    return () => { document.getElementById(elId)?.remove(); };
+  }, [found]);
 
   if (!found) return <Navigate to="/portfolio" replace />;
 
@@ -52,43 +75,41 @@ const Story = () => {
       <main>
         {/* HERO */}
         <section className="relative h-[80svh] md:h-[92svh] w-full overflow-hidden">
-          <picture>
-            <source srcSet={toWebP(shoot.image)} type="image/webp" />
-            <img
-              src={shoot.image}
-              alt={`${shoot.title} — ${shoot.location}`}
-              loading="eager"
-              fetchPriority="high"
-              className="h-full w-full object-cover"
-            />
-          </picture>
+          <PictureImg
+            src={shoot.image}
+            alt={`${shoot.title} — ${shoot.location}`}
+            loading="eager"
+            fetchPriority="high"
+            sizes="100vw"
+            className="h-full w-full object-cover"
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/15 to-black/80" />
           <div aria-hidden="true" className="grain-overlay" />
 
           <div className="relative z-10 h-full flex flex-col justify-end pb-14 md:pb-24 px-6 md:px-10 max-w-[1500px] mx-auto">
             <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.15 }}
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+              animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={prefersReducedMotion ? { duration: 0 } : { duration: 1, delay: 0.15 }}
               className="font-sans-tight text-[11px] uppercase tracking-[0.22em] text-background/85 mb-5 inline-flex items-center gap-3"
             >
               <span aria-hidden="true" className="h-px w-8 bg-accent" />
-              {lang === "it" ? "Una storia" : "A story"}
+              {t.story.kicker}
             </motion.p>
 
             <motion.h1
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.1, delay: 0.25, ease: [0.2, 0.7, 0.2, 1] }}
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
+              animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={prefersReducedMotion ? { duration: 0 } : { duration: 1.1, delay: 0.25, ease: [0.2, 0.7, 0.2, 1] }}
               className="font-display text-background text-[clamp(2.5rem,10vw,7rem)] md:text-[7vw] leading-[0.95] tracking-tight max-w-5xl"
             >
               {shoot.title}
             </motion.h1>
 
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.7 }}
+              initial={prefersReducedMotion ? false : { opacity: 0 }}
+              animate={prefersReducedMotion ? undefined : { opacity: 1 }}
+              transition={prefersReducedMotion ? { duration: 0 } : { duration: 1, delay: 0.7 }}
               className="mt-6 flex flex-wrap items-baseline gap-x-6 gap-y-2 text-background/85"
             >
               <span className="font-display italic text-xl md:text-2xl">{shoot.location}</span>
@@ -105,7 +126,7 @@ const Story = () => {
               <span className="font-display italic text-accent text-3xl md:text-4xl leading-none">01</span>
               <span className="h-px flex-1 max-w-[4rem] bg-border" />
               <p className="font-sans-tight text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                {lang === "it" ? "Il racconto" : "The story"}
+                {t.story.sectionStory}
               </p>
             </div>
             <p className="font-display italic text-2xl md:text-4xl leading-snug text-foreground">
@@ -122,7 +143,7 @@ const Story = () => {
             </span>
             <span className="h-px flex-1 max-w-[4rem] bg-border" />
             <p className="font-sans-tight text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-              {lang === "it" ? "Galleria" : "Gallery"}
+              {t.story.sectionGallery}
             </p>
           </div>
 
@@ -145,27 +166,21 @@ const Story = () => {
                 <motion.figure
                   key={`${img}-${i}`}
                   className={`group cursor-zoom select-none ${layout.span} ${i % 2 === 1 ? "md:mt-10" : ""}`}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
+                  whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.08 }}
-                  transition={{ duration: 0.9, delay: (i % 4) * 0.08, ease: [0.2, 0.7, 0.2, 1] }}
+                  transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.9, delay: (i % 4) * 0.08, ease: [0.2, 0.7, 0.2, 1] }}
                   onClick={() => setLightboxIndex(i)}
                 >
                   <div className={`relative overflow-hidden bg-secondary ${layout.aspect}`}>
-                    <picture>
-                      <source srcSet={toWebP(img)} type="image/webp" />
-                      <img
-                        src={img}
-                        alt={`${shoot.title} — ${i + 1}`}
-                        loading={i < 2 ? "eager" : "lazy"}
-                        decoding="async"
-                        className="h-full w-full object-cover hover-lift opacity-0 transition-opacity duration-700"
-                        onLoad={(e) => e.currentTarget.classList.replace("opacity-0", "opacity-100")}
-                        ref={(el) => {
-                          if (el?.complete) el.classList.replace("opacity-0", "opacity-100");
-                        }}
-                      />
-                    </picture>
+                    <PictureImg
+                      src={img}
+                      alt={`${shoot.title} — ${i + 1}`}
+                      loading={i < 2 ? "eager" : "lazy"}
+                      fadeIn
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="h-full w-full object-cover hover-lift"
+                    />
                     <div
                       aria-hidden="true"
                       className="pointer-events-none absolute inset-0 bg-gradient-to-t from-foreground/35 via-foreground/0 to-foreground/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 motion-reduce:transition-none"
@@ -186,7 +201,7 @@ const Story = () => {
               </span>
               <span className="h-px flex-1 max-w-[4rem] bg-border" />
               <p className="font-sans-tight text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                {lang === "it" ? "Il film" : "The film"}
+                {t.story.sectionFilm}
               </p>
             </div>
             <VideoEmbed video={shoot.video} title={shoot.title} />
@@ -201,7 +216,7 @@ const Story = () => {
                 to="/portfolio"
                 className="font-sans-tight text-[11px] uppercase tracking-[0.22em] underline-grow pb-1 text-foreground/80 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm"
               >
-                {lang === "it" ? "Tutte le storie" : "All stories"}
+                {t.story.allStories}
               </Link>
             </div>
 
@@ -210,7 +225,7 @@ const Story = () => {
                 <NavCard
                   shoot={prev}
                   direction="prev"
-                  label={lang === "it" ? "Precedente" : "Previous"}
+                  label={t.story.previous}
                 />
               ) : (
                 <span aria-hidden="true" className="block h-full" />
@@ -222,7 +237,7 @@ const Story = () => {
                 <NavCard
                   shoot={next}
                   direction="next"
-                  label={lang === "it" ? "Successiva" : "Next"}
+                  label={t.story.next}
                 />
               ) : (
                 <span aria-hidden="true" className="block h-full" />
@@ -249,7 +264,6 @@ const Story = () => {
             i !== null ? Math.min(images.length - 1, i + 1) : null
           )
         }
-        lang={lang}
       />
     </>
   );
@@ -271,15 +285,12 @@ const NavCard = ({ shoot, direction, label }: NavCardProps) => {
       } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm`}
     >
       <div className="relative h-16 w-20 md:h-20 md:w-28 shrink-0 overflow-hidden bg-secondary">
-        <picture>
-          <source srcSet={toWebP(shoot.image)} type="image/webp" />
-          <img
-            src={shoot.image}
-            alt=""
-            loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-700 ease-editorial group-hover:scale-105"
-          />
-        </picture>
+        <PictureImg
+          src={shoot.image}
+          alt=""
+          responsive={false}
+          className="h-full w-full object-cover transition-transform duration-700 ease-editorial group-hover:scale-105"
+        />
       </div>
       <div className="min-w-0">
         <p className="font-sans-tight text-[10px] uppercase tracking-[0.22em] text-muted-foreground inline-flex items-center gap-2">
@@ -302,6 +313,7 @@ interface VideoEmbedProps {
 }
 
 const VideoEmbed = ({ video, title }: VideoEmbedProps) => {
+  const { t } = useLang();
   const [playing, setPlaying] = useState(false);
 
   // mp4: native <video> with poster + click-to-play
@@ -341,7 +353,7 @@ const VideoEmbed = ({ video, title }: VideoEmbedProps) => {
           type="button"
           onClick={() => setPlaying(true)}
           className="absolute inset-0 flex items-center justify-center group"
-          aria-label="Play film"
+          aria-label={t.story.playFilm}
         >
           {video.poster && (
             <img

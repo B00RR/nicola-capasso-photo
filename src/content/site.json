@@ -28,5 +28,49 @@
     "title_en": "Page not found",
     "back_it": "Torna alla home",
     "back_en": "Return to home"
+  },
+  "a11y": {
+    "skipToContent_it": "Vai al contenuto",
+    "skipToContent_en": "Skip to content",
+    "openMenu_it": "Apri menu",
+    "openMenu_en": "Open menu",
+    "closeMenu_it": "Chiudi menu",
+    "closeMenu_en": "Close menu",
+    "switchLanguage_it": "Cambia lingua",
+    "switchLanguage_en": "Switch language",
+    "lightboxClose_it": "Chiudi",
+    "lightboxClose_en": "Close",
+    "lightboxPrev_it": "Immagine precedente",
+    "lightboxPrev_en": "Previous image",
+    "lightboxNext_it": "Immagine successiva",
+    "lightboxNext_en": "Next image",
+    "lightboxLabel_it": "Galleria immagini",
+    "lightboxLabel_en": "Image gallery",
+    "lightboxHint_it": "← → per navigare  ·  Esc per chiudere",
+    "lightboxHint_en": "← → to navigate  ·  Esc to close"
+  },
+  "story": {
+    "kicker_it": "Una storia",
+    "kicker_en": "A story",
+    "sectionStory_it": "Il racconto",
+    "sectionStory_en": "The story",
+    "sectionGallery_it": "Galleria",
+    "sectionGallery_en": "Gallery",
+    "sectionFilm_it": "Il film",
+    "sectionFilm_en": "The film",
+    "allStories_it": "Tutte le storie",
+    "allStories_en": "All stories",
+    "previous_it": "Precedente",
+    "previous_en": "Previous",
+    "next_it": "Successiva",
+    "next_en": "Next",
+    "openStory_it": "Apri storia",
+    "openStory_en": "Open story",
+    "playFilm_it": "Riproduci film",
+    "playFilm_en": "Play film"
+  },
+  "marquee": {
+    "label_it": "Destinazioni",
+    "label_en": "Destinations"
   }
 }

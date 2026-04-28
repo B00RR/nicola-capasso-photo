@@ -9,7 +9,9 @@
     "cta_it": "Scopri il portfolio",
     "cta_en": "Explore the portfolio",
     "scroll_it": "Scorri",
-    "scroll_en": "Scroll"
+    "scroll_en": "Scroll",
+    "imageAlt_it": "Sposi all'ora dorata, abbraccio cinematografico durante un matrimonio",
+    "imageAlt_en": "Bride and groom at golden hour, cinematic embrace during a wedding"
   },
   "about": {
     "kicker_it": "Chi sono",
@@ -28,7 +30,9 @@
       { "n": "120+", "l_it": "Matrimoni raccontati", "l_en": "Weddings told" },
       { "n": "18", "l_it": "Paesi visitati", "l_en": "Countries visited" },
       { "n": "7", "l_it": "Anni di esperienza", "l_en": "Years of practice" }
-    ]
+    ],
+    "imageAlt_it": "Ritratto di Nicola, fotografo di matrimoni",
+    "imageAlt_en": "Portrait of Nicola, wedding photographer"
   },
   "services": {
     "kicker_it": "Servizi",

@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/i18n/LanguageContext";
+import { useLang } from "@/i18n/useLang";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -31,16 +32,19 @@ const Fallback = () => (
   </div>
 );
 
-const Layout = ({ children }: { children: React.ReactNode }) => (
-  <>
-    <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-background focus:text-foreground focus:border focus:border-border focus:rounded text-sm font-sans-tight uppercase tracking-wider">
-      Skip to content
-    </a>
-    <Header />
-    <div id="main-content">{children}</div>
-    <Footer />
-  </>
-);
+const Layout = ({ children }: { children: React.ReactNode }) => {
+  const { t } = useLang();
+  return (
+    <>
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-background focus:text-foreground focus:border focus:border-border focus:rounded text-sm font-sans-tight uppercase tracking-wider">
+        {t.a11y.skipToContent}
+      </a>
+      <Header />
+      <div id="main-content">{children}</div>
+      <Footer />
+    </>
+  );
+};
 
 const App = () => (
   <LanguageProvider>

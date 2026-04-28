@@ -19,6 +19,7 @@ const buildLang = (lang: "it" | "en") => {
       subtitle: homeData.hero[`subtitle${s}` as keyof typeof homeData.hero] as string,
       cta: homeData.hero[`cta${s}` as keyof typeof homeData.hero] as string,
       scroll: homeData.hero[`scroll${s}` as keyof typeof homeData.hero] as string,
+      imageAlt: homeData.hero[`imageAlt${s}` as keyof typeof homeData.hero] as string,
     },
     about: {
       kicker: homeData.about[`kicker${s}` as keyof typeof homeData.about] as string,
@@ -28,6 +29,7 @@ const buildLang = (lang: "it" | "en") => {
         n: st.n,
         l: st[`l${s}` as keyof typeof st] as string,
       })),
+      imageAlt: homeData.about[`imageAlt${s}` as keyof typeof homeData.about] as string,
     },
     services: {
       kicker: homeData.services[`kicker${s}` as keyof typeof homeData.services] as string,
@@ -56,6 +58,10 @@ const buildLang = (lang: "it" | "en") => {
         send: contactData.form[`send${s}` as keyof typeof contactData.form] as string,
         sent: contactData.form[`sent${s}` as keyof typeof contactData.form] as string,
         error: contactData.form[`error${s}` as keyof typeof contactData.form] as string,
+        dateHint: contactData.form[`dateHint${s}` as keyof typeof contactData.form] as string,
+        gdprBefore: contactData.form[`gdprBefore${s}` as keyof typeof contactData.form] as string,
+        gdprLink: contactData.form[`gdprLink${s}` as keyof typeof contactData.form] as string,
+        gdprAfter: contactData.form[`gdprAfter${s}` as keyof typeof contactData.form] as string,
       },
       direct: contactData[`direct${s}` as keyof typeof contactData] as string,
       whatsapp: contactData[`whatsapp${s}` as keyof typeof contactData] as string,
@@ -71,6 +77,31 @@ const buildLang = (lang: "it" | "en") => {
     notFound: {
       title: siteData.notFound[`title${s}` as keyof typeof siteData.notFound] as string,
       back: siteData.notFound[`back${s}` as keyof typeof siteData.notFound] as string,
+    },
+    a11y: {
+      skipToContent: siteData.a11y[`skipToContent${s}` as keyof typeof siteData.a11y] as string,
+      openMenu: siteData.a11y[`openMenu${s}` as keyof typeof siteData.a11y] as string,
+      closeMenu: siteData.a11y[`closeMenu${s}` as keyof typeof siteData.a11y] as string,
+      switchLanguage: siteData.a11y[`switchLanguage${s}` as keyof typeof siteData.a11y] as string,
+      lightboxClose: siteData.a11y[`lightboxClose${s}` as keyof typeof siteData.a11y] as string,
+      lightboxPrev: siteData.a11y[`lightboxPrev${s}` as keyof typeof siteData.a11y] as string,
+      lightboxNext: siteData.a11y[`lightboxNext${s}` as keyof typeof siteData.a11y] as string,
+      lightboxLabel: siteData.a11y[`lightboxLabel${s}` as keyof typeof siteData.a11y] as string,
+      lightboxHint: siteData.a11y[`lightboxHint${s}` as keyof typeof siteData.a11y] as string,
+    },
+    story: {
+      kicker: siteData.story[`kicker${s}` as keyof typeof siteData.story] as string,
+      sectionStory: siteData.story[`sectionStory${s}` as keyof typeof siteData.story] as string,
+      sectionGallery: siteData.story[`sectionGallery${s}` as keyof typeof siteData.story] as string,
+      sectionFilm: siteData.story[`sectionFilm${s}` as keyof typeof siteData.story] as string,
+      allStories: siteData.story[`allStories${s}` as keyof typeof siteData.story] as string,
+      previous: siteData.story[`previous${s}` as keyof typeof siteData.story] as string,
+      next: siteData.story[`next${s}` as keyof typeof siteData.story] as string,
+      openStory: siteData.story[`openStory${s}` as keyof typeof siteData.story] as string,
+      playFilm: siteData.story[`playFilm${s}` as keyof typeof siteData.story] as string,
+    },
+    marquee: {
+      label: siteData.marquee[`label${s}` as keyof typeof siteData.marquee] as string,
     },
     legal: {
       kicker: legalData.nav[`legal${s}` as keyof typeof legalData.nav] as string,

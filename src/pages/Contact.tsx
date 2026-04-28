@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { useLang } from "@/i18n/useLang";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { CONTACTS } from "@/data/portfolio";
@@ -18,9 +19,39 @@ const Contact = () => {
   const formRef = useReveal<HTMLDivElement>();
   const directRef = useReveal<HTMLDivElement>();
 
+  // Time-trap: timestamp of mount; submit before 2s is treated as bot.
+  const mountedAtRef = useRef<number>(0);
+  // Track active retry timer + abort controller so we can cancel on unmount.
+  const retryTimerRef = useRef<number | null>(null);
+  const abortRef = useRef<AbortController | null>(null);
+  const isMountedRef = useRef(true);
+
+  useEffect(() => {
+    mountedAtRef.current = Date.now();
+    return () => {
+      isMountedRef.current = false;
+      if (retryTimerRef.current !== null) {
+        window.clearTimeout(retryTimerRef.current);
+        retryTimerRef.current = null;
+      }
+      abortRef.current?.abort();
+    };
+  }, []);
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (sending || sent) return;
+
+    // Honeypot already in the form. Time-trap: if submitted < 2s after mount,
+    // silently accept then drop. Real users take > 2s to fill anything.
+    const elapsed = Date.now() - mountedAtRef.current;
+    if (elapsed < 2000) {
+      // Mimic success to avoid signaling the trap to bots.
+      setSent(true);
+      setTimeout(() => isMountedRef.current && setSent(false), 4000);
+      return;
+    }
+
     const endpoint = (import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined) || (typeof process !== "undefined" && process.env.VITE_CONTACT_ENDPOINT);
     if (!endpoint) {
       toast.error(lang === "it" ? "Endpoint di contatto non configurato." : "Contact endpoint not configured.");
@@ -31,40 +62,56 @@ const Contact = () => {
     const payload = JSON.stringify(Object.fromEntries(data));
 
     const send = async () => {
+      abortRef.current?.abort();
+      const ctrl = new AbortController();
+      abortRef.current = ctrl;
       const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: payload,
+        signal: ctrl.signal,
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return res;
     };
 
-    setSending(true);
-    try {
-      await send();
+    const finalizeSuccess = () => {
+      if (!isMountedRef.current) return;
       setSending(false);
       setSent(true);
       toast.success(t.contact.form.sent);
       form.reset();
-      setTimeout(() => setSent(false), 4000);
+      setTimeout(() => isMountedRef.current && setSent(false), 4000);
+    };
+
+    setSending(true);
+    try {
+      await send();
+      finalizeSuccess();
     } catch (err) {
+      // If the fetch was aborted during unmount, bail silently.
+      if (err instanceof DOMException && err.name === "AbortError") return;
+
       const msg = err instanceof Error && err.message.startsWith("HTTP")
         ? (lang === "it" ? "Errore del server. Riprova tra poco." : "Server error. Please try again shortly.")
         : (lang === "it" ? "Connessione assente. Verifica la rete e riprova." : "No connection. Check your network and retry.");
       toast.error(msg);
-      // single retry after 3s — sending rimane true per bloccare ulteriori invii
-      setTimeout(() => {
-        send().then(() => {
-          setSending(false);
-          setSent(true);
-          toast.success(t.contact.form.sent);
-          form.reset();
-          setTimeout(() => setSent(false), 4000);
-        }).catch(() => {
-          setSending(false);
-          toast.error(lang === "it" ? "Invio fallito. Contattami direttamente via email." : "Sending failed. Please contact me directly via email.");
-        });
+
+      // Single retry, scheduled via tracked timer so we can cancel on unmount.
+      // `sending` stays true so the submit button stays disabled and the
+      // user cannot kick off a parallel request.
+      if (retryTimerRef.current !== null) window.clearTimeout(retryTimerRef.current);
+      retryTimerRef.current = window.setTimeout(() => {
+        retryTimerRef.current = null;
+        if (!isMountedRef.current) return;
+        send()
+          .then(finalizeSuccess)
+          .catch((retryErr) => {
+            if (retryErr instanceof DOMException && retryErr.name === "AbortError") return;
+            if (!isMountedRef.current) return;
+            setSending(false);
+            toast.error(lang === "it" ? "Invio fallito. Contattami direttamente via email." : "Sending failed. Please contact me directly via email.");
+          });
       }, 3000);
     }
   };
@@ -153,7 +200,7 @@ const MessageForm = ({
         <Field name="email" label={t.contact.form.email} invalidMsg={lang === "it" ? "Inserisci una email valida" : "Please enter a valid email"} type="email" required />
       </div>
       <div className="grid md:grid-cols-2 gap-8">
-        <Field name="date" label={t.contact.form.date} type="date" lang={lang} />
+        <Field name="date" label={t.contact.form.date} type="date" lang={lang} hint={t.contact.form.dateHint} />
         <Field name="location" label={t.contact.form.location} />
       </div>
       <div>
@@ -185,14 +232,24 @@ const MessageForm = ({
         {sent ? t.contact.form.sent : sending ? (lang === "it" ? "Invio\u2026" : "Sending\u2026") : t.contact.form.send}
         <span aria-hidden>→</span>
       </button>
+      <p className="mt-4 font-sans-tight text-[10px] uppercase tracking-[0.18em] text-muted-foreground/80">
+        {t.contact.form.gdprBefore}
+        <Link to="/privacy" className="underline-grow text-foreground/80 hover:text-foreground">
+          {t.contact.form.gdprLink}
+        </Link>
+        {t.contact.form.gdprAfter}
+      </p>
     </form>
   );
 };
 
-const Field = ({ name, label, type = "text", required = false, invalidMsg, lang }: {
-  name: string; label: string; type?: string; required?: boolean; invalidMsg?: string; lang?: string;
+const Field = ({ name, label, type = "text", required = false, invalidMsg, lang, hint }: {
+  name: string; label: string; type?: string; required?: boolean; invalidMsg?: string; lang?: string; hint?: string;
 }) => {
   const [invalid, setInvalid] = useState(false);
+  const hintId = hint ? `${name}-hint` : undefined;
+  const errorId = invalid ? `${name}-error` : undefined;
+  const describedBy = [errorId, hintId].filter(Boolean).join(" ") || undefined;
   return (
     <div>
       <label htmlFor={name} className="block font-sans-tight text-[10px] uppercase text-muted-foreground mb-3">
@@ -204,14 +261,19 @@ const Field = ({ name, label, type = "text", required = false, invalidMsg, lang 
         name={name}
         required={required}
         aria-invalid={invalid}
-        aria-describedby={invalid ? `${name}-error` : undefined}
+        aria-describedby={describedBy}
         onInvalid={(e) => { e.preventDefault(); setInvalid(true); }}
         onInput={() => setInvalid(false)}
         {...(lang ? { lang } : {})}
         className={`w-full bg-secondary/40 md:bg-transparent border-b outline-none transition-[background-color,border-color] py-3 px-3 md:px-2 font-display text-lg md:text-xl ${invalid ? "border-red-500 focus:border-red-600" : "border-border hover:border-foreground/60 focus:border-foreground focus:bg-secondary/60"}`}
       />
+      {hint && !invalid && (
+        <p id={hintId} className="text-muted-foreground/70 text-xs mt-2 font-sans-tight">
+          {hint}
+        </p>
+      )}
       {invalid && (
-        <p id={`${name}-error`} className="text-red-500 text-xs mt-2 font-sans-tight">
+        <p id={errorId} className="text-red-500 text-xs mt-2 font-sans-tight">
           {invalidMsg || (required ? (label + " is required") : "")}
         </p>
       )}

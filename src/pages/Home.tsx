@@ -4,15 +4,15 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useLang } from "@/i18n/useLang";
 import { useReveal } from "@/hooks/useReveal";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { portfolio } from "@/data/portfolio";
 import { SITE_URL } from "@/config/site";
+import { PictureImg } from "@/components/PictureImg";
 import homeData from "@/content/home.json";
 import siteData from "@/content/site.json";
 
 const heroImg = `${import.meta.env.BASE_URL}images/photo-22.jpg`;
-const heroImgWebP = `${import.meta.env.BASE_URL}images/photo-22.webp`;
 const aboutImg = `${import.meta.env.BASE_URL}images/photo-37.jpg`;
-const aboutImgWebP = `${import.meta.env.BASE_URL}images/photo-37.webp`;
 
 const Home = () => {
   const { t, lang } = useLang();
@@ -22,7 +22,7 @@ const Home = () => {
     : "Nicola, freelance wedding photographer based in Italy, available worldwide. Cinematic, honest, tailor-made reportage.";
   usePageMeta({ title, description, path: "/" });
 
-  const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const prefersReducedMotion = usePrefersReducedMotion();
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 800], [0, 160]);
@@ -61,18 +61,16 @@ const Home = () => {
           style={{ y: heroY, scale: heroScale }}
           className="absolute inset-0"
         >
-          <picture>
-            <source srcSet={heroImgWebP} type="image/webp" />
-            <img
-              src={heroImg}
-              alt="Cinematic wedding moment at golden hour"
-              loading="eager"
-              fetchPriority="high"
-              width={1920}
-              height={1280}
-              className="h-full w-full object-cover"
-            />
-          </picture>
+          <PictureImg
+            src={heroImg}
+            alt={t.hero.imageAlt}
+            loading="eager"
+            fetchPriority="high"
+            width={1920}
+            height={1280}
+            sizes="100vw"
+            className="h-full w-full object-cover"
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/75" />
           <div className="absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
           <div aria-hidden="true" className="grain-overlay" />
@@ -139,7 +137,7 @@ const Home = () => {
           className="hidden md:flex absolute left-6 md:left-10 top-1/2 -translate-y-1/2 z-10 items-center gap-2 font-sans-tight text-[10px] uppercase tracking-[0.3em] text-muted-foreground bg-background/80 backdrop-blur-sm pr-4"
         >
           <span className="h-px w-6 bg-accent" />
-          {lang === "it" ? "Destinazioni" : "Destinations"}
+          {t.marquee.label}
         </span>
         <div aria-hidden="true" className="flex marquee-track whitespace-nowrap">
           {[...marquee, ...marquee].map((m, i) => (
@@ -155,19 +153,15 @@ const Home = () => {
       <section className="px-6 md:px-10 py-16 md:py-32 max-w-6xl mx-auto">
         <div className="grid gap-8 md:grid-cols-[minmax(320px,420px)_minmax(0,1fr)] lg:gap-16 items-start">
           <div ref={aboutImgRef} className="order-2 md:order-1 overflow-hidden bg-secondary">
-            <picture>
-              <source srcSet={aboutImgWebP} type="image/webp" />
-              <img
-                src={aboutImg}
-                alt="Portrait of Nicola"
-                loading="lazy"
-                width={800}
-                height={1000}
-                className="w-full aspect-[4/5] object-cover opacity-0 transition-opacity duration-700"
-                onLoad={(e) => e.currentTarget.classList.replace("opacity-0", "opacity-100")}
-                ref={(img) => { if (img?.complete) img.classList.replace("opacity-0", "opacity-100"); }}
-              />
-            </picture>
+            <PictureImg
+              src={aboutImg}
+              alt={t.about.imageAlt}
+              width={800}
+              height={1000}
+              fadeIn
+              sizes="(max-width: 768px) 100vw, 420px"
+              className="w-full aspect-[4/5] object-cover"
+            />
           </div>
           <div ref={aboutRef} className="order-1 md:order-2 md:pt-4 max-w-2xl reveal">
             <div className="mb-6 flex items-center gap-4">
@@ -267,19 +261,15 @@ const Home = () => {
                 className={`overflow-hidden block col-span-1 ${layout.span}`}
               >
                 <div className={`overflow-hidden aspect-[3/4] bg-secondary ${layout.aspect}`}>
-                  <picture>
-                    <source srcSet={s.image.replace(/\.(jpg|jpeg|png)$/i, ".webp")} type="image/webp" />
-                    <img
-                      src={s.image}
-                      alt={s.title}
-                      loading="lazy"
-                      width={i === 0 || i === 3 ? 1200 : 600}
-                      height={i === 0 || i === 3 ? 900 : 800}
-                      className="h-full w-full object-cover hover-lift opacity-0 transition-opacity duration-700"
-                      onLoad={(e) => e.currentTarget.classList.replace("opacity-0", "opacity-100")}
-                      ref={(img) => { if (img?.complete) img.classList.replace("opacity-0", "opacity-100"); }}
-                    />
-                  </picture>
+                  <PictureImg
+                    src={s.image}
+                    alt={s.title}
+                    width={i === 0 || i === 3 ? 1200 : 600}
+                    height={i === 0 || i === 3 ? 900 : 800}
+                    fadeIn
+                    sizes={i === 0 || i === 3 ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 50vw, 33vw"}
+                    className="h-full w-full object-cover hover-lift"
+                  />
                 </div>
                 <div className="mt-3 flex items-center justify-between gap-3">
                   <p className="font-display italic text-base md:text-lg">{s.title}</p>

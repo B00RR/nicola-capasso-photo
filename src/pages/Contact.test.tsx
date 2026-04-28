@@ -37,7 +37,11 @@ describe("Contact", () => {
   });
 
   it("submits via fetch as JSON", async () => {
+    // Advance Date.now past the 2s antibot time-trap.
+    const nowSpy = vi.spyOn(Date, "now");
+    nowSpy.mockReturnValue(0);
     render(<Contact />, { wrapper: Wrapper });
+    nowSpy.mockReturnValue(3000);
 
     fireEvent.change(screen.getByLabelText(/nome/i), { target: { value: "Mario" } });
     fireEvent.change(screen.getByLabelText(/email/i), { target: { value: "mario@test.com" } });
@@ -48,6 +52,7 @@ describe("Contact", () => {
     await waitFor(() => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
     });
+    nowSpy.mockRestore();
 
     const [url, options] = mockFetch.mock.calls[0] as unknown as [string, RequestInit];
     expect(url).toBe("http://test.com/contact");
