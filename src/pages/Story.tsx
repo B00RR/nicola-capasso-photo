@@ -12,7 +12,7 @@ import { SITE_URL } from "@/config/site";
 
 const Story = () => {
   const { id } = useParams<{ id: string }>();
-  const { lang } = useLang();
+  const { t, lang } = useLang();
   const prefersReducedMotion = usePrefersReducedMotion();
 
   const found = useMemo(() => (id ? findShoot(id) : null), [id]);
