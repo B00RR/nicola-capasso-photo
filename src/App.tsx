@@ -65,7 +65,7 @@ const App = () => (
               <Route path="/privacy" element={<Layout><Privacy /></Layout>} />
               <Route path="/cookies" element={<Layout><Cookies /></Layout>} />
               <Route path="/terms" element={<Layout><Terms /></Layout>} />
-              <Route path="*" element={<NotFound />} />
+              <Route path="*" element={<Layout><NotFound /></Layout>} />
             </Routes>
           </ErrorBoundary>
         </Suspense>
