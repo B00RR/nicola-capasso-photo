@@ -44,6 +44,32 @@ const buildLang = (lang: "it" | "en") => {
       intro: homeData.portfolio[`intro${s}` as keyof typeof homeData.portfolio] as string,
       viewAll: homeData.portfolio[`viewAll${s}` as keyof typeof homeData.portfolio] as string,
     },
+    faq: {
+      kicker: homeData.faq[`kicker${s}` as keyof typeof homeData.faq] as string,
+      title: homeData.faq[`title${s}` as keyof typeof homeData.faq] as string,
+      items: homeData.faq.items.map((it) => ({
+        q: it[`q${s}` as keyof typeof it] as string,
+        a: it[`a${s}` as keyof typeof it] as string,
+      })),
+    },
+    testimonials: {
+      kicker: homeData.testimonials[`kicker${s}` as keyof typeof homeData.testimonials] as string,
+      title: homeData.testimonials[`title${s}` as keyof typeof homeData.testimonials] as string,
+      items: (homeData.testimonials.items as Array<{
+        quote_it: string; quote_en: string; author: string; location?: string;
+      }>).map((it) => ({
+        quote: it[`quote${s}` as keyof typeof it] as string,
+        author: it.author,
+        location: it.location,
+      })),
+    },
+    showreel: {
+      kicker: homeData.showreel[`kicker${s}` as keyof typeof homeData.showreel] as string,
+      title: homeData.showreel[`title${s}` as keyof typeof homeData.showreel] as string,
+      provider: homeData.showreel.provider,
+      videoId: homeData.showreel.videoId,
+      poster: homeData.showreel.poster,
+    },
     contact: {
       kicker: contactData[`kicker${s}` as keyof typeof contactData] as string,
       title: contactData[`title${s}` as keyof typeof contactData] as string,

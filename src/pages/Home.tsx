@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useLang } from "@/i18n/useLang";
@@ -287,7 +287,148 @@ const Home = () => {
           {t.portfolio.viewAll} →
         </Link>
       </section>
+
+      {/* TESTIMONIALS — only renders when at least one item is present in home.json */}
+      {t.testimonials.items.length > 0 && (
+        <section className="bg-secondary/40 border-y border-border/60">
+          <div className="px-6 md:px-10 py-24 md:py-32 max-w-[1500px] mx-auto">
+            <div className="mb-10 flex items-center gap-4">
+              <span className="font-display italic text-accent text-3xl md:text-4xl leading-none">04</span>
+              <span className="h-px flex-1 max-w-[4rem] bg-border" />
+              <p className="font-sans-tight text-[11px] uppercase text-muted-foreground">{t.testimonials.kicker}</p>
+            </div>
+            <h2 className="font-display text-4xl md:text-6xl leading-tight whitespace-pre-line max-w-3xl mb-12">
+              {t.testimonials.title}
+            </h2>
+            <div className="grid md:grid-cols-3 gap-12 md:gap-16">
+              {t.testimonials.items.map((it, i) => (
+                <figure key={i} className="flex flex-col">
+                  <blockquote className="font-display italic text-xl md:text-2xl leading-snug text-foreground/90 border-l-2 border-accent pl-6">
+                    {it.quote}
+                  </blockquote>
+                  <figcaption className="mt-6 pl-6 font-sans-tight text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                    — {it.author}
+                    {it.location && <span className="ml-2 opacity-70">· {it.location}</span>}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* SHOWREEL — only renders when configured in home.json (provider + videoId) */}
+      {t.showreel.provider && t.showreel.videoId && (
+        <ShowreelSection
+          provider={t.showreel.provider as "vimeo" | "youtube"}
+          videoId={t.showreel.videoId}
+          poster={t.showreel.poster}
+          kicker={t.showreel.kicker}
+          title={t.showreel.title}
+        />
+      )}
+
+      {/* FAQ */}
+      <section className="border-t border-border/60">
+        <div className="px-6 md:px-10 py-24 md:py-32 max-w-[1100px] mx-auto">
+          <div className="mb-10 flex items-center gap-4">
+            <span className="font-display italic text-accent text-3xl md:text-4xl leading-none">
+              {t.testimonials.items.length > 0 ? "05" : "04"}
+            </span>
+            <span className="h-px flex-1 max-w-[4rem] bg-border" />
+            <p className="font-sans-tight text-[11px] uppercase text-muted-foreground">{t.faq.kicker}</p>
+          </div>
+          <h2 className="font-display text-4xl md:text-6xl leading-tight whitespace-pre-line max-w-3xl mb-12">
+            {t.faq.title}
+          </h2>
+          <ul className="divide-y divide-border/60 border-y border-border/60">
+            {t.faq.items.map((it, i) => (
+              <li key={i}>
+                <details className="group py-6 md:py-8 [&_summary::-webkit-details-marker]:hidden">
+                  <summary className="flex items-baseline gap-6 cursor-pointer list-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 focus-visible:rounded-sm">
+                    <span className="font-sans-tight text-[10px] uppercase text-muted-foreground/70 tabular-nums shrink-0 w-8">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="flex-1 font-display text-xl md:text-2xl leading-snug">
+                      {it.q}
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="font-display text-xl md:text-2xl leading-none text-muted-foreground/70 group-open:rotate-45 transition-transform duration-300"
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <p className="mt-4 ml-14 max-w-2xl text-muted-foreground leading-relaxed">
+                    {it.a}
+                  </p>
+                </details>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
     </main>
+  );
+};
+
+interface ShowreelSectionProps {
+  provider: "vimeo" | "youtube";
+  videoId: string;
+  poster: string;
+  kicker: string;
+  title: string;
+}
+
+const ShowreelSection = ({ provider, videoId, poster, kicker, title }: ShowreelSectionProps) => {
+  const [playing, setPlaying] = useState(false);
+  const iframeSrc =
+    provider === "vimeo"
+      ? `https://player.vimeo.com/video/${videoId}?autoplay=1&title=0&byline=0&portrait=0`
+      : `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+
+  return (
+    <section className="px-6 md:px-10 py-20 md:py-28 max-w-[1500px] mx-auto">
+      <div className="mb-8 flex items-center gap-4">
+        <span className="font-display italic text-accent text-3xl md:text-4xl leading-none">04</span>
+        <span className="h-px flex-1 max-w-[4rem] bg-border" />
+        <p className="font-sans-tight text-[11px] uppercase text-muted-foreground">{kicker}</p>
+      </div>
+      <h2 className="font-display text-4xl md:text-6xl leading-tight max-w-3xl mb-10">{title}</h2>
+      <div className="relative aspect-video bg-foreground overflow-hidden">
+        {playing ? (
+          <iframe
+            src={iframeSrc}
+            title={title}
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            className="absolute inset-0 h-full w-full"
+          />
+        ) : (
+          <button
+            type="button"
+            onClick={() => setPlaying(true)}
+            className="absolute inset-0 flex items-center justify-center group"
+            aria-label={title}
+          >
+            {poster && (
+              <img
+                src={poster}
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+              />
+            )}
+            <span aria-hidden="true" className="absolute inset-0 bg-foreground/20" />
+            <span className="relative flex items-center justify-center h-20 w-20 md:h-24 md:w-24 rounded-full bg-background/85 backdrop-blur-sm transition-transform duration-500 ease-editorial group-hover:scale-105">
+              <span
+                aria-hidden="true"
+                className="block h-0 w-0 ml-1 border-y-[10px] border-y-transparent border-l-[16px] border-l-foreground"
+              />
+            </span>
+          </button>
+        )}
+      </div>
+    </section>
   );
 };
 

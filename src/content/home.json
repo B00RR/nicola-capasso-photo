@@ -34,6 +34,66 @@
     "imageAlt_it": "Ritratto di Nicola, fotografo di matrimoni",
     "imageAlt_en": "Portrait of Nicola, wedding photographer"
   },
+  "faq": {
+    "kicker_it": "Domande frequenti",
+    "kicker_en": "Frequently asked",
+    "title_it": "Quello\nche mi chiedete più spesso.",
+    "title_en": "What you\nask me most often.",
+    "items": [
+      {
+        "q_it": "Quanto tempo prima vi conviene contattarmi?",
+        "q_en": "How far in advance should you reach out?",
+        "a_it": "Idealmente 8–12 mesi prima del matrimonio. Per le destination wedding e i mesi di alta stagione (giugno–settembre) anche di più. Se siete a meno di 4 mesi scrivetemi comunque: a volte ho slot liberi.",
+        "a_en": "Ideally 8–12 months before the wedding. For destinations and peak season (June–September) even earlier. If you're under 4 months out, write anyway — sometimes I have last-minute openings."
+      },
+      {
+        "q_it": "Quante foto consegnate?",
+        "q_en": "How many photos do you deliver?",
+        "a_it": "Tra 400 e 800 immagini editate per una giornata completa. Niente “tutto lo scarto”: solo gli scatti che racconteranno davvero la giornata, in alta risoluzione e in formato web pronto da condividere.",
+        "a_en": "Between 400 and 800 edited images for a full day. Not “every frame”: only the shots that actually tell the story, in full resolution and a web-ready format."
+      },
+      {
+        "q_it": "Quanto tempo aspetto per ricevere le foto?",
+        "q_en": "How long until I receive the photos?",
+        "a_it": "Una preview di 30–50 immagini entro 7 giorni. La galleria completa entro 6–8 settimane, in una pagina privata che potete condividere con famiglia e amici.",
+        "a_en": "A 30–50 image preview within 7 days. The full gallery within 6–8 weeks, on a private page you can share with family and friends."
+      },
+      {
+        "q_it": "Lavorate solo in Italia?",
+        "q_en": "Do you only work in Italy?",
+        "a_it": "Italia ed Europa senza supplementi di trasferta significativi. Per destinazioni più lontane si fa un preventivo dedicato che include voli e alloggio.",
+        "a_en": "Italy and Europe without significant travel surcharges. For longer-haul destinations I quote travel and accommodation separately."
+      },
+      {
+        "q_it": "Come si prenota la data?",
+        "q_en": "How do I book the date?",
+        "a_it": "Dopo una prima chiamata o videocall conoscitiva, la data si blocca con una lettera d'incarico firmata e un acconto. Fino a quel momento la data resta libera per chiunque chieda.",
+        "a_en": "After a first call or video call, we lock the date with a signed agreement and a deposit. Until then the date stays open to any request."
+      },
+      {
+        "q_it": "Si può fare anche solo una mezza giornata o un servizio coppia?",
+        "q_en": "Can you also shoot half-days or just a couple session?",
+        "a_it": "Sì. Pacchetti più brevi per cerimonia + ricevimento o per pre-wedding/anniversary. Scrivetemi cosa avete in mente e vi propongo l'opzione più adatta.",
+        "a_en": "Yes. Shorter packages for ceremony + reception or for pre-wedding / anniversary sessions. Tell me what you have in mind and I'll suggest the best fit."
+      }
+    ]
+  },
+  "testimonials": {
+    "kicker_it": "Le coppie",
+    "kicker_en": "The couples",
+    "title_it": "Quello che resta\nquando le foto sono già a casa.",
+    "title_en": "What lingers\nonce the photos are home.",
+    "items": []
+  },
+  "showreel": {
+    "kicker_it": "Reel",
+    "kicker_en": "Showreel",
+    "title_it": "Un anno in tre minuti.",
+    "title_en": "A year in three minutes.",
+    "provider": "",
+    "videoId": "",
+    "poster": ""
+  },
   "services": {
     "kicker_it": "Servizi",
     "kicker_en": "Services",
