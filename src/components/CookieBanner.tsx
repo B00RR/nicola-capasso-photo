@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLang } from "@/i18n/useLang";
+import { safeGet, safeSet } from "@/lib/safeStorage";
 
 const STORAGE_KEY = "nicola-cookie-consent";
 
@@ -12,7 +13,7 @@ const CookieBanner = () => {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (!localStorage.getItem(STORAGE_KEY)) {
+    if (!safeGet(STORAGE_KEY)) {
       const id = window.setTimeout(() => setVisible(true), 800);
       return () => window.clearTimeout(id);
     }
@@ -34,7 +35,7 @@ const CookieBanner = () => {
   }, [visible]);
 
   const dismiss = () => {
-    localStorage.setItem(STORAGE_KEY, "1");
+    safeSet(STORAGE_KEY, "1");
     setVisible(false);
   };
 
