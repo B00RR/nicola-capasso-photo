@@ -80,6 +80,7 @@ const Story = () => {
             alt={`${shoot.title} — ${shoot.location}`}
             loading="eager"
             fetchPriority="high"
+            sizes="100vw"
             className="h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/15 to-black/80" />
@@ -177,6 +178,7 @@ const Story = () => {
                       alt={`${shoot.title} — ${i + 1}`}
                       loading={i < 2 ? "eager" : "lazy"}
                       fadeIn
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       className="h-full w-full object-cover hover-lift"
                     />
                     <div
@@ -286,6 +288,7 @@ const NavCard = ({ shoot, direction, label }: NavCardProps) => {
         <PictureImg
           src={shoot.image}
           alt=""
+          responsive={false}
           className="h-full w-full object-cover transition-transform duration-700 ease-editorial group-hover:scale-105"
         />
       </div>

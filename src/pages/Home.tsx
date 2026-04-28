@@ -68,6 +68,7 @@ const Home = () => {
             fetchPriority="high"
             width={1920}
             height={1280}
+            sizes="100vw"
             className="h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/75" />
@@ -158,6 +159,7 @@ const Home = () => {
               width={800}
               height={1000}
               fadeIn
+              sizes="(max-width: 768px) 100vw, 420px"
               className="w-full aspect-[4/5] object-cover"
             />
           </div>
@@ -265,6 +267,7 @@ const Home = () => {
                     width={i === 0 || i === 3 ? 1200 : 600}
                     height={i === 0 || i === 3 ? 900 : 800}
                     fadeIn
+                    sizes={i === 0 || i === 3 ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 50vw, 33vw"}
                     className="h-full w-full object-cover hover-lift"
                   />
                 </div>

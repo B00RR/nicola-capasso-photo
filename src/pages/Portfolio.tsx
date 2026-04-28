@@ -228,6 +228,7 @@ const YearSection = ({ yearData, lang, prefersReducedMotion, registerRef }: Year
                       width={s.span === "tall" ? 600 : s.span === "wide" ? 1400 : 600}
                       height={s.span === "tall" ? 800 : s.span === "wide" ? 788 : 750}
                       fadeIn
+                      sizes={s.span === "wide" ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 50vw, 33vw"}
                       className="h-full w-full object-cover hover-lift"
                     />
                     {/* Hover vignette + view label */}
