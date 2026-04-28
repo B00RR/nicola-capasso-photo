@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useLang } from "@/i18n/useLang";
 import { useReveal } from "@/hooks/useReveal";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { portfolio } from "@/data/portfolio";
 import { SITE_URL } from "@/config/site";
 import { PictureImg } from "@/components/PictureImg";
@@ -21,7 +22,7 @@ const Home = () => {
     : "Nicola, freelance wedding photographer based in Italy, available worldwide. Cinematic, honest, tailor-made reportage.";
   usePageMeta({ title, description, path: "/" });
 
-  const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const prefersReducedMotion = usePrefersReducedMotion();
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 800], [0, 160]);

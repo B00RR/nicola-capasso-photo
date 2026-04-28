@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useLang } from "@/i18n/useLang";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { findShoot, type ShootVideo } from "@/data/portfolio";
 import { Lightbox } from "@/components/Lightbox";
 import { PictureImg } from "@/components/PictureImg";
@@ -12,6 +13,7 @@ import { SITE_URL } from "@/config/site";
 const Story = () => {
   const { id } = useParams<{ id: string }>();
   const { lang } = useLang();
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   const found = useMemo(() => (id ? findShoot(id) : null), [id]);
 
@@ -85,9 +87,9 @@ const Story = () => {
 
           <div className="relative z-10 h-full flex flex-col justify-end pb-14 md:pb-24 px-6 md:px-10 max-w-[1500px] mx-auto">
             <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.15 }}
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+              animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={prefersReducedMotion ? { duration: 0 } : { duration: 1, delay: 0.15 }}
               className="font-sans-tight text-[11px] uppercase tracking-[0.22em] text-background/85 mb-5 inline-flex items-center gap-3"
             >
               <span aria-hidden="true" className="h-px w-8 bg-accent" />
@@ -95,18 +97,18 @@ const Story = () => {
             </motion.p>
 
             <motion.h1
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.1, delay: 0.25, ease: [0.2, 0.7, 0.2, 1] }}
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
+              animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={prefersReducedMotion ? { duration: 0 } : { duration: 1.1, delay: 0.25, ease: [0.2, 0.7, 0.2, 1] }}
               className="font-display text-background text-[clamp(2.5rem,10vw,7rem)] md:text-[7vw] leading-[0.95] tracking-tight max-w-5xl"
             >
               {shoot.title}
             </motion.h1>
 
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.7 }}
+              initial={prefersReducedMotion ? false : { opacity: 0 }}
+              animate={prefersReducedMotion ? undefined : { opacity: 1 }}
+              transition={prefersReducedMotion ? { duration: 0 } : { duration: 1, delay: 0.7 }}
               className="mt-6 flex flex-wrap items-baseline gap-x-6 gap-y-2 text-background/85"
             >
               <span className="font-display italic text-xl md:text-2xl">{shoot.location}</span>
@@ -163,10 +165,10 @@ const Story = () => {
                 <motion.figure
                   key={`${img}-${i}`}
                   className={`group cursor-zoom select-none ${layout.span} ${i % 2 === 1 ? "md:mt-10" : ""}`}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
+                  whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.08 }}
-                  transition={{ duration: 0.9, delay: (i % 4) * 0.08, ease: [0.2, 0.7, 0.2, 1] }}
+                  transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.9, delay: (i % 4) * 0.08, ease: [0.2, 0.7, 0.2, 1] }}
                   onClick={() => setLightboxIndex(i)}
                 >
                   <div className={`relative overflow-hidden bg-secondary ${layout.aspect}`}>
