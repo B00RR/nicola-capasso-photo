@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { useLang } from "@/i18n/useLang";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { CONTACTS } from "@/data/portfolio";
@@ -199,7 +200,7 @@ const MessageForm = ({
         <Field name="email" label={t.contact.form.email} invalidMsg={lang === "it" ? "Inserisci una email valida" : "Please enter a valid email"} type="email" required />
       </div>
       <div className="grid md:grid-cols-2 gap-8">
-        <Field name="date" label={t.contact.form.date} type="date" lang={lang} />
+        <Field name="date" label={t.contact.form.date} type="date" lang={lang} hint={t.contact.form.dateHint} />
         <Field name="location" label={t.contact.form.location} />
       </div>
       <div>
@@ -231,14 +232,24 @@ const MessageForm = ({
         {sent ? t.contact.form.sent : sending ? (lang === "it" ? "Invio\u2026" : "Sending\u2026") : t.contact.form.send}
         <span aria-hidden>→</span>
       </button>
+      <p className="mt-4 font-sans-tight text-[10px] uppercase tracking-[0.18em] text-muted-foreground/80">
+        {t.contact.form.gdprBefore}
+        <Link to="/privacy" className="underline-grow text-foreground/80 hover:text-foreground">
+          {t.contact.form.gdprLink}
+        </Link>
+        {t.contact.form.gdprAfter}
+      </p>
     </form>
   );
 };
 
-const Field = ({ name, label, type = "text", required = false, invalidMsg, lang }: {
-  name: string; label: string; type?: string; required?: boolean; invalidMsg?: string; lang?: string;
+const Field = ({ name, label, type = "text", required = false, invalidMsg, lang, hint }: {
+  name: string; label: string; type?: string; required?: boolean; invalidMsg?: string; lang?: string; hint?: string;
 }) => {
   const [invalid, setInvalid] = useState(false);
+  const hintId = hint ? `${name}-hint` : undefined;
+  const errorId = invalid ? `${name}-error` : undefined;
+  const describedBy = [errorId, hintId].filter(Boolean).join(" ") || undefined;
   return (
     <div>
       <label htmlFor={name} className="block font-sans-tight text-[10px] uppercase text-muted-foreground mb-3">
@@ -250,14 +261,19 @@ const Field = ({ name, label, type = "text", required = false, invalidMsg, lang 
         name={name}
         required={required}
         aria-invalid={invalid}
-        aria-describedby={invalid ? `${name}-error` : undefined}
+        aria-describedby={describedBy}
         onInvalid={(e) => { e.preventDefault(); setInvalid(true); }}
         onInput={() => setInvalid(false)}
         {...(lang ? { lang } : {})}
         className={`w-full bg-secondary/40 md:bg-transparent border-b outline-none transition-[background-color,border-color] py-3 px-3 md:px-2 font-display text-lg md:text-xl ${invalid ? "border-red-500 focus:border-red-600" : "border-border hover:border-foreground/60 focus:border-foreground focus:bg-secondary/60"}`}
       />
+      {hint && !invalid && (
+        <p id={hintId} className="text-muted-foreground/70 text-xs mt-2 font-sans-tight">
+          {hint}
+        </p>
+      )}
       {invalid && (
-        <p id={`${name}-error`} className="text-red-500 text-xs mt-2 font-sans-tight">
+        <p id={errorId} className="text-red-500 text-xs mt-2 font-sans-tight">
           {invalidMsg || (required ? (label + " is required") : "")}
         </p>
       )}
