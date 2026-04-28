@@ -5,9 +5,8 @@ import { useLang } from "@/i18n/useLang";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { portfolio } from "@/data/portfolio";
 import { SITE_URL } from "@/config/site";
+import { PictureImg } from "@/components/PictureImg";
 import { cn } from "@/lib/utils";
-
-const toWebP = (src: string) => src.replace(/\.(jpg|jpeg|png)$/i, ".webp");
 
 const Portfolio = () => {
   const { t, lang } = useLang();
@@ -219,19 +218,14 @@ const YearSection = ({ yearData, lang, registerRef }: YearSectionProps) => {
               >
                 <figure>
                   <div className={cn("relative overflow-hidden bg-secondary", aspect)}>
-                    <picture>
-                      <source srcSet={toWebP(s.image)} type="image/webp" />
-                      <img
-                        src={s.image}
-                        alt={`${s.title} \u2014 ${s.location}`}
-                        loading="lazy"
-                        width={s.span === "tall" ? 600 : s.span === "wide" ? 1400 : 600}
-                        height={s.span === "tall" ? 800 : s.span === "wide" ? 788 : 750}
-                        className="h-full w-full object-cover hover-lift opacity-0 transition-opacity duration-700"
-                        onLoad={(e) => e.currentTarget.classList.replace("opacity-0", "opacity-100")}
-                        ref={(img) => { if (img?.complete) img.classList.replace("opacity-0", "opacity-100"); }}
-                      />
-                    </picture>
+                    <PictureImg
+                      src={s.image}
+                      alt={`${s.title} \u2014 ${s.location}`}
+                      width={s.span === "tall" ? 600 : s.span === "wide" ? 1400 : 600}
+                      height={s.span === "tall" ? 800 : s.span === "wide" ? 788 : 750}
+                      fadeIn
+                      className="h-full w-full object-cover hover-lift"
+                    />
                     {/* Hover vignette + view label */}
                     <div
                       aria-hidden="true"

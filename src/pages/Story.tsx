@@ -6,9 +6,8 @@ import { useLang } from "@/i18n/useLang";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { findShoot, type ShootVideo } from "@/data/portfolio";
 import { Lightbox } from "@/components/Lightbox";
+import { PictureImg } from "@/components/PictureImg";
 import { SITE_URL } from "@/config/site";
-
-const toWebP = (src: string) => src.replace(/\.(jpg|jpeg|png)$/i, ".webp");
 
 const Story = () => {
   const { id } = useParams<{ id: string }>();
@@ -74,16 +73,13 @@ const Story = () => {
       <main>
         {/* HERO */}
         <section className="relative h-[80svh] md:h-[92svh] w-full overflow-hidden">
-          <picture>
-            <source srcSet={toWebP(shoot.image)} type="image/webp" />
-            <img
-              src={shoot.image}
-              alt={`${shoot.title} — ${shoot.location}`}
-              loading="eager"
-              fetchPriority="high"
-              className="h-full w-full object-cover"
-            />
-          </picture>
+          <PictureImg
+            src={shoot.image}
+            alt={`${shoot.title} — ${shoot.location}`}
+            loading="eager"
+            fetchPriority="high"
+            className="h-full w-full object-cover"
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/15 to-black/80" />
           <div aria-hidden="true" className="grain-overlay" />
 
@@ -174,20 +170,13 @@ const Story = () => {
                   onClick={() => setLightboxIndex(i)}
                 >
                   <div className={`relative overflow-hidden bg-secondary ${layout.aspect}`}>
-                    <picture>
-                      <source srcSet={toWebP(img)} type="image/webp" />
-                      <img
-                        src={img}
-                        alt={`${shoot.title} — ${i + 1}`}
-                        loading={i < 2 ? "eager" : "lazy"}
-                        decoding="async"
-                        className="h-full w-full object-cover hover-lift opacity-0 transition-opacity duration-700"
-                        onLoad={(e) => e.currentTarget.classList.replace("opacity-0", "opacity-100")}
-                        ref={(el) => {
-                          if (el?.complete) el.classList.replace("opacity-0", "opacity-100");
-                        }}
-                      />
-                    </picture>
+                    <PictureImg
+                      src={img}
+                      alt={`${shoot.title} — ${i + 1}`}
+                      loading={i < 2 ? "eager" : "lazy"}
+                      fadeIn
+                      className="h-full w-full object-cover hover-lift"
+                    />
                     <div
                       aria-hidden="true"
                       className="pointer-events-none absolute inset-0 bg-gradient-to-t from-foreground/35 via-foreground/0 to-foreground/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 motion-reduce:transition-none"
@@ -292,15 +281,11 @@ const NavCard = ({ shoot, direction, label }: NavCardProps) => {
       } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 focus-visible:rounded-sm`}
     >
       <div className="relative h-16 w-20 md:h-20 md:w-28 shrink-0 overflow-hidden bg-secondary">
-        <picture>
-          <source srcSet={toWebP(shoot.image)} type="image/webp" />
-          <img
-            src={shoot.image}
-            alt=""
-            loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-700 ease-editorial group-hover:scale-105"
-          />
-        </picture>
+        <PictureImg
+          src={shoot.image}
+          alt=""
+          className="h-full w-full object-cover transition-transform duration-700 ease-editorial group-hover:scale-105"
+        />
       </div>
       <div className="min-w-0">
         <p className="font-sans-tight text-[10px] uppercase tracking-[0.22em] text-muted-foreground inline-flex items-center gap-2">
