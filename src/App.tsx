@@ -50,7 +50,7 @@ const App = () => (
   <LanguageProvider>
     <TooltipProvider>
       <Sonner />
-      <BrowserRouter basename="/nicola-capasso-photo">
+      <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, "") || "/"}>
         <SplashIntro />
         <ScrollToTop />
         <PageTransition />
