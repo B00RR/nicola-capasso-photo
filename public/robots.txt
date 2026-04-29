@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://nicolacapassophoto.com/sitemap.xml
+Sitemap: https://b00rr.github.io/nicola-capasso-photo/sitemap.xml

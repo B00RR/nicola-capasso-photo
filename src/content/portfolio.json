@@ -2,11 +2,11 @@
   "years": [
     {
       "year": 2025,
-      "caption_it": "Un anno di luce nuova — dalle Dolomiti alla costa amalfitana.",
-      "caption_en": "A year of new light — from the Dolomites to the Amalfi coast.",
+      "caption_it": "Storie di luce — dal lago al mare, dalla collina alla città.",
+      "caption_en": "Stories of light — from lake to sea, from hills to the city.",
       "shoots": [
         {
-          "id": "25-1",
+          "id": "sofia-marco",
           "title": "Sofia & Marco",
           "location": "Lago di Como, IT",
           "image": "/images/photo-01.jpg",
@@ -20,253 +20,147 @@
             "/images/photo-17.jpg",
             "/images/photo-18.jpg",
             "/images/photo-19.jpg",
-            "/images/photo-20.jpg",
-            "/images/photo-21.jpg",
-            "/images/photo-22.jpg",
-            "/images/photo-23.jpg"
+            "/images/photo-20.jpg"
           ]
         },
         {
-          "id": "25-2",
-          "title": "Emma & Liam",
-          "location": "Positano, IT",
-          "image": "/images/photo-02.jpg",
-          "story": {
-            "it": "Positano cala sul mare in terrazze bianche e bouganville, e di pomeriggio la luce dorata accarezza ogni parete a strapiombo. Emma e Liam hanno scelto questo angolo verticale di Costiera per dirsi sì, fra scalini di pietra e una vista che non lascia spazio ad altre parole.",
-            "en": "Positano tumbles down to the sea in whitewashed terraces and bougainvillea, and in the afternoon a golden light brushes every cliff-side wall. Emma and Liam chose this vertical corner of the Amalfi Coast to say their vows, between stone steps and a view that leaves room for nothing else."
-          },
-          "gallery": [
-            "/images/photo-24.jpg",
-            "/images/photo-25.jpg"
-          ]
-        },
-        {
-          "id": "25-3",
-          "title": "Chiara & Paul",
+          "id": "chiara-andrea",
+          "title": "Chiara & Andrea",
           "location": "Val d'Orcia, IT",
           "image": "/images/photo-03.jpg",
           "span": "wide",
+          "date": "Luglio 2025",
           "story": {
-            "it": "Cipressi in fila, colline che si fanno onda, una luce che cambia ogni dieci minuti. La Val d'Orcia è teatro silenzioso del giorno di Chiara e Paul: niente fronzoli, solo il colore della terra al tramonto e una promessa fatta dove l'orizzonte continua all'infinito.",
-            "en": "A line of cypresses, hills folding into waves, a light that shifts every ten minutes. The Val d'Orcia stages Chiara and Paul's day quietly: no frills, only the colour of the earth at sundown and a promise made where the horizon never quite ends."
+            "it": "Cipressi in fila, colline che si fanno onda, una luce che cambia ogni dieci minuti. La Val d'Orcia è teatro silenzioso del giorno di Chiara e Andrea: niente fronzoli, solo il colore della terra al tramonto e una promessa fatta dove l'orizzonte continua all'infinito.",
+            "en": "A line of cypresses, hills folding into waves, a light that shifts every ten minutes. The Val d'Orcia stages Chiara and Andrea's day quietly: no frills, only the colour of the earth at sundown and a promise made where the horizon never quite ends."
           },
           "gallery": [
             "/images/photo-26.jpg",
-            "/images/photo-27.jpg"
-          ]
-        },
-        {
-          "id": "25-4",
-          "title": "Anna & Theo",
-          "location": "Santorini, GR",
-          "image": "/images/photo-04.jpg",
-          "story": {
-            "it": "L'isola si dipinge di calce e blu cobalto, e Anna e Theo l'hanno scelta nell'ora in cui il sole scivola sotto la caldera. Una cerimonia all'aperto, il vento dell'Egeo a portare le parole, e un brindisi sulle terrazze che si specchiano nel mare.",
-            "en": "The island paints itself in whitewash and cobalt blue, and Anna and Theo chose the hour when the sun slips below the caldera. An open-air ceremony, the Aegean wind carrying every word, and a toast on terraces that mirror the sea."
-          },
-          "gallery": [
+            "/images/photo-27.jpg",
             "/images/photo-28.jpg",
             "/images/photo-29.jpg"
           ]
-        }
-      ]
-    },
-    {
-      "year": 2024,
-      "caption_it": "Coppie internazionali, paesaggi italiani: un dialogo costante.",
-      "caption_en": "International couples, Italian landscapes: a constant dialogue.",
-      "shoots": [
+        },
         {
-          "id": "24-1",
-          "title": "Hannah & Noah",
-          "location": "Siena, IT",
-          "image": "/images/photo-05.jpg",
+          "id": "valentina-alessandro",
+          "title": "Valentina & Alessandro",
+          "location": "Positano, IT",
+          "image": "/images/photo-02.jpg",
+          "date": "Settembre 2025",
           "story": {
-            "it": "Pietra rossa, vicoli stretti, campane che battono lente sul Campo. Hannah e Noah hanno scelto Siena fuori stagione, quando la città torna a essere se stessa: una luce calda di tardo pomeriggio, una piazza quasi vuota, e una promessa fatta tra archi medievali e un brindisi all'ombra di una loggia.",
-            "en": "Red stone, narrow lanes, bells tolling slowly over the Campo. Hannah and Noah chose Siena off-season, when the city returns to itself: a warm late-afternoon light, a near-empty piazza, and a promise made under medieval arches and a toast in the shade of a loggia."
+            "it": "Positano cala sul mare in terrazze bianche e bouganville, e di pomeriggio la luce dorata accarezza ogni parete a strapiombo. Valentina e Alessandro hanno scelto questo angolo verticale di Costiera per dirsi sì, fra scalini di pietra e una vista che non lascia spazio ad altre parole.",
+            "en": "Positano tumbles down to the sea in whitewashed terraces and bougainvillea, and in the afternoon a golden light brushes every cliff-side wall. Valentina and Alessandro chose this vertical corner of the Amalfi Coast to say their vows, between stone steps and a view that leaves room for nothing else."
           },
           "gallery": [
+            "/images/photo-24.jpg",
+            "/images/photo-25.jpg",
             "/images/photo-30.jpg",
             "/images/photo-31.jpg"
           ]
         },
         {
-          "id": "24-2",
-          "title": "Léa & Antoine",
-          "location": "Provence, FR",
-          "image": "/images/photo-06.jpg",
-          "span": "tall",
-          "story": {
-            "it": "Campi di lavanda all'orizzonte e platani secolari sopra una lunga tavola apparecchiata. La Provenza di Léa e Antoine è quella delle ore lente: pranzi che si sciolgono nel pomeriggio, brindisi sotto la pergola, e quel profumo di sud che resta addosso anche dopo.",
-            "en": "Lavender fields on the horizon and centuries-old plane trees over a long laid table. Léa and Antoine's Provence is one of slow hours: lunches that melt into the afternoon, toasts under the pergola, and that scent of the south that lingers long after."
-          },
-          "gallery": [
-            "/images/photo-32.jpg",
-            "/images/photo-33.jpg"
-          ]
-        },
-        {
-          "id": "24-3",
-          "title": "Maya & Jonas",
-          "location": "Cinque Terre, IT",
-          "image": "/images/photo-07.jpg",
-          "story": {
-            "it": "Case appese alla scogliera, viti a strapiombo sul mare, scale che scendono direttamente nell'acqua. Maya e Jonas hanno detto sì in un borgo delle Cinque Terre nell'ora più dolce del pomeriggio, con il riflesso del sole sul porto come unica decorazione.",
-            "en": "Houses clinging to the cliff, vines tumbling toward the sea, stairs that drop straight into the water. Maya and Jonas said yes in a Cinque Terre village during the softest hour of the afternoon, with the sun bouncing off the small harbour as the only decoration."
-          },
-          "gallery": [
-            "/images/photo-34.jpg",
-            "/images/photo-35.jpg"
-          ]
-        },
-        {
-          "id": "24-4",
-          "title": "Olivia & Sam",
-          "location": "Capri, IT",
-          "image": "/images/photo-08.jpg",
-          "span": "wide",
-          "story": {
-            "it": "Capri all'alba ha un silenzio che non si dimentica: i Faraglioni stagliati nella foschia, le scogliere che cambiano colore con la luce. Olivia e Sam hanno scelto i primi raggi sul mare per il loro giorno, prima che l'isola si svegliasse.",
-            "en": "Capri at dawn carries a silence that lingers: the Faraglioni cut against a soft haze, the cliffs shifting colour with the light. Olivia and Sam chose the first rays over the sea for their day, before the island woke up."
-          },
-          "gallery": [
-            "/images/photo-36.jpg",
-            "/images/photo-37.jpg"
-          ]
-        }
-      ]
-    },
-    {
-      "year": 2023,
-      "caption_it": "L'anno dei piccoli matrimoni intimi e dei viaggi più lunghi.",
-      "caption_en": "The year of intimate weddings and longer journeys.",
-      "shoots": [
-        {
-          "id": "23-1",
-          "title": "Greta & Ben",
-          "location": "Lisbon, PT",
-          "image": "/images/photo-09.jpg",
-          "span": "wide",
-          "story": {
-            "it": "Lisbona è azulejos blu, tram gialli che salgono sui colli, una luce dell'Atlantico che taglia netta. Greta e Ben hanno scelto la città vecchia per il loro giorno: una cerimonia raccolta in un convento, e poi un pranzo lungo che si è chiuso davanti al Tago.",
-            "en": "Lisbon is blue azulejos, yellow trams climbing the hills, a sharp Atlantic light. Greta and Ben chose the old city for their day: an intimate ceremony in a convent, then a long lunch that ended in front of the Tagus."
-          },
-          "gallery": [
-            "/images/photo-38.jpg",
-            "/images/photo-39.jpg"
-          ]
-        },
-        {
-          "id": "23-2",
-          "title": "Ines & Diego",
-          "location": "Sevilla, ES",
-          "image": "/images/photo-10.jpg",
-          "story": {
-            "it": "Siviglia profuma di gelsomino e zagara, e nei patii la luce filtra fra colonne moresche. Ines e Diego hanno scelto un patio storico per la loro promessa, con il sole alto e una piccola orchestra che ha portato il flamenco fin dentro la sera.",
-            "en": "Seville smells of jasmine and orange blossom, and inside the patios light filters through Moorish columns. Ines and Diego chose a historic patio for their vows, with the sun high above and a small ensemble carrying flamenco straight into the evening."
-          },
-          "gallery": [
-            "/images/photo-40.jpg",
-            "/images/photo-41.jpg"
-          ]
-        },
-        {
-          "id": "23-3",
-          "title": "Aurora & Tom",
-          "location": "Roma, IT",
-          "image": "/images/photo-11.jpg",
-          "span": "tall",
-          "story": {
-            "it": "Roma all'ora dorata, una terrazza che guarda i tetti, il Tevere che scorre piano sotto. Aurora e Tom hanno scelto la città eterna nella sua versione più intima: una piccola cerimonia, una manciata di amici, e un brindisi in piedi davanti a una cupola lontana.",
-            "en": "Rome at the golden hour, a rooftop terrace, the Tiber flowing slowly below. Aurora and Tom chose the eternal city in its most intimate version: a small ceremony, a handful of friends, and a toast on their feet before a distant dome."
-          },
-          "gallery": [
-            "/images/photo-42.jpg",
-            "/images/photo-43.jpg"
-          ]
-        },
-        {
-          "id": "23-4",
-          "title": "Mila & Jack",
-          "location": "Mykonos, GR",
-          "image": "/images/photo-12.jpg",
-          "story": {
-            "it": "Vicoli di calce, vento che non smette mai, mulini bianchi sul mare. Mykonos è stata il palcoscenico di Mila e Jack: una cerimonia al tramonto sulla scogliera, e poi una notte lunga, il fruscio dell'Egeo a fare da soundtrack.",
-            "en": "Whitewashed lanes, an unrelenting wind, white windmills above the sea. Mykonos was Mila and Jack's stage: a sunset ceremony on the cliffs, then a long night with the Aegean as the only soundtrack."
-          },
-          "gallery": [
-            "/images/photo-44.jpg",
-            "/images/photo-45.jpg"
-          ]
-        }
-      ]
-    },
-    {
-      "year": 2022,
-      "caption_it": "I primi viaggi fuori dall'Europa, le prime collaborazioni con il team.",
-      "caption_en": "First trips outside Europe, first collaborations with the team.",
-      "shoots": [
-        {
-          "id": "22-1",
-          "title": "Beatrice & Luca",
+          "id": "martina-david",
+          "title": "Martina & David",
           "location": "Puglia, IT",
           "image": "/images/photo-13.jpg",
+          "date": "Ottobre 2025",
           "story": {
-            "it": "Pietra calda, ulivi secolari, una masseria che si raccoglie attorno a un cortile. Beatrice e Luca hanno scelto la Valle d'Itria per il loro giorno: pranzo all'ombra dei carrubi, vento di terra, un cielo di Puglia che resta addosso per giorni.",
-            "en": "Warm stone, century-old olive trees, a masseria gathered around a courtyard. Beatrice and Luca chose the Itria Valley for their day: lunch in the shade of carobs, an inland breeze, and a Puglia sky that lingers for days."
+            "it": "Pietra calda, ulivi secolari, una masseria che si raccoglie attorno a un cortile. Martina e David hanno scelto la Valle d'Itria per il loro giorno: pranzo all'ombra dei carrubi, vento di terra, un cielo di Puglia che resta addosso per giorni.",
+            "en": "Warm stone, century-old olive trees, a masseria gathered around a courtyard. Martina and David chose the Itria Valley for their day: lunch in the shade of carobs, an inland breeze, and a Puglia sky that lingers for days."
           },
           "gallery": [
             "/images/photo-46.jpg",
-            "/images/photo-47.jpg"
-          ]
-        },
-        {
-          "id": "22-2",
-          "title": "Sara & Ahmad",
-          "location": "Marrakech, MA",
-          "image": "/images/photo-14.jpg",
-          "span": "wide",
-          "story": {
-            "it": "Marrakech sa di spezie, henna e cuoio. Sara e Ahmad hanno scelto un riad nel cuore della medina per la loro festa: cortile di mosaici, lanterne accese una a una al calar del sole, e una musica che ha tenuto la notte fino al mattino.",
-            "en": "Marrakech tastes of spice, henna and leather. Sara and Ahmad chose a riad in the heart of the medina for their celebration: a mosaic courtyard, lanterns lit one by one as the sun went down, and music that held the night until morning."
-          },
-          "gallery": [
+            "/images/photo-47.jpg",
             "/images/photo-48.jpg",
             "/images/photo-49.jpg"
           ]
         },
         {
-          "id": "22-3",
-          "title": "Nora & Felix",
-          "location": "Wien, AT",
-          "image": "/images/photo-15.jpg",
+          "id": "giulia-luca",
+          "title": "Giulia & Luca",
+          "location": "Cinque Terre, IT",
+          "image": "/images/photo-07.jpg",
           "span": "tall",
+          "date": "Maggio 2025",
           "story": {
-            "it": "Vienna in autunno ha la luce delle cose ordinate: foglie dorate sui parchi imperiali, sale che si aprono in fila, un valzer suonato piano. Nora e Felix hanno scelto la loro città per un matrimonio classico, lungo, scandito dalla cura dei dettagli.",
-            "en": "Vienna in autumn has the light of orderly things: golden leaves over imperial parks, halls opening one onto another, a waltz played softly. Nora and Felix chose their city for a classic, drawn-out wedding, paced by careful detail."
+            "it": "Case appese alla scogliera, viti a strapiombo sul mare, scale che scendono direttamente nell'acqua. Giulia e Luca hanno detto sì in un borgo delle Cinque Terre nell'ora più dolce del pomeriggio, con il riflesso del sole sul porto come unica decorazione.",
+            "en": "Houses clinging to the cliff, vines tumbling toward the sea, stairs that drop straight into the water. Giulia and Luca said yes in a Cinque Terre village during the softest hour of the afternoon, with the sun bouncing off the small harbour as the only decoration."
           },
           "gallery": [
-            "/images/photo-50.jpg",
-            "/images/photo-51.jpg"
+            "/images/photo-34.jpg",
+            "/images/photo-35.jpg",
+            "/images/photo-36.jpg",
+            "/images/photo-37.jpg"
           ]
         },
         {
-          "id": "22-4",
-          "title": "Eva & Karl",
-          "location": "Hallstatt, AT",
-          "image": "/images/photo-16.jpg",
+          "id": "elena-noah",
+          "title": "Elena & Noah",
+          "location": "Toscana, IT",
+          "image": "/images/photo-59.jpg",
+          "span": "wide",
+          "date": "Aprile 2025",
           "story": {
-            "it": "Un lago alpino chiuso fra montagne verticali, un paese di case di legno che si specchia nell'acqua. Hallstatt ha custodito il giorno di Eva e Karl: una cerimonia in riva al lago, l'eco delle campane fra le pareti, e una luce che si è fermata appena un attimo più del previsto.",
-            "en": "An alpine lake locked between sheer mountains, a village of wooden houses mirrored in the water. Hallstatt held Eva and Karl's day: a ceremony at the lakeside, the echo of bells between the walls, and a light that lingered a moment longer than expected."
+            "it": "Colline toscane nel pieno della primavera, un casale di pietra immerso nel verde. Elena e Noah hanno voluto tutto all'aperto: cerimonia sotto un pergolato, pranzo lungo all'ombra di un ciliegio, e balli scalzi quando il sole è sceso dietro le colline.",
+            "en": "Tuscan hills in full spring, a stone farmhouse surrounded by greenery. Elena and Noah wanted everything outdoors: a ceremony under a pergola, a long lunch in the shade of a cherry tree, and barefoot dancing as the sun dipped behind the hills."
           },
           "gallery": [
-            "/images/photo-52.jpg",
-            "/images/photo-53.jpg",
-            "/images/photo-54.jpg",
-            "/images/photo-55.jpg",
-            "/images/photo-56.jpg",
-            "/images/photo-57.jpg",
-            "/images/photo-58.jpg"
+            "/images/photo-60.jpg",
+            "/images/photo-61.jpg",
+            "/images/photo-62.jpg",
+            "/images/photo-63.jpg"
+          ]
+        },
+        {
+          "id": "anna-etienne",
+          "title": "Anna & Étienne",
+          "location": "Costiera Amalfitana, IT",
+          "image": "/images/photo-64.jpg",
+          "date": "Agosto 2025",
+          "story": {
+            "it": "Una terrazza sospesa tra cielo e mare, il profumo di limoni nell'aria. Anna ed Étienne si sono scambiati le promesse al tramonto, con tutta la costiera a fare da cornice: limoncello al brindisi, olive in tavola, e una notte di risate sotto le stelle.",
+            "en": "A terrace suspended between sky and sea, the scent of lemons in the air. Anna and Étienne exchanged their vows at sunset, with the entire Amalfi coast as their backdrop: limoncello at the toast, olives on the table, and a night of laughter under the stars."
+          },
+          "gallery": [
+            "/images/photo-65.jpg",
+            "/images/photo-66.jpg",
+            "/images/photo-67.jpg",
+            "/images/photo-68.jpg"
+          ]
+        },
+        {
+          "id": "francesca-james",
+          "title": "Francesca & James",
+          "location": "Roma, IT",
+          "image": "/images/photo-69.jpg",
+          "span": "tall",
+          "date": "Marzo 2025",
+          "story": {
+            "it": "Roma in primavera ha un profumo di pioggia e gelsomino che resta. Francesca e James hanno scelto una chiesa del centro storico per la cerimonia e un giardino segreto su un colle per il ricevimento: pochi amici, tanta luce, e il rumore della città in sottofondo.",
+            "en": "Rome in spring carries a scent of rain and jasmine that lingers. Francesca and James chose a church in the historic centre for the ceremony and a secret hilltop garden for the reception: a handful of friends, plenty of light, and the hum of the city below."
+          },
+          "gallery": [
+            "/images/photo-70.jpg",
+            "/images/photo-71.jpg",
+            "/images/photo-72.jpg",
+            "/images/photo-73.jpg"
+          ]
+        },
+        {
+          "id": "camilla-oliver",
+          "title": "Camilla & Oliver",
+          "location": "Umbria, IT",
+          "image": "/images/photo-74.jpg",
+          "date": "Febbraio 2025",
+          "story": {
+            "it": "Un casale umbro in inverno ha un fascino che l'estate non conosce: camino accesso, nebbia sulle colline, un silenzio che avvolge tutto. Camilla e Oliver hanno scelto febbraio per la loro festa intima: cerimonia vicino al fuoco, pranzo abbondante, vino rosso e risate fino a tarda notte.",
+            "en": "An Umbrian farmhouse in winter has a charm that summer can't match: a crackling fireplace, mist over the hills, a silence that wraps around everything. Camilla and Oliver chose February for their intimate celebration: a ceremony by the fire, an abundant lunch, red wine and laughter well into the night."
+          },
+          "gallery": [
+            "/images/photo-75.jpg",
+            "/images/photo-76.jpg",
+            "/images/photo-77.jpg",
+            "/images/photo-78.jpg"
           ]
         }
       ]
