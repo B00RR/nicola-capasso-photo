@@ -50,8 +50,8 @@ const Home = () => {
   // Marquee items (editable via CMS in src/content/home.json)
   const marquee = homeData.marquee;
 
-  // Featured grid: pick first shoot of each year
-  const featured = portfolio.flatMap((y) => y.shoots.slice(0, 1));
+  // Featured grid: pick first 4 shoots
+  const featured = portfolio.flatMap((y) => y.shoots).slice(0, 4);
 
   return (
     <main className="overflow-hidden">

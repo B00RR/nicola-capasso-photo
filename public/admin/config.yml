@@ -10,7 +10,7 @@ media_library:
 
 publish_mode: editorial_workflow
 
-site_url: "https://nicolacapassophoto.com"
+site_url: "https://b00rr.github.io/nicola-capasso-photo"
 
 collections:
   - name: site

@@ -1,201 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://nicolacapassophoto.com/</loc>
-    <lastmod>2026-04-28</lastmod>
+    <loc>https://b00rr.github.io/nicola-capasso-photo/</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://b00rr.github.io/nicola-capasso-photo/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://b00rr.github.io/nicola-capasso-photo/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://b00rr.github.io/nicola-capasso-photo/" />
   </url>
   <url>
-    <loc>https://nicolacapassophoto.com/portfolio</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://b00rr.github.io/nicola-capasso-photo/portfolio</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/portfolio" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/portfolio" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/portfolio" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://b00rr.github.io/nicola-capasso-photo/portfolio" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://b00rr.github.io/nicola-capasso-photo/portfolio" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://b00rr.github.io/nicola-capasso-photo/portfolio" />
   </url>
   <url>
-    <loc>https://nicolacapassophoto.com/portfolio/25-1</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://b00rr.github.io/nicola-capasso-photo/portfolio/sofia-marco</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/portfolio/25-1" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/portfolio/25-1" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/portfolio/25-1" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/sofia-marco" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/sofia-marco" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/sofia-marco" />
   </url>
   <url>
-    <loc>https://nicolacapassophoto.com/portfolio/25-2</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://b00rr.github.io/nicola-capasso-photo/portfolio/chiara-andrea</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/portfolio/25-2" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/portfolio/25-2" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/portfolio/25-2" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/chiara-andrea" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/chiara-andrea" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/chiara-andrea" />
   </url>
   <url>
-    <loc>https://nicolacapassophoto.com/portfolio/25-3</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://b00rr.github.io/nicola-capasso-photo/portfolio/valentina-alessandro</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/portfolio/25-3" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/portfolio/25-3" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/portfolio/25-3" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/valentina-alessandro" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/valentina-alessandro" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/valentina-alessandro" />
   </url>
   <url>
-    <loc>https://nicolacapassophoto.com/portfolio/25-4</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://b00rr.github.io/nicola-capasso-photo/portfolio/martina-david</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/portfolio/25-4" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/portfolio/25-4" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/portfolio/25-4" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/martina-david" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/martina-david" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/martina-david" />
   </url>
   <url>
-    <loc>https://nicolacapassophoto.com/portfolio/24-1</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://b00rr.github.io/nicola-capasso-photo/portfolio/giulia-luca</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/portfolio/24-1" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/portfolio/24-1" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/portfolio/24-1" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/giulia-luca" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/giulia-luca" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/giulia-luca" />
   </url>
   <url>
-    <loc>https://nicolacapassophoto.com/portfolio/24-2</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://b00rr.github.io/nicola-capasso-photo/portfolio/elena-noah</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/portfolio/24-2" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/portfolio/24-2" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/portfolio/24-2" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/elena-noah" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/elena-noah" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/elena-noah" />
   </url>
   <url>
-    <loc>https://nicolacapassophoto.com/portfolio/24-3</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://b00rr.github.io/nicola-capasso-photo/portfolio/anna-etienne</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/portfolio/24-3" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/portfolio/24-3" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/portfolio/24-3" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/anna-etienne" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/anna-etienne" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/anna-etienne" />
   </url>
   <url>
-    <loc>https://nicolacapassophoto.com/portfolio/24-4</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://b00rr.github.io/nicola-capasso-photo/portfolio/francesca-james</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/portfolio/24-4" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/portfolio/24-4" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/portfolio/24-4" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/francesca-james" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/francesca-james" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/francesca-james" />
   </url>
   <url>
-    <loc>https://nicolacapassophoto.com/portfolio/23-1</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://b00rr.github.io/nicola-capasso-photo/portfolio/camilla-oliver</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/portfolio/23-1" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/portfolio/23-1" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/portfolio/23-1" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/camilla-oliver" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/camilla-oliver" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://b00rr.github.io/nicola-capasso-photo/portfolio/camilla-oliver" />
   </url>
   <url>
-    <loc>https://nicolacapassophoto.com/portfolio/23-2</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/portfolio/23-2" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/portfolio/23-2" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/portfolio/23-2" />
-  </url>
-  <url>
-    <loc>https://nicolacapassophoto.com/portfolio/23-3</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/portfolio/23-3" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/portfolio/23-3" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/portfolio/23-3" />
-  </url>
-  <url>
-    <loc>https://nicolacapassophoto.com/portfolio/23-4</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/portfolio/23-4" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/portfolio/23-4" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/portfolio/23-4" />
-  </url>
-  <url>
-    <loc>https://nicolacapassophoto.com/portfolio/22-1</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/portfolio/22-1" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/portfolio/22-1" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/portfolio/22-1" />
-  </url>
-  <url>
-    <loc>https://nicolacapassophoto.com/portfolio/22-2</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/portfolio/22-2" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/portfolio/22-2" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/portfolio/22-2" />
-  </url>
-  <url>
-    <loc>https://nicolacapassophoto.com/portfolio/22-3</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/portfolio/22-3" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/portfolio/22-3" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/portfolio/22-3" />
-  </url>
-  <url>
-    <loc>https://nicolacapassophoto.com/portfolio/22-4</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/portfolio/22-4" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/portfolio/22-4" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/portfolio/22-4" />
-  </url>
-  <url>
-    <loc>https://nicolacapassophoto.com/contact</loc>
-    <lastmod>2026-04-28</lastmod>
+    <loc>https://b00rr.github.io/nicola-capasso-photo/contact</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/contact" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/contact" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/contact" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://b00rr.github.io/nicola-capasso-photo/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://b00rr.github.io/nicola-capasso-photo/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://b00rr.github.io/nicola-capasso-photo/contact" />
   </url>
   <url>
-    <loc>https://nicolacapassophoto.com/privacy</loc>
-    <lastmod>2026-04-24</lastmod>
+    <loc>https://b00rr.github.io/nicola-capasso-photo/privacy</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/privacy" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://b00rr.github.io/nicola-capasso-photo/privacy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://b00rr.github.io/nicola-capasso-photo/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://b00rr.github.io/nicola-capasso-photo/privacy" />
   </url>
   <url>
-    <loc>https://nicolacapassophoto.com/cookies</loc>
-    <lastmod>2026-04-24</lastmod>
+    <loc>https://b00rr.github.io/nicola-capasso-photo/cookies</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/cookies" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/cookies" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/cookies" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://b00rr.github.io/nicola-capasso-photo/cookies" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://b00rr.github.io/nicola-capasso-photo/cookies" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://b00rr.github.io/nicola-capasso-photo/cookies" />
   </url>
   <url>
-    <loc>https://nicolacapassophoto.com/terms</loc>
-    <lastmod>2026-04-24</lastmod>
+    <loc>https://b00rr.github.io/nicola-capasso-photo/terms</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://nicolacapassophoto.com/terms" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nicolacapassophoto.com/terms" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nicolacapassophoto.com/terms" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://b00rr.github.io/nicola-capasso-photo/terms" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://b00rr.github.io/nicola-capasso-photo/terms" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://b00rr.github.io/nicola-capasso-photo/terms" />
   </url>
 </urlset>

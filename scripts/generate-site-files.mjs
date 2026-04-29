@@ -21,7 +21,7 @@ const readEnv = (path) => {
 };
 
 const env = { ...readEnv(envPath), ...readEnv(envLocal), ...process.env };
-const siteUrl = (env.VITE_SITE_URL || "https://nicolacapassophoto.com").replace(/\/$/, "");
+const siteUrl = (env.VITE_SITE_URL || "https://b00rr.github.io/nicola-capasso-photo").replace(/\/$/, "");
 
 const contentDir = join(root, "src", "content");
 const getLastMod = (file) => {
