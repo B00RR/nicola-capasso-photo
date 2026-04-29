@@ -2,6 +2,7 @@ import { useState, useEffect, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MonogramNC } from "./MonogramNC";
 import { LogoText } from "./LogoText";
+import { safeGet, safeSet } from "@/lib/safeStorage";
 
 const SplashIntro = () => {
   const [show, setShow] = useState(false);
@@ -12,13 +13,12 @@ const SplashIntro = () => {
     const SPLASH_KEY = "nicola-splash-seen-v1";
     const url = new URL(window.location.href);
     const force = url.searchParams.get("splash") === "reset";
-    let seen = false;
-    try { seen = !!localStorage.getItem(SPLASH_KEY); } catch {}
+    const seen = safeGet(SPLASH_KEY);
     if (force || !seen) {
       if (force) url.searchParams.delete("splash"); window.history.replaceState({}, "", url.toString());
       setWinSize({ w: window.innerWidth, h: window.innerHeight });
       setShow(true);
-      try { localStorage.setItem(SPLASH_KEY, "1"); } catch {}
+      safeSet(SPLASH_KEY, "1");
 
       setTimeout(() => setPhase(1), 700);
       setTimeout(() => setPhase(2), 1200);

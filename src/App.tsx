@@ -50,7 +50,7 @@ const App = () => (
   <LanguageProvider>
     <TooltipProvider>
       <Sonner />
-      <BrowserRouter basename="/nicola-capasso-photo">
+      <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, "") || "/"}>
         <SplashIntro />
         <ScrollToTop />
         <PageTransition />
@@ -65,7 +65,7 @@ const App = () => (
               <Route path="/privacy" element={<Layout><Privacy /></Layout>} />
               <Route path="/cookies" element={<Layout><Cookies /></Layout>} />
               <Route path="/terms" element={<Layout><Terms /></Layout>} />
-              <Route path="*" element={<NotFound />} />
+              <Route path="*" element={<Layout><NotFound /></Layout>} />
             </Routes>
           </ErrorBoundary>
         </Suspense>

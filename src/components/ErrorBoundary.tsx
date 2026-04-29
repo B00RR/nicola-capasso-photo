@@ -1,4 +1,5 @@
 import { Component, type ReactNode } from "react";
+import { safeGet } from "@/lib/safeStorage";
 
 interface Props {
   children: ReactNode;
@@ -24,11 +25,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
   render() {
     if (this.state.hasError) {
-      const lang = (() => {
-        try {
-          return typeof localStorage !== "undefined" ? localStorage.getItem("nicola-lang") : null;
-        } catch { return null; }
-      })();
+      const lang = safeGet("nicola-lang");
       const en = lang === "en";
       return (
         this.props.fallback ?? (

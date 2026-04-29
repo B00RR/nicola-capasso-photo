@@ -3,9 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
     <link rel="preload" as="image" href="%BASE_URL%images/photo-22.webp" type="image/webp" fetchpriority="high" imagesrcset="%BASE_URL%images/photo-22-640w.webp 640w, %BASE_URL%images/photo-22-1280w.webp 1280w, %BASE_URL%images/photo-22-1920w.webp 1920w" imagesizes="100vw" />
     <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="%BASE_URL%favicon-32.png" />
@@ -43,11 +40,14 @@
       }
     })();
     // Restore route stored by 404.html (GitHub Pages SPA redirect trick).
+    // BASE_URL is replaced by Vite at build time and matches the deploy
+    // target ('/nicola-capasso-photo/' on GH Pages, '/' on Netlify).
     (function(){
       var redirect = sessionStorage.getItem('gh-pages-redirect');
       if (redirect) {
         sessionStorage.removeItem('gh-pages-redirect');
-        window.history.replaceState(null, '', '/nicola-capasso-photo' + redirect);
+        var base = '%BASE_URL%'.replace(/\/$/, '');
+        window.history.replaceState(null, '', base + redirect);
       }
     })();
   </script>
