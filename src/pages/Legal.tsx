@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLang } from "@/i18n/useLang";
 import { usePageMeta } from "@/hooks/usePageMeta";
@@ -21,10 +20,6 @@ const LegalPage = ({ page }: { page: PageKey }) => {
   const sections = data[`sections${s}` as keyof typeof data] as Section[];
 
   usePageMeta({ title: `${title} \u2014 Nicola`, description: intro, path: `/${page}` });
-
-  useEffect(() => {
-    document.title = `${title} \u2014 Nicola`;
-  }, [title]);
 
   return (
     <main className="pt-28 md:pt-36 pb-10">

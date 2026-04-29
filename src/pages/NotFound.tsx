@@ -2,6 +2,8 @@ import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useLang } from "@/i18n/useLang";
 
+import { PictureImg } from "@/components/PictureImg";
+
 const NotFound = () => {
   const location = useLocation();
   const { t } = useLang();
@@ -14,10 +16,10 @@ const NotFound = () => {
 
   return (
     <main className="relative min-h-screen w-full overflow-hidden">
-      <img
+      <PictureImg
         src={`${import.meta.env.BASE_URL}images/photo-37.jpg`}
         alt=""
-        aria-hidden="true"
+        loading="lazy"
         className="absolute inset-0 h-full w-full object-cover opacity-40 grayscale"
       />
       <div className="absolute inset-0 bg-background/70" />
