@@ -42,5 +42,11 @@
   "email_it": "Email",
   "email_en": "Email",
   "phone_it": "Telefono",
-  "phone_en": "Phone"
+  "phone_en": "Phone",
+  "phoneCombined_it": "Telefono · WhatsApp",
+  "phoneCombined_en": "Phone · WhatsApp",
+  "callPhone_it": "Chiama",
+  "callPhone_en": "Call",
+  "openWhatsapp_it": "Apri WhatsApp",
+  "openWhatsapp_en": "Open WhatsApp"
 }
