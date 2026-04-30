@@ -273,7 +273,7 @@ const Home = () => {
                 </div>
                 <div className="mt-3 flex items-center justify-between gap-3">
                   <p className="font-display italic text-base md:text-lg">{s.title}</p>
-                  <p className="font-sans-tight text-[10px] uppercase text-muted-foreground">{s.location.split(",")[1]?.trim()}</p>
+                  <p className="font-sans-tight text-[10px] uppercase text-muted-foreground">{s.location.replace(/, [A-Z]{2}$/, "")}</p>
                 </div>
               </Link>
             );
