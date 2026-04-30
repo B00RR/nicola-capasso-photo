@@ -37,6 +37,28 @@
             "/images/photo-47.jpg",
             "/images/photo-48.jpg",
             "/images/photo-49.jpg"
+          ],
+          "galleryChapters": [
+            {
+              "start": 0,
+              "title_it": "L'arrivo",
+              "title_en": "Arrival"
+            },
+            {
+              "start": 5,
+              "title_it": "La cerimonia",
+              "title_en": "The ceremony"
+            },
+            {
+              "start": 10,
+              "title_it": "I dettagli",
+              "title_en": "Details"
+            },
+            {
+              "start": 15,
+              "title_it": "La festa",
+              "title_en": "The party"
+            }
           ]
         },
         {
