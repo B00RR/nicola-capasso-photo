@@ -24,6 +24,8 @@ export interface Shoot {
   story?: { it: string; en: string };
   /** Additional images for the story page; cover is always shown first */
   gallery?: string[];
+  /** Optional narrative chapters dividing the gallery */
+  galleryChapters?: { start: number; title_it: string; title_en: string }[];
   /** Optional film embedded inside the story */
   video?: ShootVideo;
 }

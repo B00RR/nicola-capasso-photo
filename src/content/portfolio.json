@@ -36,7 +36,42 @@
             "/images/photo-46.jpg",
             "/images/photo-47.jpg",
             "/images/photo-48.jpg",
-            "/images/photo-49.jpg"
+            "/images/photo-49.jpg",
+            "/images/photo-21.jpg",
+            "/images/photo-22.jpg",
+            "/images/photo-23.jpg",
+            "/images/photo-32.jpg",
+            "/images/photo-33.jpg",
+            "/images/photo-38.jpg",
+            "/images/photo-39.jpg",
+            "/images/photo-40.jpg",
+            "/images/photo-41.jpg",
+            "/images/photo-42.jpg",
+            "/images/photo-43.jpg",
+            "/images/photo-44.jpg",
+            "/images/photo-45.jpg"
+          ],
+          "galleryChapters": [
+            {
+              "start": 0,
+              "title_it": "L'arrivo",
+              "title_en": "Arrival"
+            },
+            {
+              "start": 8,
+              "title_it": "La cerimonia",
+              "title_en": "The ceremony"
+            },
+            {
+              "start": 17,
+              "title_it": "I dettagli",
+              "title_en": "Details"
+            },
+            {
+              "start": 25,
+              "title_it": "La festa",
+              "title_en": "The party"
+            }
           ]
         },
         {
@@ -54,7 +89,30 @@
             "/images/photo-60.jpg",
             "/images/photo-61.jpg",
             "/images/photo-62.jpg",
-            "/images/photo-63.jpg"
+            "/images/photo-63.jpg",
+            "/images/photo-50.jpg",
+            "/images/photo-51.jpg",
+            "/images/photo-52.jpg",
+            "/images/photo-02.jpg",
+            "/images/photo-03.jpg",
+            "/images/photo-04.jpg"
+          ],
+          "galleryChapters": [
+            {
+              "start": 0,
+              "title_it": "L'arrivo",
+              "title_en": "Arrival"
+            },
+            {
+              "start": 3,
+              "title_it": "La cerimonia",
+              "title_en": "The ceremony"
+            },
+            {
+              "start": 7,
+              "title_it": "La festa",
+              "title_en": "The party"
+            }
           ]
         },
         {
@@ -71,7 +129,30 @@
             "/images/photo-65.jpg",
             "/images/photo-66.jpg",
             "/images/photo-67.jpg",
-            "/images/photo-68.jpg"
+            "/images/photo-68.jpg",
+            "/images/photo-53.jpg",
+            "/images/photo-54.jpg",
+            "/images/photo-55.jpg",
+            "/images/photo-05.jpg",
+            "/images/photo-06.jpg",
+            "/images/photo-07.jpg"
+          ],
+          "galleryChapters": [
+            {
+              "start": 0,
+              "title_it": "L'arrivo",
+              "title_en": "Arrival"
+            },
+            {
+              "start": 3,
+              "title_it": "La cerimonia",
+              "title_en": "The ceremony"
+            },
+            {
+              "start": 7,
+              "title_it": "La festa",
+              "title_en": "The party"
+            }
           ]
         },
         {
@@ -89,7 +170,30 @@
             "/images/photo-70.jpg",
             "/images/photo-71.jpg",
             "/images/photo-72.jpg",
-            "/images/photo-73.jpg"
+            "/images/photo-73.jpg",
+            "/images/photo-56.jpg",
+            "/images/photo-57.jpg",
+            "/images/photo-58.jpg",
+            "/images/photo-08.jpg",
+            "/images/photo-09.jpg",
+            "/images/photo-10.jpg"
+          ],
+          "galleryChapters": [
+            {
+              "start": 0,
+              "title_it": "L'arrivo",
+              "title_en": "Arrival"
+            },
+            {
+              "start": 3,
+              "title_it": "La cerimonia",
+              "title_en": "The ceremony"
+            },
+            {
+              "start": 7,
+              "title_it": "La festa",
+              "title_en": "The party"
+            }
           ]
         },
         {
@@ -106,7 +210,30 @@
             "/images/photo-75.jpg",
             "/images/photo-76.jpg",
             "/images/photo-77.jpg",
-            "/images/photo-78.jpg"
+            "/images/photo-78.jpg",
+            "/images/photo-11.jpg",
+            "/images/photo-12.jpg",
+            "/images/photo-13.jpg",
+            "/images/photo-14.jpg",
+            "/images/photo-15.jpg",
+            "/images/photo-16.jpg"
+          ],
+          "galleryChapters": [
+            {
+              "start": 0,
+              "title_it": "L'arrivo",
+              "title_en": "Arrival"
+            },
+            {
+              "start": 3,
+              "title_it": "La cerimonia",
+              "title_en": "The ceremony"
+            },
+            {
+              "start": 7,
+              "title_it": "La festa",
+              "title_en": "The party"
+            }
           ]
         }
       ]
