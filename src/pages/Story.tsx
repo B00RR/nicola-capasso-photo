@@ -147,29 +147,30 @@ const Story = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-3 md:gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-3 md:gap-5">
             {images.map((img, i) => {
-              // Editorial pacing: vary spans/aspect by index for visual rhythm.
               const variant = i % 5;
               const layout =
                 variant === 0
-                  ? { span: "col-span-2 md:col-span-4", aspect: "aspect-[16/10]" }
+                  ? { span: "col-span-1 md:col-span-6", aspect: "aspect-[21/9]", margin: "mb-8 md:mb-16" }
                   : variant === 1
-                  ? { span: "col-span-2 md:col-span-2", aspect: "aspect-[3/4]" }
+                  ? { span: "col-span-1 md:col-span-3", aspect: "aspect-[3/4]", margin: "" }
                   : variant === 2
-                  ? { span: "col-span-2 md:col-span-3", aspect: "aspect-[4/5]" }
+                  ? { span: "col-span-1 md:col-span-3", aspect: "aspect-[4/3]", margin: "md:mt-8" }
                   : variant === 3
-                  ? { span: "col-span-2 md:col-span-3", aspect: "aspect-[4/3]" }
-                  : { span: "col-span-2 md:col-span-2 md:row-span-2", aspect: "aspect-[3/4]" };
+                  ? { span: "col-span-1 md:col-span-6", aspect: "aspect-[21/9]", margin: "mb-8 md:mb-16 mt-2" }
+                  : { span: "col-span-1 md:col-span-3", aspect: "aspect-[4/5]", margin: "md:mt-6" };
+
+              const displayIndex = String(i + 1).padStart(2, "0");
 
               return (
                 <motion.figure
                   key={`${img}-${i}`}
-                  className={`group cursor-zoom select-none ${layout.span} ${i % 2 === 1 ? "md:mt-10" : ""}`}
-                  initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
+                  className={`group cursor-zoom select-none ${layout.span} ${layout.margin}`}
+                  initial={prefersReducedMotion ? false : { opacity: 0, y: 32 }}
                   whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.08 }}
-                  transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.9, delay: (i % 4) * 0.08, ease: [0.2, 0.7, 0.2, 1] }}
+                  transition={prefersReducedMotion ? { duration: 0 } : { duration: 1, delay: (i % 3) * 0.1, ease: [0.2, 0.7, 0.2, 1] }}
                   onClick={() => setLightboxIndex(i)}
                 >
                   <div className={`relative overflow-hidden bg-secondary ${layout.aspect}`}>
@@ -178,9 +179,18 @@ const Story = () => {
                       alt={`${shoot.title} — ${i + 1}`}
                       loading={i < 2 ? "eager" : "lazy"}
                       fadeIn
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      sizes={variant === 0 || variant === 3 ? "100vw" : "(max-width: 768px) 100vw, 50vw"}
                       className="h-full w-full object-cover hover-lift"
                     />
+                    {/* Sequential number overlay (hover) */}
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute top-4 left-4 md:top-6 md:left-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 motion-reduce:transition-none"
+                    >
+                      <span className="font-display italic text-background/70 text-2xl md:text-3xl tracking-tight">
+                        {displayIndex}
+                      </span>
+                    </div>
                     <div
                       aria-hidden="true"
                       className="pointer-events-none absolute inset-0 bg-gradient-to-t from-foreground/35 via-foreground/0 to-foreground/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 motion-reduce:transition-none"
