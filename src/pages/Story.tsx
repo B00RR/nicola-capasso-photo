@@ -164,7 +164,13 @@ const Story = () => {
           {chapters.map((chapter, chIdx) => (
             <div key={chIdx} className={chIdx > 0 ? "mt-16 md:mt-24" : ""}>
               {chapter.title && (
-                <div className="mb-8 flex items-center gap-4">
+                <motion.div
+                  className="mb-8 flex items-center gap-4"
+                  initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+                  whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }}
+                >
                   <span className="font-display italic text-accent text-2xl md:text-3xl leading-none">
                     {String(chIdx + 1).padStart(2, "0")}
                   </span>
@@ -172,7 +178,7 @@ const Story = () => {
                   <p className="font-sans-tight text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
                     {chapter.title}
                   </p>
-                </div>
+                </motion.div>
               )}
 
               <div className="grid grid-cols-1 md:grid-cols-6 gap-3 md:gap-5">
@@ -196,10 +202,10 @@ const Story = () => {
                     <motion.figure
                       key={`${img}-${globalIndex}`}
                       className={`group cursor-zoom select-none ${layout.span} ${layout.margin}`}
-                      initial={prefersReducedMotion ? false : { opacity: 0, y: 32 }}
+                      initial={prefersReducedMotion ? false : { opacity: 0, y: 40 }}
                       whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
                       viewport={{ once: true, amount: 0.08 }}
-                      transition={prefersReducedMotion ? { duration: 0 } : { duration: 1, delay: (i % 3) * 0.1, ease: [0.2, 0.7, 0.2, 1] }}
+                      transition={prefersReducedMotion ? { duration: 0 } : { duration: 1.2, delay: (i % 3) * 0.15, ease: [0.2, 0.7, 0.2, 1] }}
                       onClick={() => setLightboxIndex(globalIndex)}
                     >
                       <div className={`relative overflow-hidden bg-secondary ${layout.aspect}`}>
