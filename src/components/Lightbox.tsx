@@ -8,6 +8,7 @@ interface LightboxImage {
   alt: string;
   title: string;
   location: string;
+  chapter?: string | null;
 }
 
 interface LightboxProps {
@@ -158,18 +159,27 @@ export const Lightbox = ({ images, index, onClose, onPrev, onNext }: LightboxPro
                   className={`w-full max-h-[80vh] object-contain transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0 absolute inset-0 pointer-events-none"}`}
                 />
               </div>
-              <div className="mt-4 flex items-baseline justify-between">
-                <span className="font-display italic text-background text-lg">{current.title}</span>
-                <span className="font-sans-tight text-[10px] uppercase text-background/50 tracking-[0.15em]">
-                  {current.location}
-                </span>
+              <div className="mt-4 flex items-baseline justify-between gap-6">
+                <div className="min-w-0">
+                  <span className="font-display italic text-background text-lg">{current.title}</span>
+                  {current.chapter && (
+                    <p className="mt-1 font-sans-tight text-[10px] uppercase text-background/45 tracking-[0.18em]">
+                      {current.chapter}
+                    </p>
+                  )}
+                </div>
+                <div className="shrink-0 text-right">
+                  <span className="font-sans-tight text-[10px] uppercase text-background/50 tracking-[0.15em]">
+                    {current.location}
+                  </span>
+                  {images.length > 1 && (
+                    <p className="mt-2 font-sans-tight text-[10px] text-background/35">
+                      {String((index ?? 0) + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}
+                    </p>
+                  )}
+                </div>
               </div>
-              {images.length > 1 && (
-                <p className="mt-2 font-sans-tight text-[10px] text-background/30 text-right">
-                  {(index ?? 0) + 1} / {images.length}
-                </p>
-              )}
-              <p className="mt-1 font-sans-tight text-[10px] text-background/30 text-right">
+              <p className="mt-3 font-sans-tight text-[10px] text-background/30 text-right">
                 {t.a11y.lightboxHint}
               </p>
             </motion.div>
