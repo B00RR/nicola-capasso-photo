@@ -2,6 +2,9 @@ import { cn } from "@/lib/utils";
 
 const stripExt = (src: string) => src.replace(/\.(jpg|jpeg|png|webp|avif)$/i, "");
 const toWebP = (src: string) => stripExt(src) + ".webp";
+const toResponsiveWebP = (src: string, width: number) => `${stripExt(src)}-${width}w.webp`;
+const toResponsiveAvif = (src: string, width: number) => `${stripExt(src)}-${width}w.avif`;
+const responsiveWidths = [640];
 
 interface PictureImgProps {
   src: string;
@@ -27,11 +30,24 @@ export const PictureImg = ({
   width,
   height,
   fadeIn = false,
+  sizes = "100vw",
+  responsive = true,
 }: PictureImgProps) => {
   const fadeClass = fadeIn ? "opacity-0 transition-opacity duration-700" : "";
+  const avifSrcSet = responsive
+    ? responsiveWidths.map((w) => `${toResponsiveAvif(src, w)} ${w}w`).join(", ")
+    : undefined;
+  const webpSrcSet = responsive
+    ? [
+        ...responsiveWidths.map((w) => `${toResponsiveWebP(src, w)} ${w}w`),
+        toWebP(src),
+      ].join(", ")
+    : toWebP(src);
+
   return (
     <picture>
-      <source srcSet={toWebP(src)} type="image/webp" />
+      {responsive && <source srcSet={avifSrcSet} sizes={sizes} type="image/avif" />}
+      <source srcSet={webpSrcSet} sizes={responsive ? sizes : undefined} type="image/webp" />
       <img
         src={src}
         alt={alt}
@@ -40,6 +56,7 @@ export const PictureImg = ({
         decoding={decoding}
         width={width}
         height={height}
+        sizes={responsive ? sizes : undefined}
         className={cn(fadeClass, className)}
         onLoad={
           fadeIn

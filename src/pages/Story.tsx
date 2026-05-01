@@ -224,9 +224,10 @@ const Story = () => {
                         <PictureImg
                           src={img}
                           alt={`${shoot.title} — ${globalIndex + 1}`}
-                          loading={globalIndex < 2 ? "eager" : "lazy"}
+                          loading={globalIndex === 0 ? "eager" : "lazy"}
+                          fetchPriority={globalIndex === 0 ? "high" : "auto"}
                           fadeIn
-                          sizes={variant === 0 || variant === 3 ? "100vw" : "(max-width: 768px) 100vw, 50vw"}
+                          sizes={variant === 0 || variant === 3 ? "(max-width: 768px) 100vw, 1500px" : "(max-width: 768px) 100vw, 740px"}
                           className="h-full w-full object-cover hover-lift"
                         />
                         <div
