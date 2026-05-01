@@ -70,17 +70,29 @@ const Story = () => {
 
   const chapters = useMemo(() => {
     if (!shoot.galleryChapters || shoot.galleryChapters.length <= 1) {
-      return [{ title: null, start: 0, images }];
+      return [{ title: null, start: 0, end: images.length, images }];
     }
     return shoot.galleryChapters.map((ch, idx) => {
       const end = shoot.galleryChapters![idx + 1]?.start ?? images.length;
       return {
         title: lang === "it" ? ch.title_it : ch.title_en,
         start: ch.start,
+        end,
         images: images.slice(ch.start, end),
       };
     });
   }, [shoot.galleryChapters, images, lang]);
+
+  const lightboxImages = useMemo(() => images.map((src, i) => {
+    const chapter = chapters.find((ch) => i >= ch.start && i < ch.end);
+    return {
+      src,
+      alt: `${shoot.title} — ${i + 1}`,
+      title: shoot.title,
+      location: shoot.location,
+      chapter: chapter?.title ?? null,
+    };
+  }), [chapters, images, shoot.location, shoot.title]);
 
   const yearLabel = shoot.date ?? String(shoot.year);
 
@@ -294,12 +306,7 @@ const Story = () => {
       </main>
 
       <Lightbox
-        images={images.map((src, i) => ({
-          src,
-          alt: `${shoot.title} — ${i + 1}`,
-          title: shoot.title,
-          location: shoot.location,
-        }))}
+        images={lightboxImages}
         index={lightboxIndex}
         onClose={() => setLightboxIndex(null)}
         onPrev={() =>

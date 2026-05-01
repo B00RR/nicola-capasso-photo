@@ -54,23 +54,23 @@
           "galleryChapters": [
             {
               "start": 0,
-              "title_it": "L'arrivo",
-              "title_en": "Arrival"
+              "title_it": "Sul lago",
+              "title_en": "By the lake"
             },
             {
               "start": 8,
-              "title_it": "La cerimonia",
-              "title_en": "The ceremony"
+              "title_it": "Le promesse",
+              "title_en": "The vows"
             },
             {
               "start": 17,
-              "title_it": "I dettagli",
-              "title_en": "Details"
+              "title_it": "Luce e dettagli",
+              "title_en": "Light and details"
             },
             {
               "start": 25,
-              "title_it": "La festa",
-              "title_en": "The party"
+              "title_it": "Festa sul Lario",
+              "title_en": "Celebration on Lake Como"
             }
           ]
         },
@@ -100,18 +100,18 @@
           "galleryChapters": [
             {
               "start": 0,
-              "title_it": "L'arrivo",
-              "title_en": "Arrival"
+              "title_it": "Tra le colline",
+              "title_en": "Among the hills"
             },
             {
               "start": 3,
-              "title_it": "La cerimonia",
-              "title_en": "The ceremony"
+              "title_it": "Sotto il pergolato",
+              "title_en": "Under the pergola"
             },
             {
               "start": 7,
-              "title_it": "La festa",
-              "title_en": "The party"
+              "title_it": "A piedi nudi",
+              "title_en": "Barefoot"
             }
           ]
         },
@@ -140,18 +140,18 @@
           "galleryChapters": [
             {
               "start": 0,
-              "title_it": "L'arrivo",
-              "title_en": "Arrival"
+              "title_it": "Terrazza sul mare",
+              "title_en": "Terrace over the sea"
             },
             {
               "start": 3,
-              "title_it": "La cerimonia",
-              "title_en": "The ceremony"
+              "title_it": "Promesse al tramonto",
+              "title_en": "Sunset vows"
             },
             {
               "start": 7,
-              "title_it": "La festa",
-              "title_en": "The party"
+              "title_it": "Sotto le stelle",
+              "title_en": "Under the stars"
             }
           ]
         },
@@ -181,18 +181,18 @@
           "galleryChapters": [
             {
               "start": 0,
-              "title_it": "L'arrivo",
-              "title_en": "Arrival"
+              "title_it": "Roma in primavera",
+              "title_en": "Rome in spring"
             },
             {
               "start": 3,
-              "title_it": "La cerimonia",
-              "title_en": "The ceremony"
+              "title_it": "Il giardino segreto",
+              "title_en": "The secret garden"
             },
             {
               "start": 7,
-              "title_it": "La festa",
-              "title_en": "The party"
+              "title_it": "Luce di città",
+              "title_en": "City light"
             }
           ]
         },
@@ -221,18 +221,18 @@
           "galleryChapters": [
             {
               "start": 0,
-              "title_it": "L'arrivo",
-              "title_en": "Arrival"
+              "title_it": "Inverno in Umbria",
+              "title_en": "Winter in Umbria"
             },
             {
               "start": 3,
-              "title_it": "La cerimonia",
-              "title_en": "The ceremony"
+              "title_it": "Vicino al fuoco",
+              "title_en": "By the fire"
             },
             {
               "start": 7,
-              "title_it": "La festa",
-              "title_en": "The party"
+              "title_it": "Notte in masseria",
+              "title_en": "A farmhouse night"
             }
           ]
         }
