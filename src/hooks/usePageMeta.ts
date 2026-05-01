@@ -7,6 +7,8 @@ interface PageMeta {
   path: string;
   /** Optional absolute or root-relative image URL for og:image / twitter:image. */
   image?: string;
+  /** Open Graph content type. */
+  type?: "website" | "article";
 }
 
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
@@ -25,7 +27,7 @@ const toAbsolute = (url: string) => {
   return `${SITE_URL}${path}`;
 };
 
-export const usePageMeta = ({ title, description, path, image }: PageMeta) => {
+export const usePageMeta = ({ title, description, path, image, type = "website" }: PageMeta) => {
   useEffect(() => {
     document.title = title;
 
@@ -45,6 +47,7 @@ export const usePageMeta = ({ title, description, path, image }: PageMeta) => {
     setMeta('meta[name="description"]', "description", description);
     setMeta('meta[property="og:title"]', "og:title", title, true);
     setMeta('meta[property="og:description"]', "og:description", description, true);
+    setMeta('meta[property="og:type"]', "og:type", type, true);
     setMeta('meta[property="og:url"]', "og:url", `${SITE_URL}${path}`, true);
     setMeta('meta[property="og:image"]', "og:image", ogImage, true);
     setMeta('meta[name="twitter:title"]', "twitter:title", title);
@@ -71,5 +74,5 @@ export const usePageMeta = ({ title, description, path, image }: PageMeta) => {
       }
       link.href = `${SITE_URL}${path}`;
     });
-  }, [title, description, path, image]);
+  }, [title, description, path, image, type]);
 };
