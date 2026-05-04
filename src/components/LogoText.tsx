@@ -17,7 +17,7 @@ export const LogoText = ({ className = "", inverse = false, size = "md" }: LogoT
     <span
       className={`inline-flex items-baseline whitespace-nowrap select-none ${sizeClasses[size]} ${color} ${className}`}
       aria-label="Nicola Capasso Photo"
-      style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: "0.12em" }}
+      style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: "0.12em", textTransform: "uppercase" }}
     >
       <span style={{ fontWeight: 300 }}>Nicola Capasso</span>
       <span className="inline-block w-[0.6em]" aria-hidden="true" />
