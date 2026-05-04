@@ -2,6 +2,7 @@ import { useLang } from "@/i18n/useLang";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { LogoText } from "./LogoText";
 
 const Header = () => {
   const { lang, toggle, t } = useLang();
@@ -44,17 +45,13 @@ const Header = () => {
         <Link
           to="/"
           className={cn(
-            "flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:rounded-sm transition-[filter] duration-500",
-            onHero ? "focus-visible:ring-background/60 [filter:brightness(0)_invert(1)]" : "focus-visible:ring-foreground/50"
+            "flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:rounded-sm transition-colors duration-500",
+            onHero ? "focus-visible:ring-background/60" : "focus-visible:ring-foreground/50"
           )}
           aria-label="Nicola Capasso — Wedding photography"
+          data-splash-target="logo"
         >
-          <img
-            src={`${import.meta.env.BASE_URL}favicon.svg`}
-            alt=""
-            className="h-9 md:h-10 w-auto"
-            aria-hidden="true"
-          />
+          <LogoText inverse={onHero} size="sm" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-10">

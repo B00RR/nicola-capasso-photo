@@ -37,6 +37,7 @@ const Story = () => {
     description: meta?.description ?? "",
     path: `/portfolio/${id ?? ""}`,
     image: found?.shoot.image,
+    type: "article",
   });
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -60,6 +61,7 @@ const Story = () => {
     document.head.appendChild(script);
     return () => { document.getElementById(elId)?.remove(); };
   }, [found]);
+
 
   if (!found) return <Navigate to="/portfolio" replace />;
 
@@ -85,14 +87,44 @@ const Story = () => {
 
   const lightboxImages = useMemo(() => images.map((src, i) => {
     const chapter = chapters.find((ch) => i >= ch.start && i < ch.end);
+    const chapterLabel = chapter?.title ?? null;
     return {
       src,
-      alt: `${shoot.title} — ${i + 1}`,
+      alt: chapterLabel
+        ? `${shoot.title}, ${chapterLabel} — foto ${i + 1}`
+        : `${shoot.title} — foto ${i + 1}`,
       title: shoot.title,
       location: shoot.location,
-      chapter: chapter?.title ?? null,
+      chapter: chapterLabel,
     };
   }), [chapters, images, shoot.location, shoot.title]);
+
+  const galleryJsonLd = useMemo(() => ({
+    "@context": "https://schema.org",
+    "@type": "ImageGallery",
+    name: `${shoot.title} — ${shoot.location}`,
+    description: shoot.story?.[lang] ?? meta?.description,
+    url: `${SITE_URL}/portfolio/${shoot.id}`,
+    image: lightboxImages.map((img, idx) => ({
+      "@type": "ImageObject",
+      position: idx + 1,
+      url: img.src.startsWith("http") ? img.src : `${SITE_URL}${img.src}`,
+      caption: img.alt,
+      name: img.chapter ? `${shoot.title} — ${img.chapter}` : shoot.title,
+      contentLocation: shoot.location,
+    })),
+  }), [lang, lightboxImages, meta?.description, shoot.id, shoot.location, shoot.story, shoot.title]);
+
+  useEffect(() => {
+    const elId = "jsonld-image-gallery";
+    document.getElementById(elId)?.remove();
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = elId;
+    script.textContent = JSON.stringify(galleryJsonLd);
+    document.head.appendChild(script);
+    return () => { document.getElementById(elId)?.remove(); };
+  }, [galleryJsonLd]);
 
   const yearLabel = shoot.date ?? String(shoot.year);
 
@@ -223,7 +255,7 @@ const Story = () => {
                       <div className={`relative overflow-hidden bg-secondary ${layout.aspect}`}>
                         <PictureImg
                           src={img}
-                          alt={`${shoot.title} — ${globalIndex + 1}`}
+                          alt={lightboxImages[globalIndex]?.alt ?? `${shoot.title} — foto ${globalIndex + 1}`}
                           loading={globalIndex === 0 ? "eager" : "lazy"}
                           fetchPriority={globalIndex === 0 ? "high" : "auto"}
                           fadeIn
