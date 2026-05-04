@@ -41,7 +41,7 @@ const SplashIntro = () => {
   // Center the logo vertically inside the header.
   const FALLBACK_Y = (HEADER_H - LOGO_H) / 2;
 
-  const startScale = isDesktop ? 2.5 : 1.8;
+  const startScale = isDesktop ? 2.0 : 1.4;
   const startX = winSize.w / 2;
   const startY = winSize.h / 2;
 
