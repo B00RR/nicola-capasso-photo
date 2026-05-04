@@ -11,23 +11,17 @@ export const LogoText = ({ className = "", inverse = false, size = "md" }: LogoT
     lg: "text-[18px] md:text-[22px]",
   };
 
+  const color = inverse ? "text-background" : "text-foreground";
+
   return (
-    <div
-      className={`flex flex-col items-start leading-[1.1] select-none font-sans ${sizeClasses[size]} ${className}`}
+    <span
+      className={`inline-flex items-baseline whitespace-nowrap select-none ${sizeClasses[size]} ${color} ${className}`}
       aria-label="Nicola Capasso Photo"
+      style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: "0.12em" }}
     >
-      <span
-        className={`font-extralight uppercase tracking-[0.01em] ${inverse ? "text-background" : "text-foreground"}`}
-        style={{ fontWeight: 200 }}
-      >
-        Nicola Capasso
-      </span>
-      <span
-        className={`font-bold uppercase tracking-[0em] ${inverse ? "text-background" : "text-foreground"}`}
-        style={{ fontWeight: 700 }}
-      >
-        Photo
-      </span>
-    </div>
+      <span style={{ fontWeight: 300 }}>Nicola Capasso</span>
+      <span className="inline-block w-[0.6em]" aria-hidden="true" />
+      <span style={{ fontWeight: 500 }}>Photo</span>
+    </span>
   );
 };
