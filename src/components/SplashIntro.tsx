@@ -35,8 +35,11 @@ const SplashIntro = () => {
   const isDesktop = winSize.w >= 768;
   const PAD_X = isDesktop ? 40 : 24;
   const HEADER_H = isDesktop ? 80 : 64;
+  // Logo height: one line ≈ 14px with line-height 1.1 at text-[12px].
+  const LOGO_H = 14;
   const FALLBACK_X = PAD_X;
-  const FALLBACK_Y = (HEADER_H - 36) / 2;
+  // Center the logo vertically inside the header.
+  const FALLBACK_Y = (HEADER_H - LOGO_H) / 2;
 
   const startScale = isDesktop ? 2.5 : 1.8;
   const startX = winSize.w / 2;
