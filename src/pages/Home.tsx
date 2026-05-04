@@ -11,7 +11,9 @@ import { PictureImg } from "@/components/PictureImg";
 import homeData from "@/content/home.json";
 import siteData from "@/content/site.json";
 
-const heroImg = `${import.meta.env.BASE_URL}images/photo-22.jpg`;
+import { Accordion } from "@/components/Accordion";
+
+const HeroImg = `${import.meta.env.BASE_URL}images/photo-22.jpg`;
 const aboutImg = `${import.meta.env.BASE_URL}images/photo-37.jpg`;
 
 const Home = () => {
@@ -25,8 +27,9 @@ const Home = () => {
   const prefersReducedMotion = usePrefersReducedMotion();
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
-  const heroY = useTransform(scrollY, [0, 800], [0, 160]);
-  const heroScale = useTransform(scrollY, [0, 800], [1, 1.08]);
+  const isTouchDevice = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches;
+  const heroY = useTransform(scrollY, [0, 800], isTouchDevice ? [0, 0] : [0, 160]);
+  const heroScale = useTransform(scrollY, [0, 800], isTouchDevice ? [1, 1] : [1, 1.08]);
 
   const aboutRef = useReveal<HTMLDivElement>(0.05);
   const aboutImgRef = useReveal<HTMLDivElement>(0.05);
@@ -62,7 +65,7 @@ const Home = () => {
           className="absolute inset-0"
         >
           <PictureImg
-            src={heroImg}
+            src={HeroImg}
             alt={t.hero.imageAlt}
             loading="eager"
             fetchPriority="high"
@@ -341,31 +344,7 @@ const Home = () => {
           <h2 className="font-display text-4xl md:text-6xl leading-tight whitespace-pre-line max-w-3xl mb-12">
             {t.faq.title}
           </h2>
-          <ul className="divide-y divide-border/60 border-y border-border/60">
-            {t.faq.items.map((it, i) => (
-              <li key={i}>
-                <details className="group py-6 md:py-8 [&_summary::-webkit-details-marker]:hidden">
-                  <summary className="flex items-baseline gap-6 cursor-pointer list-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 focus-visible:rounded-sm">
-                    <span className="font-sans-tight text-[10px] uppercase text-muted-foreground/70 tabular-nums shrink-0 w-8">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="flex-1 font-display text-xl md:text-2xl leading-snug">
-                      {it.q}
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className="font-display text-xl md:text-2xl leading-none text-muted-foreground/70 group-open:rotate-45 transition-transform duration-300"
-                    >
-                      +
-                    </span>
-                  </summary>
-                  <p className="mt-4 ml-14 max-w-2xl text-muted-foreground leading-relaxed">
-                    {it.a}
-                  </p>
-                </details>
-              </li>
-            ))}
-          </ul>
+          <Accordion items={t.faq.items} />
         </div>
       </section>
     </main>
